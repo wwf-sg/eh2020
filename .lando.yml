@@ -1,0 +1,7 @@
+name: eh2020
+recipe: wordpress
+config:
+  php: "7.2"
+  via: apache:2.4
+  webroot: .
+  database: mysql:5.7

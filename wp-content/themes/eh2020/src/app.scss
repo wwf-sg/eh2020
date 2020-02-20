@@ -1,0 +1,286 @@
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: "Tex Gyre Adventor", sans-serif;
+  font-weight: 600;
+}
+h2,
+.h2 {
+  font-size: 2.4rem;
+  margin-bottom: 2rem;
+}
+h4,
+.h4 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.btn {
+  font-family: "Tex Gyre Adventor", sans-serif;
+  color: #444;
+  text-transform: uppercase;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  padding: 5px 25px 7px;
+  &:not(.btn-link) {
+    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.1);
+    font-weight: 700;
+  }
+}
+.btn svg {
+  width: 18px;
+  vertical-align: bottom;
+  margin-bottom: -2px;
+  margin-left: 5px;
+}
+@import "content";
+@import "home";
+
+#masthead {
+  z-index: 1;
+  background-color: transparent !important;
+  position: absolute;
+  top: 0;
+
+  .navbar-toggler {
+    border: 0;
+    outline: 0;
+    @include media-breakpoint-down(md) {
+      .hamburg {
+        display: none;
+      }
+      .cancel {
+        display: block;
+        background-image: url("data:image/svg+xml, <svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 32 32' version='1.1' width='32px' height='32px'><g id='surface1'><path style=' ' d='M 7.21875 5.78125 L 5.78125 7.21875 L 14.5625 16 L 5.78125 24.78125 L 7.21875 26.21875 L 16 17.4375 L 24.78125 26.21875 L 26.21875 24.78125 L 17.4375 16 L 26.21875 7.21875 L 24.78125 5.78125 L 16 14.5625 Z '/></g> </svg>");
+      }
+      &.collapsed {
+        .hamburg {
+          display: block;
+        }
+        .cancel {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .navbar-brand {
+    img {
+      width: 60px;
+      padding: 0.5rem;
+      background: #fff;
+    }
+  }
+  @include media-breakpoint-up(md) {
+    .navbar-brand {
+      img {
+        padding: 1rem;
+        width: 120px;
+      }
+    }
+  }
+}
+.plastic_value.impact.highlight {
+  white-space: nowrap;
+}
+
+@include media-breakpoint-down(md) {
+  .wp-block-media-text.is-stacked-on-mobile.has-media-on-the-right {
+    grid-template-areas: "media-text-media" "media-text-content";
+  }
+}
+.nav-fixed {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  width: 100%;
+  text-align: right;
+  @include media-breakpoint-up(md) {
+    width: 40%;
+    right: 20px;
+    top: 20px;
+    #navbarToggler {
+      display: none;
+    }
+
+    .navbar-toggler {
+      &:hover {
+        .hamburg {
+        }
+        .navbar-collapse {
+          display: block;
+        }
+      }
+
+      &:not(.collapsed) {
+        .cancel {
+        }
+        .hamburg {
+        }
+      }
+    }
+  }
+  @include media-breakpoint-up(md) {
+    top: 40px;
+    right: 40px;
+    .navbar-nav {
+      padding: 1rem 0.2rem;
+    }
+  }
+}
+
+.navbar-collapse {
+  max-width: 360px;
+  position: absolute;
+  top: 30px;
+  right: 0;
+  text-align: right;
+  line-height: 1.5;
+  padding: 0 1rem;
+
+  &.collapsing {
+    height: auto;
+    overflow: auto;
+    transition: none;
+  }
+
+  .nav-item a {
+    background-color: #fff;
+    padding: 2px 0.9rem;
+    margin: 5px 0;
+    display: inline-block !important;
+    &:hover {
+      background-color: #ffee00;
+    }
+  }
+}
+
+.site-footer {
+  margin-top: 20px;
+  background-color: #bdbebd !important;
+  @include media-breakpoint-up(md) {
+    margin-top: 50px;
+  }
+}
+
+#country_selector {
+  background-color: transparent;
+  border: 0;
+  top: -8px;
+  right: -4px;
+  position: relative;
+  @include media-breakpoint-up(md) {
+    top: 0;
+    right: 0;
+  }
+}
+
+#country_modal {
+  li {
+    list-style: none;
+  }
+  .menu-item {
+    padding: 5px 0;
+    a {
+      color: #444;
+    }
+  }
+  .sub-menu {
+    padding-left: 30px;
+  }
+}
+
+.flag-icon:not(.flag-icon-globe) {
+  box-shadow: inset 0 0 3px 0px #a5a5a5;
+}
+
+.flag-icon-globe {
+  background-image: url("../flags/4x3/none.svg");
+}
+.flag-icon-lac {
+  background-image: url("../flags/4x3/lac.png");
+}
+.entry .entry-content .wp-block-button .wp-block-button__link,
+.entry .entry-content .wp-block-button.is-style-outline .wp-block-button__link,
+.entry .entry-content .wp-block-button.is-style-squared .wp-block-button__link {
+  // background-color: transparent;
+  border: 2px solid #000;
+  border-radius: unset !important;
+  text-transform: uppercase;
+  font-weight: bolder;
+  background-color: var(--red);
+  border-color: var(--red);
+  &:hover {
+    border-color: #000;
+    background-color: #000;
+    color: #fff;
+  }
+  &.has-red-background-color {
+    background-color: var(--red);
+    border-color: var(--red);
+    &:hover {
+      border-color: #000;
+      background-color: #000;
+      color: #fff;
+    }
+  }
+}
+
+.entry .entry-content {
+  .wp-block-button {
+    &.aligncenter {
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    .wp-block-button__link {
+      text-decoration: none;
+      padding: 12px 44px;
+
+      &:hover {
+        background-color: var(--red);
+        color: #fff !important;
+      }
+    }
+  }
+}
+
+.footer-nav {
+  font-size: 90%;
+}
+
+// .page-template-plastic-diet-ifram,
+// .page-template-page-templatesplastic-diet-ifram-php {
+//   #wpadminbar {
+//     display: none;
+//   }
+// }
+
+// html {
+//   margin-top: 0 !important;
+// }
+// * html body {
+//   margin-top: 0 !important;
+// }
+// @media screen and (max-width: 782px) {
+//   html {
+//     margin-top: 0 !important;
+//   }
+//   * html body {
+//     margin-top: 0 !important;
+//   }
+// }

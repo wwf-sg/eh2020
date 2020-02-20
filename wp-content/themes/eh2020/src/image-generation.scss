@@ -1,0 +1,105 @@
+@font-face {
+  font-family: "Impact Label";
+  src: url("../fonts/impactlabel.woff2") format("woff2"),
+    url("../fonts/impactlabel.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Tex Gyre Adventor";
+  src: url("../fonts/texgyreadventor-bolditalic-webfont.woff");
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Tex Gyre Adventor";
+  src: url("../fonts/texgyreadventor-italic-webfont.woff");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Tex Gyre Adventor";
+  src: url("../fonts/texgyreadventor-bold-webfont.woff");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Tex Gyre Adventor";
+  src: url("../fonts/texgyreadventor-regular-webfont.woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AvantGarde LT Book";
+  src: url("../fonts/avantgardeltbook.woff2") format("woff2"),
+    url("../fonts/avantgardeltbook.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AvantGarde LT Book";
+  src: url("../fonts/avantgardeltdemi.woff2") format("woff2"),
+    url("../fonts/avantgardeltdemi.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #ffeb00;
+}
+
+.image-container {
+  width: 1200px;
+  height: 630px;
+  padding: 50px 20px 50px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image-container .grams {
+  background: #fff;
+  color: #ff4242;
+  display: inline-block;
+  font-family: "Impact Label", sans-serif;
+  font-size: 3.25rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 10px 0;
+  text-align: left;
+}
+
+.image-container__text {
+  font-family: "AvantGarde LT Book", sans-serif;
+  font-weight: bold;
+  font-size: 3rem;
+  line-height: 1.125em;
+  text-align: left;
+  width: 470px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid #000;
+}
+
+.image-container__image {
+  width: 550px;
+}
+
+.image-container__image img {
+  max-width: 100%;
+}
+
+.image-container__image,
+.image-container__text {
+  display: inline-block;
+  vertical-align: top;
+}
