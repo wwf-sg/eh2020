@@ -248,3 +248,149 @@ video {
     margin-right: 0;
   }
 }
+
+// 123
+
+#timer .countdown-wrapper {
+  margin: 0 auto;
+}
+
+#timer #countdown {
+  font-family: "Helvetica", sans-serif;
+  text-align: center;
+  color: #eee;
+  padding-bottom: 100px;
+}
+
+@media screen and (max-width: 512px) {
+  #timer #countdown {
+    padding-top: -60px;
+  }
+}
+
+#timer .countdown-wrapper #countdown .timer {
+  margin: 20px;
+  padding: 20px;
+  font-size: 90px;
+  border-radius: 0.5rem;
+  background-image: linear-gradient(to top, #ac64ac 0%, #1a4186 100%);
+}
+
+.countdown-box {
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+}
+
+.caption {
+  margin-top: 20px;
+  display: block;
+}
+
+#timer .col-md-4.countdown-wrapper #countdown .timer {
+  margin: 10px;
+  padding: 20px;
+  font-size: 35px;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  #timer .countdown-wrapper #countdown .timer {
+    margin: 10px;
+    padding: 20px;
+    font-size: 65px;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #timer .countdown-wrapper #countdown .timer {
+    margin: 10px;
+    padding: 20px;
+    font-size: 72px;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 768px) {
+  #timer .countdown-wrapper #countdown .timer {
+    margin: 10px;
+    padding: 20px;
+    font-size: 73px;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 767px) {
+  #timer .countdown-wrapper #countdown #day,
+  #timer .countdown-wrapper #countdown #hour,
+  #timer .countdown-wrapper #countdown #min,
+  #timer .countdown-wrapper #countdown #sec {
+    font-size: 60px;
+    border-radius: 4%;
+  }
+}
+
+@media (max-width: 576px) {
+  #timer .countdown-wrapper #countdown #day,
+  #timer .countdown-wrapper #countdown #hour,
+  #timer .countdown-wrapper #countdown #min,
+  #timer .countdown-wrapper #countdown #sec {
+    font-size: 25px;
+    border-radius: 4%;
+  }
+  #timer .countdown-wrapper #countdown .timer {
+    padding: 13px;
+  }
+}
+
+// button
+
+.buttons {
+  border-radius: 0;
+  margin: 10%;
+  text-align: center;
+}
+
+// .btn-hover {
+//   width: 200px;
+//   font-size: 16px;
+//   font-weight: 600;
+//   color: #fff;
+//   cursor: pointer;
+//   margin: 20px;
+//   height: 55px;
+//   text-align: center;
+//   border: none;
+//   background-size: 300% 100%;
+//   border-radius: 0px;
+//   moz-transition: all 0.4s ease-in-out;
+//   -o-transition: all 0.4s ease-in-out;
+//   -webkit-transition: all 0.4s ease-in-out;
+//   transition: all 0.4s ease-in-out;
+// }
+
+// .btn-hover:hover {
+//   background-position: 100% 0;
+//   moz-transition: all 0.4s ease-in-out;
+//   -o-transition: all 0.4s ease-in-out;
+//   -webkit-transition: all 0.4s ease-in-out;
+//   transition: all 0.4s ease-in-out;
+// }
+
+// .btn-hover:focus {
+//   outline: none;
+// }
+
+.btn-gradient {
+  color: #fff;
+  background-size: 300% 100%;
+  transition: all 0.4s ease-in-out;
+  background-image: linear-gradient(
+    to right,
+    #1a4186,
+    #ac64ac,
+    #1a4186,
+    #ac64ac
+  );
+  box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
+}

@@ -72,14 +72,14 @@ function getSignature()
     global $returnvariable;
 
     $nonce = $_POST['data']['_nonce'];
-    if (!wp_verify_nonce($nonce, 'plastic_diet_form')) {
+    if (!wp_verify_nonce($nonce, 'voice_form')) {
         echo json_encode([
             'error' => 'Invalid nonce',
         ]);
         die();
     }
 
-    check_ajax_referer('plastic_diet_form', '_nonce');
+    check_ajax_referer('voice_form', '_nonce');
 
     if ($_POST['data']['form']['first_name'] || $_POST['data']['form']['last_name']) {
         echo json_encode([
@@ -96,13 +96,9 @@ function getSignature()
             'email'     => $_POST['data']['form']['email'],
             'phone'     => $_POST['data']['form']['phone'],
             'country'   => $_POST['data']['form']['country'],
-            'shellfish' => $_POST['data']['form']['items']['shellfish'],
-            'water'     => $_POST['data']['form']['items']['water'],
-            'beer'      => $_POST['data']['form']['items']['beer'],
-            'salt'      => $_POST['data']['form']['items']['salt'],
-            'plastic_value' => $_POST['data']['form']['plastic_value'],
-            'plastic_name' => $_POST['data']['form']['plastic_name']['name'],
-            'plastic_image' => $_POST['data']['form']['plastic_name']['image'],
+            'health'    => $_POST['data']['form']['items']['health'],
+            'economy'   => $_POST['data']['form']['items']['economy'],
+            'standardOfLiving' => $_POST['data']['form']['items']['standardOfLiving'],
             'share_url' => $_POST['data']['shareUrl'],
             'image_url' => $_POST['data']['shareImage'],
             'utm_campaign' => $_POST['data']['form']['utm_campaign'],
@@ -111,14 +107,6 @@ function getSignature()
             'utm_content' => $_POST['data']['form']['utm_content'],
             'utm_term' => $_POST['data']['form']['utm_term'],
         );
-
-        $path = isset($_POST['data']['path']) ?: 1;
-
-        if ($path == 1) {
-            $addedPost['path'] = 'Plastic diet test';
-        } else {
-            $addedPost['path'] = 'What we can do - Take action';
-        }
 
         $signature_count = _getSignatureCount($_POST['data']['form']['country']);
 
@@ -141,72 +129,23 @@ function getSignature()
         update_field('email', $addedPost['email'], $s_id);
         update_field('phone', $addedPost['phone'], $s_id);
         update_field('country', $addedPost['country'], $s_id);
-        update_field('shellfish', $addedPost['shellfish'], $s_id);
-        update_field('water', $addedPost['water'], $s_id);
-        update_field('beer', $addedPost['beer'], $s_id);
-        update_field('salt', $addedPost['salt'], $s_id);
-        update_field('plastic_value', $addedPost['plastic_value'], $s_id);
-        update_field('plastic_name', $addedPost['plastic_name'], $s_id);
-        update_field('plastic_image', $addedPost['plastic_image'], $s_id);
+        update_field('health', $addedPost['health'], $s_id);
+        update_field('economy', $addedPost['economy'], $s_id);
+        update_field('standardOfLiving', $addedPost['standardOfLiving'], $s_id);
         update_field('utm_campaign', $addedPost['utm_campaign'], $s_id);
         update_field('utm_source', $addedPost['utm_source'], $s_id);
         update_field('utm_medium', $addedPost['utm_medium'], $s_id);
         update_field('utm_content', $addedPost['utm_content'], $s_id);
         update_field('utm_term', $addedPost['utm_term'], $s_id);
 
-        $placeholders = [
-            '{{ signature_count_global }}' => "<strong class='grams signature_count global'>" . $signature_count['global'] . "</strong>",
-            '{{ signature_count_local }}' => "<strong class='signature_count global'>" . $signature_count['local'] . "</strong>",
-            '{{ user_name }}' => "<span class='user blue impact highlight'>{{ user_name }}</span>",
-            '{{ form.name }}' => "<span class='user blue impact highlight'>{{ user_name }}</span>",
-        ];
-        $placeholder = function ($variab) use ($placeholders) {
-            foreach ($placeholders as $key => $value) {
-                $variab = str_replace($key, $value, $variab);
-            }
-            return $variab;
-        };
+        $addedPost['image_url'] = '';
+        $imgUrl = $addedPost['image_url'];
+        update_field('image_url', $addedPost['image_url'], $s_id);
 
-        if (isset($_POST['data']['path']) && $_POST['data']['path'] == 1) {
-            if (isset($_POST['data']['s_id']) && $_POST['data']['s_id']) {
-                $imgUrl = $addedPost['image_url'];
-            } else {
-                $text = "{{ user_name }} consumes approximately {{ plastic_value }} of plastic a week. <hr> That's like eating a {{ plastic_name }}!";
-                $text = $placeholder($_POST['data']['plastic_text']);
-                $path = generate_image(
-                    $text,
-                    $addedPost['name'],
-                    $addedPost['plastic_value'],
-                    $addedPost['plastic_name'],
-                    $addedPost['plastic_image']
-                );
-                $addedPost['image_url'] = Generate_Featured_Image($file = $path, $post_id = $s_id, $desc = '');
-
-                update_field('image_url', $addedPost['image_url'], $s_id);
-
-                $imgUrl = wp_get_attachment_url($addedPost['image_url']);
-            }
-        } else {
-            $text = "{{ user_name }} eats about a credit card a week, and has joined {{ signature_count_global }} people calling for change.";
-            $text = $placeholder($_POST['data']['plastic_text']);
-            $path = generate_image(
-                $text,
-                $addedPost['name'],
-                '0.00',
-                'credit card',
-                'chopstickcard'
-            );
-            $addedPost['image_url'] = Generate_Featured_Image($file = $path, $post_id = $s_id, $desc = '');
-
-            update_field('image_url', $addedPost['image_url'], $s_id);
-
-            $imgUrl = wp_get_attachment_url($addedPost['image_url']);
-        }
-
-        if (isset($_POST['data']['form']['email']) && $_POST['data']['form']['email'] && 'sg' == strtolower($addedPost['country'])) {
-            addActiveCampaign($addedPost);
-            sendEmail_sg($addedPost);
-        }
+        // if (isset($_POST['data']['form']['email']) && $_POST['data']['form']['email'] && 'sg' == strtolower($addedPost['country'])) {
+        //     addActiveCampaign($addedPost);
+        //     sendEmail_sg($addedPost);
+        // }
 
         if ($s_id <= 0) {
             $returnvariable['redirect'] = "We are sorry. Something went wrong with you signature. Please reload and try again.";
@@ -226,7 +165,6 @@ function getSignature()
 
     echo json_encode([
         's_id' => $s_id,
-        'image_url' => $imgUrl,
         'share_url' => get_permalink($s_id),
         'signatureCount' => $signature_count
     ]);
@@ -234,6 +172,7 @@ function getSignature()
 }
 add_action('wp_ajax_getSignature', 'getSignature');
 add_action('wp_ajax_nopriv_getSignature', 'getSignature');
+
 
 function _getSignatureCount($country = 'all')
 {
@@ -272,6 +211,7 @@ function _getSignatureCount($country = 'all')
 
     return $count;
 }
+
 
 /**
  * 
@@ -404,7 +344,7 @@ function addActiveCampaign($signature)
     // echo 'Result: ' . ($result['result_code'] ? 'SUCCESS' : 'FAILED') . '<br />';
     // echo 'Message: ' . $result['result_message'] . '<br />';
 
-    if( $result['result_code'] ) {
+    if ($result['result_code']) {
         update_field('on_active_campaign', $result['subscriber_id'], $signature['s_id']);
     } else {
         error_log($signature['s_id']);
@@ -457,9 +397,8 @@ function sendEmail_sg($user)
 }
 
 
-
-
-function ac_sync_contact() {
+function ac_sync_contact()
+{
     // query all the signatures with on_active_campaign field
     $loop = new WP_Query(array(
         'post_type' => 'signature',
@@ -495,8 +434,8 @@ function ac_sync_contact() {
     // echo "<br>";
 
 
-    if ($loop->have_posts()):
-        while ($loop->have_posts()):
+    if ($loop->have_posts()) :
+        while ($loop->have_posts()) :
             $loop->the_post();
             $s_id = get_the_ID();
 
@@ -515,7 +454,7 @@ function ac_sync_contact() {
             $signature['utm_content'] = get_field('utm_content', $s_id);
             $signature['utm_term'] = get_field('utm_term', $s_id);
 
-            if ( 'SG' == $signature['country']) {
+            if ('SG' == $signature['country']) {
                 addActiveCampaign($signature);
             }
 
@@ -525,12 +464,14 @@ function ac_sync_contact() {
 }
 
 
-function cron_cron_ac_sync_contact_15af8da1() {
+function cron_cron_ac_sync_contact_15af8da1()
+{
     ac_sync_contact();
 }
-add_action( 'cron_ac_sync_contact', 'cron_cron_ac_sync_contact_15af8da1', 10, 0 );
+add_action('cron_ac_sync_contact', 'cron_cron_ac_sync_contact_15af8da1', 10, 0);
 
-if(is_admin() && isset($_GET['test'])) {
+
+if (is_admin() && isset($_GET['test'])) {
     ac_sync_contact();
     die();
 }

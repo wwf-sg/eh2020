@@ -1,5 +1,15 @@
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+.bg-black {
+  background-color: #000;
+}
+.btn-outline-light {
+  transition: all 0.5s;
+  &:hover {
+    color: #000 !important;
+  }
+}
+
 body {
   font-family: "Roboto", sans-serif;
   margin: 0;
@@ -53,9 +63,12 @@ h4,
 
 #masthead {
   z-index: 1;
-  background-color: transparent !important;
+  background-color: transparent;
   position: absolute;
   top: 0;
+  &.fixed-theme {
+    background-color: #000;
+  }
 
   .navbar-toggler {
     border: 0;
@@ -82,14 +95,7 @@ h4,
   .navbar-brand {
     img {
       width: 60px;
-      padding: 0.5rem;
-      background: #fff;
-    }
-  }
-  @include media-breakpoint-up(md) {
-    .navbar-brand {
-      img {
-        padding: 1rem;
+      @include media-breakpoint-up(md) {
         width: 120px;
       }
     }
@@ -284,3 +290,5 @@ h4,
 //     margin-top: 0 !important;
 //   }
 // }
+
+@import "./eh2020.scss";

@@ -1,7 +1,4 @@
-.page-template-plastic-diet-ifram,
-.page-template-plastic-diet,
-.page-template-page-php,
-.page-template-home-php {
+.page-template {
   background-color: #eee;
 
   img {
@@ -181,10 +178,9 @@
     }
   }
 }
-
-.plastic-diet-test {
-  background-color: #ffeb00;
+#voice-component {
   display: flex;
+  color: #fff;
 
   form {
     min-height: 500px;
@@ -194,9 +190,8 @@
     position: relative;
   }
   .form-control {
-    font-size: 2.4rem;
-    line-height: 1.6;
-    background: none;
+    // font-size: 2.4rem;
+    // line-height: 1.6;
     border-width: 0 0 2px;
     &:focus {
       box-shadow: none;
@@ -221,16 +216,11 @@
   }
   select.form-control {
     max-width: 458px;
-    width: 94%;
-    font-size: 1.4rem;
     display: inline-block;
     font-family: "AvantGarde LT Book", sans-serif;
     color: #212529;
-    line-height: 1.5;
     height: auto;
-    border: none;
     border-bottom: 2px solid #222;
-    border-radius: 0;
     padding: 0.5rem;
     box-sizing: border-box;
     margin: 0;
@@ -242,6 +232,8 @@
     background-repeat: no-repeat, repeat;
     background-position: right 0.7em top 50%, 0 0;
     background-size: 0.65em auto, 100%;
+    @include media-breakpoint-up(md) {
+    }
     &::-ms-expand {
       display: none;
     }
@@ -407,7 +399,7 @@
   position: fixed !important;
   left: 0 !important;
   width: 100% !important;
-  #take-the-plastic-test {
+  form {
     height: auto;
   }
   @include media-breakpoint-down(md) {

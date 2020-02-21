@@ -1,0 +1,83 @@
+.hero-section {
+  background: #000;
+  position: relative;
+}
+
+.hero-section,
+.hero-section > .container > .row {
+  height: 100vh;
+  min-height: 780px;
+}
+
+@media (max-width: 750px) {
+  .hero-section,
+  .hero-section > .container > .row {
+    top: -80px;
+  }
+}
+
+.hero-section h1 {
+  font-size: 2.5rem;
+  color: #ffe783;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 750px) {
+  .hero-section h1 {
+    font-size: 1.8rem;
+    color: #ffe783;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+}
+
+.hero-section h2 {
+  font-size: 2rem;
+  color: #fff;
+  font-weight: 200;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 750px) {
+  .hero-section h2 {
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 200;
+    margin-bottom: 20px;
+  }
+}
+
+.hero-section h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: 200;
+  margin-bottom: 20px;
+}
+
+.hero-section h4 {
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+@media (max-width: 750px) {
+  .hero-section h4 {
+    font-size: 1rem;
+    color: #fff;
+  }
+}
+
+.hero-text-padding {
+  padding-top: 9rem;
+}
+
+.hero-section img {
+  position: relative;
+  overflow: hidden;
+  left: 0;
+}
+@media screen and (max-width: 512px) {
+  .hero-section img {
+    top: 40%;
+  }
+}

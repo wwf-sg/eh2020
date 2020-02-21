@@ -50,16 +50,5 @@ if (mix.inProduction()) {
     .sass("src/app.scss", "dist/")
     .sass("src/custom-editor-style.scss", ".")
     // .version()
-    .sourceMaps()
-    .browserSync({
-      proxy: config.proxyUrl,
-      host: config.siteUrl,
-      open: config.openOnStart,
-      port: config.port,
-      https: {
-        key: config.pathToLocalSSLKey,
-        cert: config.pathToLocalSSLCert
-      },
-      files: config.filesToWatch
-    });
+    .sourceMaps();
 }
