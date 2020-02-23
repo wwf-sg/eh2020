@@ -11,12 +11,6 @@
     margin-bottom: 0 !important;
   }
 
-  .site-footer {
-    margin-top: -20px;
-    @include media-breakpoint-up(md) {
-      margin-top: -100px;
-    }
-  }
   .wp-block-video.alignfull {
     position: relative;
     &:before,

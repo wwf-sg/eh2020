@@ -13,8 +13,8 @@
         <a class="skip-link screen-reader-text sr-only sr-only-focusable" href="#content"><?php esc_html_e('Skip to content', '_s'); ?></a>
 
         <header id="masthead" class="site-header position-fixed w-100">
-            <div class="container-fluid">
-                <div class="navbar navbar-expand-lg navbar-light px-0">
+            <div class="container">
+                <div class="navbar navbar-expand-lg navbar-dark px-0">
                     <a class="navbar-brand p-0" href="<?php echo esc_url(home_url('/')); ?>" rel="home">
                         <img src="<?php echo get_stylesheet_directory_uri() . '/imgs/60+logo.png' ?>" width="80" height="65" class="" alt="">
                         <img src="<?php echo get_stylesheet_directory_uri() . '/imgs/wwf-logo.png' ?>" width="70" height="80" class="ml-2 bg-white p-2" alt="wwf">
@@ -29,6 +29,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#about">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#LightsOut">Lights Out</a>
                             </li>
                             <?php if (false) { ?>
                                 <?php if (have_rows('plastic_diet_menu')) : ?>

@@ -1,0 +1,39 @@
+/* @font-face {
+  font-family: "Impact Label";
+  src: url("../fonts/impactlabel.woff2") format("woff2"),
+    url("../fonts/impactlabel.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+} */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 14px;
+}
+
+.image-container {
+  display: flex;
+  flex-flow: column wrap;
+  width: 1200px;
+  height: 700px;
+  max-height: 700px;
+  padding: 100px 50px 50px;
+}
+.image-container > * {
+  width: 500px;
+  flex: 0 1;
+  margin-bottom: 0.1rem;
+}
+.image-container hr {
+  border: 0;
+  border-bottom: 3px solid #000;
+}

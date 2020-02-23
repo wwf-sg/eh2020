@@ -33,21 +33,21 @@
     </div>
 
     <!-- Countdown -->
-    <section id="timer" class="bg-black">
+    <section id="timer" class="bg-black mb-5">
         <div class="container">
             <div class="countdown-wrapper text-center">
                 <div id="countdown">
                     <div class="countdown-box">
-                        <span id="day" class="timer"></span><span class="caption">DAYS</span>
+                        <span id="day" class="timer">00</span><span class="caption">DAYS</span>
                     </div>
                     <div class="countdown-box">
-                        <span id="hour" class="timer"></span><span class="caption">HOURS</span>
+                        <span id="hour" class="timer">00</span><span class="caption">HOURS</span>
                     </div>
                     <div class="countdown-box">
-                        <span id="min" class="timer"></span><span class="caption">MINUTES</span>
+                        <span id="min" class="timer">00</span><span class="caption">MINUTES</span>
                     </div>
                     <div class="countdown-box">
-                        <span id="sec" class="timer"></span><span class="caption">SECONDS</span>
+                        <span id="sec" class="timer">00</span><span class="caption">SECONDS</span>
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                     <img src="<?php echo get_stylesheet_directory_uri() ?>/imgs/about-eh.jpeg" class="img-fluid mb-3">
                 </div>
                 <div class="col-lg-6 text-white">
-                    <h2 style="color: #FFE783;" class="text-center mb-3">ABOUT EARTH HOUR</h2>
+                    <h2 style="color: #FFE783;" class="text-center text-md-left mb-3">ABOUT EARTH HOUR</h2>
                     <p>Earth Hour brings together people globally to act for nature and climate. Every year, we will countdown together across 180 countries and territories around the world to do one iconic thing: switch off the lights.</p>
 
                     <p>But it’s not about doing it to “save electricity”.</p>
@@ -73,7 +73,7 @@
                     </p>
                     <p>2020 is an important year as major decisions will be taken to protect people and nature. Our future for decades to come will depend on the decisions made now.</p>
 
-                    <div class="text-center">
+                    <div class="text-center text-md-left">
                         <a class="btn btn-outline-dark btn-gradient py-3 px-4" target="_blank" href="https://www.facebook.com/events/604866186929008/">Find Out More</a>
                     </div>
                 </div>

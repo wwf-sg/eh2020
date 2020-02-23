@@ -92,14 +92,14 @@ h4,
     }
   }
 
-  .navbar-brand {
-    img {
-      width: 60px;
-      @include media-breakpoint-up(md) {
-        width: 120px;
-      }
-    }
-  }
+  // .navbar-brand {
+  //   img {
+  //     width: 60px;
+  //     @include media-breakpoint-up(md) {
+  //       width: 120px;
+  //     }
+  //   }
+  // }
 }
 .plastic_value.impact.highlight {
   white-space: nowrap;
@@ -166,21 +166,17 @@ h4,
   }
 
   .nav-item a {
-    background-color: #fff;
     padding: 2px 0.9rem;
     margin: 5px 0;
     display: inline-block !important;
     &:hover {
-      background-color: #ffee00;
     }
   }
 }
 
 .site-footer {
-  margin-top: 20px;
   background-color: #bdbebd !important;
   @include media-breakpoint-up(md) {
-    margin-top: 50px;
   }
 }
 
