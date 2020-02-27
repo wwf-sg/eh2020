@@ -35,10 +35,17 @@ const config = {
 
 if (mix.inProduction()) {
   mix
-    .minify("dist/app.css")
+    .options({
+      processCssUrls: false
+    })
+    .js("src/app.js", "dist/")
+    .extract(["vue", "v8n", "axios", "jquery"])
+    .sass("src/app.scss", "dist/")
+    // .sass("src/custom-editor-style.scss", ".")
+    // .version()
     .minify("dist/app.js")
     .minify("dist/vendor.js")
-    .minify("dist/manifest.js")
+    .minify("dist/app.css")
     .sourceMaps();
 } else {
   mix
@@ -46,9 +53,9 @@ if (mix.inProduction()) {
       processCssUrls: false
     })
     .js("src/app.js", "dist/")
-    .extract(["bootstrap", "vue", "v8n"])
+    .extract(["vue", "v8n", "axios", "jquery"])
     .sass("src/app.scss", "dist/")
-    .sass("src/custom-editor-style.scss", ".")
+    // .sass("src/custom-editor-style.scss", ".")
     // .version()
     .sourceMaps();
 }

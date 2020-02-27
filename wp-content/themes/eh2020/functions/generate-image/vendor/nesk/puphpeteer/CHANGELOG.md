@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 _In progress…_
 
+## [1.6.0] - 2019-06-24
+### Added
+- Support Puppeteer v1.18
+
 ## [1.5.0] - 2019-03-17
 ### Added
 - Support Puppeteer v1.13
@@ -89,7 +93,8 @@ _In progress…_
 First release
 
 
-[Unreleased]: https://github.com/nesk/puphpeteer/compare/1.5.0...HEAD
+[Unreleased]: https://github.com/nesk/puphpeteer/compare/1.6.0...HEAD
+[1.6.0]: https://github.com/nesk/puphpeteer/compare/1.5.0...1.6.0
 [1.5.0]: https://github.com/nesk/puphpeteer/compare/1.4.1...1.5.0
 [1.4.1]: https://github.com/nesk/puphpeteer/compare/1.4.0...1.4.1
 [1.4.0]: https://github.com/nesk/puphpeteer/compare/1.3.0...1.4.0

@@ -102,6 +102,6 @@ if (isset($_GET['test'])) {
 }
 
 
-// require_once 'functions/generate-image/index.php';
+require_once 'functions/generate-image/index.php';
 require_once 'functions/required.php';
 require_once 'functions/signatures.php';

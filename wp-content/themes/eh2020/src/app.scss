@@ -43,20 +43,7 @@ h4,
   font-family: "Tex Gyre Adventor", sans-serif;
   color: #444;
   text-transform: uppercase;
-  -webkit-border-radius: 0 !important;
-  -moz-border-radius: 0 !important;
-  border-radius: 0 !important;
   padding: 5px 25px 7px;
-  &:not(.btn-link) {
-    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.1);
-    font-weight: 700;
-  }
-}
-.btn svg {
-  width: 18px;
-  vertical-align: bottom;
-  margin-bottom: -2px;
-  margin-left: 5px;
 }
 @import "content";
 @import "home";
@@ -175,7 +162,7 @@ h4,
 }
 
 .site-footer {
-  background-color: #bdbebd !important;
+  background-color: #fff !important;
   @include media-breakpoint-up(md) {
   }
 }
@@ -288,3 +275,154 @@ h4,
 // }
 
 @import "./eh2020.scss";
+
+.openletter {
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 20px;
+  // display: flex;
+  // flex-flow: column wrap;
+  width: 100%;
+  max-width: 900px;
+  max-height: 500px;
+  overflow: scroll;
+  font-family: monospace;
+
+  h3 {
+    color: #000 !important;
+  }
+
+  & > * {
+    // width: calc(50% - 20px);
+    margin-bottom: 7px;
+  }
+  & li {
+    // line-break: anywhere;
+  }
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+#voice-form {
+  #step1,
+  #step2 {
+    h2,
+    h3 {
+      color: #ffe783;
+    }
+  }
+  #step4 {
+    .btn {
+      padding: 10px;
+      line-height: 1;
+    }
+    svg {
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+    }
+  }
+}
+@include media-breakpoint-up(lg) {
+  #step2,
+  #step3 {
+    .openletter {
+      max-height: 750px;
+    }
+  }
+}
+@include media-breakpoint-up(xl) {
+  #step2,
+  #step3 {
+    .openletter {
+      max-height: 600px;
+    }
+  }
+}
+
+.btn-social img,
+.btn-social svg {
+  vertical-align: text-bottom;
+}
+
+.sponsorsFooter {
+  width: 100%;
+  height: auto;
+  z-index: 14;
+  padding-top: 100px;
+  z-index: 1 !important;
+  text-align: center !important;
+  z-index: 99;
+  background-color: transparent;
+  padding-bottom: 30px;
+}
+
+.sponsorsFooter img {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  height: auto;
+  vertical-align: middle;
+  max-width: 120px;
+}
+
+@media (max-width: 750px) {
+  .sponsorsFooter img {
+    max-width: 100px;
+  }
+}
+
+.samsonite,
+.starhub,
+.foodpanda {
+  max-width: 200px !important;
+}
+.starhub {
+  margin-top: 10px;
+}
+@media screen and (max-width: 750px) {
+  .thebodyshop {
+    width: 75%;
+    margin-top: 15px;
+  }
+}
+.line-up {
+  h2 {
+    color: #ffe783;
+  }
+  img {
+  }
+  h3 {
+    font-size: 18px;
+    margin: 0;
+  }
+  p {
+    font-size: 18px;
+    display: none;
+  }
+}
+
+.wave {
+  width: 100%;
+  height: auto;
+}
+
+section#youtube {
+  h2 {
+    font-size: 36px;
+  }
+  .btn-red {
+    background-color: #d70a0a;
+    color: #fff;
+    &:hover {
+      // border: 1px solid #d70a0a;
+      // color: #d70a0a;
+    }
+  }
+}
+
+#content {
+  min-height: 500px;
+}

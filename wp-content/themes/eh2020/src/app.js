@@ -11,13 +11,12 @@ import $ from "jquery";
 // import "vue-tel-input/dist/vue-tel-input.css";
 // Vue.component("vue-tel-input", TelInput);
 
-// require("jquery");
-require("bootstrap");
+// require("bootstrap");
 
 $(document).ready(function() {
   setInterval(function time() {
     var d = new Date();
-    var target = new Date("March 27, 2020 00:00:00");
+    var target = new Date("March 28, 2020 17:30:00");
     var diffTime = Math.abs(target - d);
     var days = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     var hours = ("0" + (23 - d.getHours())).slice(-2);
@@ -141,25 +140,26 @@ var app = new Vue({
       _nonce: nonce,
       loading: false,
       image_loading: false,
-      // signatureCount: signature_count,
+      signatureCount: 0,
       shareImage: "",
-      shareUrl: "https://yourplasticdiet.org/",
-      step: 1,
+      shareUrl: "https://earthhour.sg/",
+      step: 3,
       cta_check: false,
       maxSteps: 4,
       form: {
-        first_name: "",
-        last_name: "",
+        first_name: "Manoj",
+        last_name: "hl",
         name: "",
+        email: "123@gmail.com",
+        phone: "123",
+        age: 22,
         country: "SG",
-        email: "",
-        phone: "",
-        check_age: false,
-        check_pdpc: false,
-        items: {
+        check_pdpc: true,
+        issues: {
           health: false,
-          economy: false,
-          standardOfLiving: false
+          economy: true,
+          standardOfLiving: false,
+          custom_message: ""
         }
       },
       errors: {}
@@ -183,18 +183,56 @@ var app = new Vue({
           return this.step;
           break;
         case 2:
-          this.step = 3;
-          forme.scrollIntoView();
-          return this.step;
+          if (
+            !(
+              this.form.issues.economy ||
+              this.form.issues.health ||
+              this.form.issues.standardOfLiving ||
+              this.form.issues.custom_message
+            )
+          ) {
+            this.errors.issues = "Please select atleast one checkbox";
+            forme.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+              inline: "nearest"
+            });
+            return this.errors;
+          }
+
+          const customIssue = v8n()
+            .string()
+            .maxLength(120);
+
+          if (
+            !v8n()
+              .optional(customIssue)
+              .test(this.form.issues.custom_message)
+          ) {
+            this.errors.issues = "Please enter max 120 characters";
+            return this.errors;
+          }
           break;
         case 3:
           if (
             !v8n()
               .string()
               .minLength(3)
-              .test(this.form.name)
+              .test(this.form.first_name)
           ) {
-            this.errors.name = "Please enter a valid name";
+            this.errors.first_name = "Please enter a valid first name";
+          }
+
+          if (
+            !v8n()
+              .optional(
+                v8n()
+                  .string()
+                  .minLength(1)
+              )
+              .test(this.form.last_name)
+          ) {
+            this.errors.last_name = "Please enter a valid last name";
           }
 
           if (
@@ -224,19 +262,40 @@ var app = new Vue({
             this.errors.phone = "Please enter a valid phone";
           }
 
-          // check_age
-          if (!this.form.check_age) {
-            this.errors.check_age = "Please select the option.";
+          if (
+            !v8n()
+              .optional(
+                v8n()
+                  .number()
+                  .greaterThan(20)
+              )
+              .test(parseInt(this.form.age))
+          ) {
+            this.errors.age =
+              "You need to be 21 and over to sign this open letter";
           }
 
           if (!this.form.check_pdpc) {
-            this.errors.check_pdpc = "Please select the option.";
+            this.errors.check_pdpc =
+              "Please accept privacy policy and terms and conditions";
           }
 
           if (Object.keys(this.errors).length) {
-            const email = document.getElementById("email");
-            // .focus()
-            email.scrollIntoView();
+            const name = Object.keys(this.errors)[0] || "";
+
+            if (name !== "") {
+              console.log(name);
+
+              let ele = document.getElementById(name);
+              // .focus()
+              ele.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+                inline: "nearest"
+              });
+              this.$refs[name].focus();
+            }
+
             return this.errors;
           }
 
@@ -249,19 +308,29 @@ var app = new Vue({
           this.image_loading = true;
           var that = this;
 
-          jQuery.ajax({
+          $.ajax({
             type: "POST",
             url: ajaxurl,
             data: data,
             success: function(results) {
-              var data = jQuery.parseJSON(results);
+              var data = $.parseJSON(results);
+              if (data.errors) {
+                that.errors.random = data.errors;
+                that.loading = false;
+                that.image_loading = false;
+                return this.errors;
+              }
               that.shareImage = data.image_url;
               that.shareUrl = data.share_url;
               that.signatureCount = data.signatureCount;
               that.loading = false;
               that.image_loading = false;
 
-              forme.scrollIntoView();
+              forme.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+                inline: "nearest"
+              });
               return (that.step =
                 that.step < that.maxSteps ? that.step + 1 : that.step);
             },
@@ -272,9 +341,10 @@ var app = new Vue({
             }
           });
           setTimeout(function() {
+            that.errors.random = "Something went wrong";
             that.loading = false;
             that.image_loading = false;
-          }, 15000);
+          }, 30000);
           return this.errors;
           break;
       }

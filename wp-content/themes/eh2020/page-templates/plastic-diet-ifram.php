@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Template Name: Plastic diet iframe
+ * Template Nam: Plastic diet iframe
  * Template Post Type: post, page, event
  */
 ?>

@@ -74,16 +74,16 @@ function getSignature()
     $nonce = $_POST['data']['_nonce'];
     if (!wp_verify_nonce($nonce, 'voice_form')) {
         echo json_encode([
-            'error' => 'Invalid nonce',
+            'errors' => 'Invalid nonce',
         ]);
         die();
     }
 
     check_ajax_referer('voice_form', '_nonce');
 
-    if ($_POST['data']['form']['first_name'] || $_POST['data']['form']['last_name']) {
+    if ($_POST['data']['form']['name']) {
         echo json_encode([
-            'error' => 'Invalid form input',
+            'errors' => 'Invalid form input',
         ]);
         die();
     }
@@ -92,13 +92,17 @@ function getSignature()
 
         // START - Save on ActiveCampaign
         $addedPost = array(
-            'name'      => $_POST['data']['form']['name'],
-            'email'     => $_POST['data']['form']['email'],
-            'phone'     => $_POST['data']['form']['phone'],
-            'country'   => $_POST['data']['form']['country'],
-            'health'    => $_POST['data']['form']['items']['health'],
-            'economy'   => $_POST['data']['form']['items']['economy'],
-            'standardOfLiving' => $_POST['data']['form']['items']['standardOfLiving'],
+            'first_name' => $_POST['data']['form']['first_name'],
+            'last_name'  => $_POST['data']['form']['last_name'],
+            'email'      => $_POST['data']['form']['email'],
+            'phone'      => $_POST['data']['form']['phone'],
+            'age'        => $_POST['data']['form']['age'],
+            'country'    => $_POST['data']['form']['country'],
+            'health'     => $_POST['data']['form']['issues']['health'],
+            'economy'    => $_POST['data']['form']['issues']['economy'],
+            'standardOfLiving' => $_POST['data']['form']['issues']['standardOfLiving'],
+            'custom_message' => $_POST['data']['form']['issues']['custom_message'],
+            'check_pdpc' => $_POST['data']['form']['issues']['check_pdpc'],
             'share_url' => $_POST['data']['shareUrl'],
             'image_url' => $_POST['data']['shareImage'],
             'utm_campaign' => $_POST['data']['form']['utm_campaign'],
@@ -108,39 +112,54 @@ function getSignature()
             'utm_term' => $_POST['data']['form']['utm_term'],
         );
 
-        $signature_count = _getSignatureCount($_POST['data']['form']['country']);
+        $signature_count = _getSignatureCount($addedPost['country']);
 
         $signature = array(
-            'post_title'    => $_POST['data']['form']['name'],
+            'post_title'    => $addedPost['first_name'],
             'post_status'   => 'publish',
             'post_type' => 'signature',
-            'post_name' => md5($_POST['data']['form']['name'] . $_POST['data']['form']['country'] . '-' . time())
+            'post_name' => md5($_POST['data']['form']['first_name'] . $_POST['data']['form']['country'] . '-' . time())
         );
 
-        if (isset($_POST['data']['s_id']) && $_POST['data']['s_id']) {
-            $s_id = $_POST['data']['s_id'];
-            $addedPost['s_id'] = $s_id;
-        } else {
-            $s_id = wp_insert_post($signature);
-            $addedPost['s_id'] = $s_id;
-        }
-        $p_id = $_POST['data']['p_id'];
-        update_field('name', $addedPost['name'], $s_id);
+        // if (isset($_POST['data']['s_id']) && $_POST['data']['s_id']) {
+        //     $s_id = $_POST['data']['s_id'];
+        //     $addedPost['s_id'] = $s_id;
+        // } else {
+        $s_id = wp_insert_post($signature);
+        $addedPost['s_id'] = $s_id;
+        // }
+
+        update_field('first_name', $addedPost['first_name'], $s_id);
+        update_field('last_name', $addedPost['last_name'], $s_id);
         update_field('email', $addedPost['email'], $s_id);
         update_field('phone', $addedPost['phone'], $s_id);
+        update_field('age', $addedPost['age'], $s_id);
         update_field('country', $addedPost['country'], $s_id);
         update_field('health', $addedPost['health'], $s_id);
         update_field('economy', $addedPost['economy'], $s_id);
         update_field('standardOfLiving', $addedPost['standardOfLiving'], $s_id);
+        update_field('custom_message', $addedPost['custom_message'], $s_id);
+        update_field('check_pdpc', $addedPost['check_pdpc'], $s_id);
         update_field('utm_campaign', $addedPost['utm_campaign'], $s_id);
         update_field('utm_source', $addedPost['utm_source'], $s_id);
         update_field('utm_medium', $addedPost['utm_medium'], $s_id);
         update_field('utm_content', $addedPost['utm_content'], $s_id);
         update_field('utm_term', $addedPost['utm_term'], $s_id);
 
-        $addedPost['image_url'] = '';
-        $imgUrl = $addedPost['image_url'];
+        $path = generate_image(
+            $custom_text = $addedPost['custom_message'],
+            $user_name = $addedPost['first_name'],
+            $health = $addedPost['health'],
+            $economy = $addedPost['economy'],
+            $standardOfLiving = $addedPost['standardOfLiving']
+        );
+
+        $imgUrl = $addedPost['image_url'] = $path;
+
+        // $addedPost['image_url'] = Generate_Featured_Image($file = $path, $post_id = $s_id, $desc = '');
         update_field('image_url', $addedPost['image_url'], $s_id);
+        // $imgUrl = wp_get_attachment_url($addedPost['image_url']);
+
 
         // if (isset($_POST['data']['form']['email']) && $_POST['data']['form']['email'] && 'sg' == strtolower($addedPost['country'])) {
         //     addActiveCampaign($addedPost);
@@ -149,22 +168,29 @@ function getSignature()
 
         if ($s_id <= 0) {
             $returnvariable['redirect'] = "We are sorry. Something went wrong with you signature. Please reload and try again.";
+            error_log($returnvariable['redirect']);
+
+            echo json_encode([
+                'errors' => $returnvariable['redirect'],
+            ]);
+            die();
         }
     } else {
 
-        $returnvariable['error'] = "<ul class='errordiv'>";
+        $returnvariable['errors'] = "<ul class='errordiv'>";
 
         foreach ($validationerror as $error) {
-            $returnvariable['error'] .= "<li>";
-            $returnvariable['error'] .= $error;
-            $returnvariable['error'] .= "</li>";
+            $returnvariable['errors'] .= "<li>";
+            $returnvariable['errors'] .= $error;
+            $returnvariable['errors'] .= "</li>";
         }
 
-        $returnvariable['error'] .= "</ul>";
+        $returnvariable['errors'] .= "</ul>";
     }
 
     echo json_encode([
         's_id' => $s_id,
+        'image_url' => $imgUrl,
         'share_url' => get_permalink($s_id),
         'signatureCount' => $signature_count
     ]);
@@ -184,12 +210,12 @@ function _getSignatureCount($country = 'all')
     $count['total'] = wp_count_posts('signature')->publish;
 
     // @todo use default post query with meta
-    $sql = "SELECT count(meta_id) AS 'count' FROM wp_postmeta WHERE `meta_key` = 'email' AND `meta_value` = ''";
-    $results = $wpdb->get_var($sql);
+    // $sql = "SELECT count(meta_id) AS 'count' FROM wp_postmeta WHERE `meta_key` = 'email' AND `meta_value` = ''";
+    // $results = $wpdb->get_var($sql);
 
-    $count['plastic_test']['global'] = $results;
-    $count['global'] = ($count['total'] - $count['plastic_test']['global']) + (1588248);
-    $count['global'] = number_format($count['global']);
+    // $count['plastic_test']['global'] = $results;
+    // $count['global'] = ($count['total'] - $count['plastic_test']['global']) + (1588248);
+    // $count['global'] = number_format($count['global']);
 
     // $sql = "SELECT meta_value, count(meta_id) AS 'count' FROM wp_postmeta WHERE `meta_key` = 'country' GROUP BY `meta_value`";
     // $results = $wpdb->get_results($sql);
@@ -207,7 +233,7 @@ function _getSignatureCount($country = 'all')
     // $count['local'] = 0;
     // }
 
-    $count['local'] = 0;
+    // $count['local'] = 0;
 
     return $count;
 }

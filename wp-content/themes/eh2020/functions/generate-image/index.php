@@ -2,21 +2,20 @@
 require_once('vendor/autoload.php');
 
 use Nesk\Puphpeteer\Puppeteer;
-use Nesk\Rialto\Data\JsFunction;
 
 //=============================
 // START IMAGE GENERATION
 //=============================
 
 
-function generate_image_do($text, $user_name, $plastic_value = '00.01', $plastic_name = 'button', $image = null)
+function generate_image_do($text, $user_name)
 {
     $url_base = 'https://yourplasticdiet.org/wp-content/themes/your-plastic-diet/functions/generate-image/';
     $generated_image_url = get_stylesheet_directory() . '/functions/generate-image/generated-images/';
     $generated_image_name = md5(strtolower($user_name) . '-' . $image . '-' . time()) . '.png';
     $generated_image_full = $generated_image_url . $generated_image_name;
 
-    $url = $url_base . 'image-generator.php?text=' . $text . '&user_name=' . $user_name . '&plastic_value=' . $plastic_value . '&plastic_name=' . $plastic_name . '&image=' . $image;
+    $url = $url_base . 'image-generator.php?text=' . $text . '&user_name=' . $user_name;
 
     $curl_url = "http://157.230.44.162/?url=" . urlencode($url) . "&name=" . $generated_image_name;
 
@@ -25,61 +24,67 @@ function generate_image_do($text, $user_name, $plastic_value = '00.01', $plastic
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $data = curl_exec($ch);
     curl_close($ch);
-    
+
     $return = json_decode($data);
 
     error_log($return->url);
     // return $return->url;
 }
 
-function generate_image($text, $user_name, $plastic_value = '00.01', $plastic_name = 'button', $image = null)
+function generate_image($custom_text = '', $user_name = 'a panda', $health = false, $economy = false, $standardOfLiving = false)
 {
-
-    ////////////////////////////////////////////////////////////////
-
-    ////////////////////////////////////////////////////////////////
-
-    ////////////////////////////////////////////////////////////////
-
-
-    $puppeteer = new Puppeteer([
-        // 'executable_path' => '/Users/mlhalugona/.nvm/versions/node/v8.15.0/bin/node',
-        'executable_path' => '/usr/bin/node'
-    ]);
-    // to fix windows 10 issue, it needs args
-    $browser = $puppeteer->launch([
-        'args' => ['--no-sandbox', '--disable-setuid-sandbox'],
-    ]);
-
-    $url_base = 'https://yourplasticdiet.org/wp-content/themes/your-plastic-diet/functions/generate-image/';
+    $url_base = get_stylesheet_directory_uri() . '/functions/generate-image/';
     $generated_image_url = get_stylesheet_directory() . '/functions/generate-image/generated-images/';
     $generated_image_name = md5(strtolower($user_name) . '-' . $image . '-' . time()) . '.png';
     $generated_image_full = $generated_image_url . $generated_image_name;
 
+    $config = ['executable_path' => '/usr/bin/node'];
+    if (!defined('PROD'))
+        $config = ['executable_path' => '/Users/manojhl/.nvm/versions/node/v12.14.1/bin/node'];
+
+    $puppeteer = new Puppeteer($config);
+    // to fix windows 10 issue, it needs args
+    $browser = $puppeteer->launch([
+        'args' => ['--no-sandbox', '--disable-setuid-sandbox'],
+    ]);
     $page = $browser->newPage();
-    $url = $url_base . 'image-generator.php?text=' . $text . '&user_name=' . $user_name . '&plastic_value=' . $plastic_value . '&plastic_name=' . $plastic_name . '&image=' . $image;
+
+    // $page = (new Puppeteer($config))->launch([
+    //     'args' => ['--no-sandbox', '--disable-setuid-sandbox'],
+    // ])->newPage();
+    // The promise is returned instead of being awaited, due to the "lazy" modifier.
+    // $navigationPromise = $page->waitForNavigation();
+
+    $url = 'https://www.earthhour.sg/wp-content/themes/eh2020/functions/generate-image/image-generator.php?custom_text=' . $custom_text . '&user_name=' . $user_name . '&health=' . $health . '&economy=' . $economy . '&standardOfLiving=' . $standardOfLiving;
     $page->goto($url);
 
     $page->screenshot(
         [
             'path' => $generated_image_full,
-            'clip' => [
-                'x' => 0,
-                'y' => 0,
-                'width' => 1200,
-                'height' => 600
-            ]
+            'type' => 'jpeg',
+            // 'clip' => [
+            //     'x' => 0,
+            //     'y' => 0,
+            //     'width' => 1200,
+            //     'height' => 600
+            // ],
+            'fullPage' => true,
+            // 'encoding' => 'base64'
         ]
     );
+    // var_dump($page);
+
     $browser->close();
 
     // return $generated_image_full;
     return $url_base . 'generated-images/' . $generated_image_name;
 }
 
-// $path = generate_image("{{ user_name }} consumes approximately {{ plastic_value }} of plastics a week.", "Fransiska Amelia", 0.74, "button");
-
+// echo "<pre>";
+// $path = generate_image("Hello", "Fransiska Amelia");
 // echo $path;
+// var_dump($path);
+// echo "</pre>";
 
 
 //=============================
@@ -126,7 +131,7 @@ function get_user_country_info()
     if (empty($json_details->geoplugin_countryName))
         error_log($details);
 
-    $country_info = (object)[
+    $country_info = (object) [
         'country' => $json_details->geoplugin_countryName,
         'countryCode' => $json_details->geoplugin_countryCode,
     ];

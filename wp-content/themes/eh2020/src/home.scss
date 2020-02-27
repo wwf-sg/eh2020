@@ -184,9 +184,6 @@
     position: relative;
   }
   .form-control {
-    // font-size: 2.4rem;
-    // line-height: 1.6;
-    border-width: 0 0 2px;
     &:focus {
       box-shadow: none;
       &::placeholder {
@@ -209,12 +206,10 @@
     }
   }
   select.form-control {
-    max-width: 458px;
     display: inline-block;
     font-family: "AvantGarde LT Book", sans-serif;
     color: #212529;
     height: auto;
-    border-bottom: 2px solid #222;
     padding: 0.5rem;
     box-sizing: border-box;
     margin: 0;
@@ -435,14 +430,6 @@
       // align-items: unset !important;
     }
   }
-}
-
-h2 strong,
-h3 strong {
-  @extend .red;
-  font-family: "Impact Label", "Arial Narrow Bold", sans-serif;
-  padding: 0;
-  font-weight: normal;
 }
 
 .wp-block-media-text:first-child img {

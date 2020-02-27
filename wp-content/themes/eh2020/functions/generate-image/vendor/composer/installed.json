@@ -1,17 +1,17 @@
 [
     {
         "name": "clue/socket-raw",
-        "version": "v1.4.0",
-        "version_normalized": "1.4.0.0",
+        "version": "v1.4.1",
+        "version_normalized": "1.4.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/clue/php-socket-raw.git",
-            "reference": "2f6654445233407900c9a804490cecd8e4f2ae86"
+            "reference": "00ab102d061f6cdb895e79dd4d69140c7bda31cc"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/clue/php-socket-raw/zipball/2f6654445233407900c9a804490cecd8e4f2ae86",
-            "reference": "2f6654445233407900c9a804490cecd8e4f2ae86",
+            "url": "https://api.github.com/repos/clue/php-socket-raw/zipball/00ab102d061f6cdb895e79dd4d69140c7bda31cc",
+            "reference": "00ab102d061f6cdb895e79dd4d69140c7bda31cc",
             "shasum": ""
         },
         "require": {
@@ -21,7 +21,7 @@
         "require-dev": {
             "phpunit/phpunit": "^7.0 || ^6.0 || ^5.2 || ^4.8.35"
         },
-        "time": "2019-01-22T11:08:01+00:00",
+        "time": "2019-10-28T12:32:07+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -36,10 +36,10 @@
         "authors": [
             {
                 "name": "Christian Lück",
-                "email": "christian@lueck.tv"
+                "email": "christian@clue.engineering"
             }
         ],
-        "description": "Simple and lightweight OOP wrapper for PHP's low level sockets extension (ext-sockets)",
+        "description": "Simple and lightweight OOP wrapper for PHP's low-level sockets extension (ext-sockets)",
         "homepage": "https://github.com/clue/php-socket-raw",
         "keywords": [
             "Socket",
@@ -58,17 +58,17 @@
     },
     {
         "name": "nesk/puphpeteer",
-        "version": "1.5.0",
-        "version_normalized": "1.5.0.0",
+        "version": "1.6.0",
+        "version_normalized": "1.6.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/nesk/puphpeteer.git",
-            "reference": "ba815123614ea122f494f2a3af4c4785771f30e2"
+            "reference": "21adf25d320f32b005cb3e2f9026616566015fcc"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/nesk/puphpeteer/zipball/ba815123614ea122f494f2a3af4c4785771f30e2",
-            "reference": "ba815123614ea122f494f2a3af4c4785771f30e2",
+            "url": "https://api.github.com/repos/nesk/puphpeteer/zipball/21adf25d320f32b005cb3e2f9026616566015fcc",
+            "reference": "21adf25d320f32b005cb3e2f9026616566015fcc",
             "shasum": ""
         },
         "require": {
@@ -83,7 +83,7 @@
             "phpunit/phpunit": "^6.5|^7.0",
             "symfony/process": "^4.0"
         },
-        "time": "2019-03-17T11:31:33+00:00",
+        "time": "2019-06-24T11:12:21+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -171,27 +171,27 @@
     },
     {
         "name": "psr/log",
-        "version": "1.1.0",
-        "version_normalized": "1.1.0.0",
+        "version": "1.1.2",
+        "version_normalized": "1.1.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/php-fig/log.git",
-            "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
+            "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
-            "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+            "url": "https://api.github.com/repos/php-fig/log/zipball/446d54b4cb6bf489fc9d75f55843658e6f25d801",
+            "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2018-11-20T15:27:04+00:00",
+        "time": "2019-11-01T11:05:21+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.0.x-dev"
+                "dev-master": "1.1.x-dev"
             }
         },
         "installation-source": "dist",
@@ -220,27 +220,27 @@
     },
     {
         "name": "symfony/process",
-        "version": "v4.2.8",
-        "version_normalized": "4.2.8.0",
+        "version": "v4.4.4",
+        "version_normalized": "4.4.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/process.git",
-            "reference": "8cf39fb4ccff793340c258ee7760fd40bfe745fe"
+            "reference": "f5697ab4cb14a5deed7473819e63141bf5352c36"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/process/zipball/8cf39fb4ccff793340c258ee7760fd40bfe745fe",
-            "reference": "8cf39fb4ccff793340c258ee7760fd40bfe745fe",
+            "url": "https://api.github.com/repos/symfony/process/zipball/f5697ab4cb14a5deed7473819e63141bf5352c36",
+            "reference": "f5697ab4cb14a5deed7473819e63141bf5352c36",
             "shasum": ""
         },
         "require": {
             "php": "^7.1.3"
         },
-        "time": "2019-04-10T16:20:36+00:00",
+        "time": "2020-01-09T09:50:08+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "4.2-dev"
+                "dev-master": "4.4-dev"
             }
         },
         "installation-source": "dist",

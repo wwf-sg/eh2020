@@ -12,20 +12,18 @@
 <div id="primary" class="bg-black entry">
 
     <!-- Hero section -->
-    <div class="hero-section bg-black" style="padding-top: 0rem">
-        <div class="container">
+    <div class="hero-section bg-black py-5" style="padding-top: 0rem">
+        <div class="container py-md-2">
             <div class="row align-items-center">
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <img src="<?php echo get_stylesheet_directory_uri() ?>/imgs/WWF-EH-Banner1000.png" class="img-fluid">
-                        </div>
-                        <div class="col-lg-6 text-center hero-text-padding">
-                            <h1>EARTH HOUR 2020 FESTIVAL FOR NATURE</h1>
-                            <h2>At I LIGHT Singapore</h2>
-                            <h4>27 — 29 MARCH &nbsp; | &nbsp; TILL 10PM DAILY</h4>
-                            <h4>THE FLOAT AT MARINA BAY</h4>
-                        </div>
+                <div class="col-12 text-center">
+                    <img style="max-width: 800px;" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/EH-digital-banner.png" class="w-100 img-fluid">
+                </div>
+                <div class="col-12 text-center">
+                    <div style="max-width: 500px" class="m-auto pt-5">
+                        <h1>EARTH HOUR 2020</h1>
+                        <h2><strong>LIVE</strong> ON YOUTUBE</h2>
+                        <p class="text-white">Join #nofilter conversations with changemakers about the planetary emergency and live music by some of Singapore’s top artistes.</p>
+                        <h3>28 MARCH 2020 <span class="d-none d-md-inline">&nbsp; | &nbsp;</span> <br class="d-md-none"> 5:30 PM to 8:30 PM</h3>
                     </div>
                 </div>
             </div>
@@ -52,41 +50,279 @@
                 </div>
             </div>
         </div>
+
+        <svg class="wave" viewBox="0 0 1024 307" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs>
+                <filter x="-1.2%" y="-4.0%" width="102.3%" height="108.0%" filterUnits="objectBoundingBox" id="filter-1">
+                    <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                    <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                    <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+                    <feMerge>
+                        <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                    </feMerge>
+                </filter>
+                <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+                    <stop stop-color="#23398B" offset="0%"></stop>
+                    <stop stop-color="#000000" offset="100%"></stop>
+                </linearGradient>
+                <path d="M0,65.8418637 L42.6666667,78.8976438 C85.3333333,92.1986029 170.666667,117.942395 256,127.933438 C341.333333,137.556712 426.666667,131.427238 512,105.070499 C597.333333,78.7137596 682.666667,33.3556502 768,13.5574484 C853.333333,-5.8729849 938.666667,0.256489342 981.333333,3.75028966 L1024,6.998911 L1024,299 L0,299 L0,65.8418637 Z" id="path-3"></path>
+            </defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="EH-Website" transform="translate(0.000000, -1418.000000)">
+                    <g id="wave-(1)" filter="url(#filter-1)" transform="translate(0.000000, 1420.000000)">
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <use id="Mask-Copy" fill="url(#linearGradient-2)" fill-rule="nonzero" transform="translate(512.000000, 149.500000) scale(1, -1) translate(-512.000000, -149.500000) " xlink:href="#path-3"></use>
+                    </g>
+                </g>
+            </g>
+        </svg>
+    </section>
+
+    <section id="youtube" class="text-white text-center my-5 pt-5">
+        <div class="container pt-5">
+            <h2>Stay tuned for our live event on <span style="color: red">YouTube</span></h2>
+            <p class="text-center">
+                <a target="_blank" href="https://www.youtube.com/channel/UCRvj6BrtcT-lMAoOS_aVz4w" class="btn btn-lg btn-red">SUBSCRIBE</a>
+            </p>
+        </div>
+        <svg class="wave" viewBox="0 0 1024 307" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs>
+                <filter x="-1.2%" y="-4.0%" width="102.3%" height="108.0%" filterUnits="objectBoundingBox" id="filter-1">
+                    <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                    <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                    <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+                    <feMerge>
+                        <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                    </feMerge>
+                </filter>
+                <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-red">
+                    <stop stop-color="#D70A0A" offset="0%"></stop>
+                    <stop stop-color="#000000" offset="100%"></stop>
+                </linearGradient>
+                <path d="M0,65.8418637 L42.6666667,78.8976438 C85.3333333,92.1986029 170.666667,117.942395 256,127.933438 C341.333333,137.556712 426.666667,131.427238 512,105.070499 C597.333333,78.7137596 682.666667,33.3556502 768,13.5574484 C853.333333,-5.8729849 938.666667,0.256489342 981.333333,3.75028966 L1024,6.998911 L1024,299 L0,299 L0,65.8418637 Z" id="path-3"></path>
+            </defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="EH-Website" transform="translate(0.000000, -1418.000000)">
+                    <g id="wave-(1)" filter="url(#filter-1)" transform="translate(0.000000, 1420.000000)">
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <use id="Mask-Copy" fill="url(#linearGradient-red)" fill-rule="nonzero" transform="translate(512.000000, 149.500000) scale(1, -1) translate(-512.000000, -149.500000) " xlink:href="#path-3"></use>
+                    </g>
+                </g>
+            </g>
+        </svg>
     </section>
 
     <!-- About -->
-    <div id="about">
+    <div id="about" class="py-5 text-center">
         <div class="container pb-5">
             <div class="row">
-                <div class="col-lg-6">
-                    <img src="<?php echo get_stylesheet_directory_uri() ?>/imgs/about-eh.jpeg" class="img-fluid mb-3">
-                </div>
-                <div class="col-lg-6 text-white">
-                    <h2 style="color: #FFE783;" class="text-center text-md-left mb-3">ABOUT EARTH HOUR</h2>
+                <div class="col col-lg-8 offset-lg-2 text-white">
+                    <h2 style="color: #FFE783;" class="mb-3">About Earth Hour</h2>
                     <p>Earth Hour brings together people globally to act for nature and climate. Every year, we will countdown together across 180 countries and territories around the world to do one iconic thing: switch off the lights.</p>
 
-                    <p>But it’s not about doing it to “save electricity”.</p>
+                    <p>It’s not about doing it to “save electricity”. It is a symbol of unity. A symbol of hope. A symbol of power in collective action.</p>
 
-                    <p>It is a symbol of unity. A symbol of hope. A symbol of power in collective action.</p>
-                    <p>
+                    <p>For the first time, Singapore’s Earth Hour event will take the form of a globally accessible digital live stream this year.</p>
 
+                    <p>Taking place on 28th March from 5.30 – 8.30pm SGT, Earth Hour 2020 - Live & Unplugged is a three-hour digital event of live music by prominent artistes and unscripted conversations with leading environmental changemakers on the exigency of the current planetary emergency. The live event will culminate in a symbolic lights-out at 8.30pm local time.</p>
                     </p>
-                    <p>2020 is an important year as major decisions will be taken to protect people and nature. Our future for decades to come will depend on the decisions made now.</p>
 
-                    <div class="text-center text-md-left">
-                        <a class="btn btn-outline-dark btn-gradient py-3 px-4" target="_blank" href="https://www.facebook.com/events/604866186929008/">Find Out More</a>
+                    <div class="text-center">
+                        <a class="btn text-white btn-gradient mt-3" target="_blank" href="http://bit.ly/EH2020FB">RSVP for latest updates</a>
                     </div>
                 </div>
             </div>
         </div>
+        <svg class="wave" viewBox="0 0 1024 307" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs>
+                <filter x="-1.2%" y="-4.0%" width="102.3%" height="108.0%" filterUnits="objectBoundingBox" id="filter-1">
+                    <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                    <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                    <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+                    <feMerge>
+                        <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                    </feMerge>
+                </filter>
+                <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-purple">
+                    <stop stop-color="#D756B5" offset="0%"></stop>
+                    <stop stop-color="#000000" offset="100%"></stop>
+                </linearGradient>
+                <path d="M0,65.8418637 L42.6666667,78.8976438 C85.3333333,92.1986029 170.666667,117.942395 256,127.933438 C341.333333,137.556712 426.666667,131.427238 512,105.070499 C597.333333,78.7137596 682.666667,33.3556502 768,13.5574484 C853.333333,-5.8729849 938.666667,0.256489342 981.333333,3.75028966 L1024,6.998911 L1024,299 L0,299 L0,65.8418637 Z" id="path-3"></path>
+            </defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="EH-Website" transform="translate(0.000000, -1418.000000)">
+                    <g id="wave-(1)" filter="url(#filter-1)" transform="translate(0.000000, 1420.000000)">
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <use id="Mask-Copy" fill="url(#linearGradient-purple)" fill-rule="nonzero" transform="translate(512.000000, 149.500000) scale(1, -1) translate(-512.000000, -149.500000) " xlink:href="#path-3"></use>
+                    </g>
+                </g>
+            </g>
+        </svg>
     </div>
 
-    <!-- Form -->
-    <div class="entry-content">
-        <div id="voice" class="alignfull">
-            <?php include(__DIR__ . '/../partials/voice.php'); ?>
+    <!-- Line-Up -->
+    <section class="line-up my-5 py-5 text-white text-center" style="background: #000">
+        <div class="container">
+            <h2 class="mb-5">Performances</h2>
+            <div class="row">
+                <!-- <div class="col-6 col-md-4">
+                    <div>
+                        <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/Musicians-08.png" alt="" />
+                        <h3>Angelique Teo</h3>
+                        <p>Host</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div>
+                        <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/Musicians-09.png" alt="" />
+                        <h3>Charmaine Yee</h3>
+                        <p>Host</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div>
+                        <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/Musicians-10.png" alt="" />
+                        <h3>Paul Foster</h3>
+                        <p>Host</p>
+                    </div>
+                </div> -->
+                <div class="col-6 col-md-4">
+                    <div>
+                        <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/Musicians-02.png" alt="" />
+                        <h3>Nathan Hartono</h3>
+                        <p>5:30PM to 8:30PM</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div>
+                        <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/Musicians-01.png" alt="" />
+                        <h3>RRILEY</h3>
+                        <p>5:30PM to 8:30PM</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div>
+                        <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/Musicians-03.png" alt="" />
+                        <h3>Benjamin Kheng</h3>
+                        <p>5:30PM to 8:30PM</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div>
+                        <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/Musicians-04.png" alt="" />
+                        <h3>Preetipls</h3>
+                        <p>5:30PM to 8:30PM</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div>
+                        <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/Musicians-07.png" alt="" />
+                        <h3>Subhas</h3>
+                        <p>5:30PM to 8:30PM</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div>
+                        <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/Musicians-05.png" alt="" />
+                        <h3>Sezairi</h3>
+                        <p>5:30PM to 8:30PM</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div>
+                        <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/Musicians-06.png" alt="" />
+                        <h3>Inch Chua</h3>
+                        <p>5:30PM to 8:30PM</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div>
+                        <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/Musicians-11.png" alt="" />
+                        <h3>Yung Raja &amp; Fariz Jabba</h3>
+                        <p>5:30PM to 8:30PM</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+        <svg class="wave d-none" viewBox="0 0 1024 307" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs>
+                <filter x="-1.2%" y="-4.0%" width="102.3%" height="108.0%" filterUnits="objectBoundingBox" id="filter-1">
+                    <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                    <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                    <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+                    <feMerge>
+                        <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                    </feMerge>
+                </filter>
+                <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-">
+                    <stop stop-color="#D756B5" offset="0%"></stop>
+                    <stop stop-color="#000000" offset="100%"></stop>
+                </linearGradient>
+                <path d="M0,65.8418637 L42.6666667,78.8976438 C85.3333333,92.1986029 170.666667,117.942395 256,127.933438 C341.333333,137.556712 426.666667,131.427238 512,105.070499 C597.333333,78.7137596 682.666667,33.3556502 768,13.5574484 C853.333333,-5.8729849 938.666667,0.256489342 981.333333,3.75028966 L1024,6.998911 L1024,299 L0,299 L0,65.8418637 Z" id="path-3"></path>
+            </defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="EH-Website" transform="translate(0.000000, -1418.000000)">
+                    <g id="wave-(1)" filter="url(#filter-1)" transform="translate(0.000000, 1420.000000)">
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <use id="Mask-Copy" fill="url(#linearGradient-)" fill-rule="nonzero" transform="translate(512.000000, 149.500000) scale(1, -1) translate(-512.000000, -149.500000) " xlink:href="#path-3"></use>
+                    </g>
+                </g>
+            </g>
+        </svg>
+    </section>
+
+    <!-- Sponsors -->
+    <section class="sponsorsFooter py-5" style="background-color: white;">
+        <div class="container py-md-5">
+            <!-- <h2 class="mb-5">Sponsors</h2> -->
+            <div class="row">
+                <div class="col-12 col-lg-5">
+                    <p class="card-text mt-5 mb-3" style="color:black;">
+                        Supporting Donors
+                    </p>
+                    <div class="row">
+                        <div class="col-4 p-0">
+                            <img class="card-img-top mx-auto samsonite py-4" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/samsonite.jpg" alt="Card image cap" />
+                        </div>
+                        <div class="col-4">
+                            <img class="card-img-top mx-auto thebodyshop" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/thebodyshop_white.jpg" alt="Card image cap" />
+                        </div>
+                        <div class="col-4">
+                            <img class="card-img-top mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/thermos.jpg" alt="Card image cap" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg">
+                    <p class="card-text mt-5 mb-3" style="color:black;">
+                        Official Media Partner
+                    </p>
+                    <img class="card-img-top mx-auto py-4 starhub" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/starhub.jpg" alt="starhub" />
+                </div>
+                <div class="col-12 col-lg">
+                    <p class="card-text mt-5 mb-3" style="color:black;">
+                        Official Radio Station
+                    </p>
+                    <img class="card-img-top mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/kiss92-01.jpg" alt="Card image cap" />
+                </div>
+                <div class="col-12 col-lg">
+                    <p class="card-text mt-5 mb-3" style="color:black;">Supporting Radio Station</p>
+                    <img class="card-img-top mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/onefm.jpg" alt="Card image cap" />
+                </div>
+            </div>
+        </div>
+    </section>
 
 </div><!-- #primary -->
 
