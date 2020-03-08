@@ -1,0 +1,18 @@
+/* Decrease gutters between search fields and submit button in one row */
+/* Minimum width of 768 pixels. */
+@media screen and (min-width: $desktop-screen-width) {
+	.w2gm-col-md-5.w2gm-search-input-field-wrap ~ .w2gm-search-input-field-wrap,
+	.w2gm-col-md-5.w2gm-search-input-field-wrap ~ .w2gm-search-submit-button-wrap,
+	.w2gm-col-md-6.w2gm-search-input-field-wrap ~ .w2gm-search-input-field-wrap,
+	.w2gm-col-md-6.w2gm-search-input-field-wrap ~ .w2gm-search-submit-button-wrap {
+		padding-right: 0;
+		padding-left: 15px;
+	}
+	.w2gm-col-md-7.w2gm-search-datetime-input-wrap ~ .w2gm-col-md-5.w2gm-search-datetime-button-wrap {
+		padding-right: 0;
+		padding-left: 15px;
+	}
+}
+.w2gm-range-slider-scale label {
+	margin-right: 4px;
+}

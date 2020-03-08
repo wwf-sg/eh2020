@@ -1,0 +1,7 @@
+<div class="w2gm-demo-prev-next-demos">
+<span class="w2gm-demo-prev-demo">Prev demo: <a href="[base_url]/geolocation/">Geolocation</a></span><span class="w2gm-demo-next-demo">Next demo: <a href="[base_url]/clusters/">Clusters</a></span>
+</div>
+
+Listing window opened by default. Look at the URL, its hash has #w2gm-listing-LISTING_ID
+
+[webmap id={map_id}]

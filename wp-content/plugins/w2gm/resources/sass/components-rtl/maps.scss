@@ -1,0 +1,89 @@
+.w2gm-map-info-window-title .w2gm-close-info-window {
+	float: left;
+}
+.w2gm-map-info-window-logo {
+	float: left;
+}
+.w2gm-map-field-icon {
+	padding-right: 0;
+	padding-left: 15px;
+}
+.w2gm-map-info-window-buttons a:first-child {
+	float: right;
+}
+.w2gm-map-info-window-buttons a:last-child {
+	float: left;
+}
+.w2gm-map-draw-panel-wrapper {
+	right: 0 !important;
+	padding-left: 6px;
+	padding-right: 0;
+}
+.w2gm-map-draw-panel button.w2gm-btn.w2gm-btn-primary {
+	float: right;
+	margin: 6px 6px 6px 0;
+}
+.w2gm-map-draw-panel button.w2gm-btn.w2gm-btn-primary.w2gm-map-location {
+	float: left;
+}
+/************************ Map Search ************************/
+.w2gm-maps-canvas-wrapper.w2gm-map-search-input-enabled .w2gm-maps-canvas.w2gm-sidebar-open .w2gm-map-draw-panel {
+	padding-right: 0;
+}
+.w2gm-maps-canvas-wrapper.w2gm-map-search-input-enabled .w2gm-map-draw-panel {
+	padding-left: 0;
+	padding-right: $map-search-width;
+}
+.w2gm-map-search-wrapper {
+	right: 10px;
+	left: auto;
+}
+.w2gm-map-search-panel-wrapper {
+	margin-right: -$map-search-width;
+	margin-left: 0;
+}
+.w2gm-sidebar-open .w2gm-map-search-panel-wrapper {
+	margin-right: 0;
+}
+.w2gm-maps-canvas.w2gm-sidebar-open {
+	margin-left: 0;
+	margin-right: $map-search-width;
+}
+.w2gm-map-sidebar-toggle-container {
+	right: 0;
+	left: auto;
+	margin-right: 0;
+}
+.w2gm-map-sidebar-toggle {
+	transform: scaleX(1);
+}
+.w2gm-sidebar-open .w2gm-map-sidebar-toggle-container {
+	margin-right: $map-search-width;
+	margin-left: 0;
+}
+.w2gm-sidebar-open .w2gm-map-sidebar-toggle {
+	transform: scaleX(-1);
+}
+.w2gm-map-search-input-container {
+	left: auto;
+	right: 0;
+}
+.w2gm-content .w2gm-map-search-input-container input.w2gm-form-control,
+.w2gm-content .w2gm-map-search-input-container input.w2gm-form-control:focus {
+	padding-right: 55px;
+	padding-left: 0;
+}
+.w2gm-map-search-toggle::after {
+	right: auto;
+	left: 0;
+	border-right: 1px solid $border-color;
+	border-left: 0;
+}
+.w2gm-map-listing-logo-wrap {
+	float: right;
+	margin-left: 10px;
+	margin-right: 0;
+}
+.w2gm-map-listing-field-icon {
+	padding-left: 0;
+}

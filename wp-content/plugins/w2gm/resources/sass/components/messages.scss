@@ -1,0 +1,29 @@
+.w2gm-updated,
+.w2gm-error,
+.w2gm-no-found-listings {
+	margin-bottom: 20px;
+	padding: 10px;
+	border-radius: $border-radius;
+	border-style: solid;
+	border-width: 1px;
+	display: block;
+}
+.w2gm-updated p,
+.w2gm-updated div,
+.w2gm-error p,
+.w2gm-error div {
+	margin: 1em !important;
+	padding: 0;
+}
+.w2gm-updated {
+	background-color: $message-updated-background-color;
+	border-color: $message-updated-border-color;
+}
+.w2gm-error {
+	background-color: $message-error-background-color;
+	border-color: $message-error-border-color;
+}
+.w2gm-no-found-listings {
+	background-color: $message-no-found-background-color;
+	border-color: $message-no-found-border-color;
+}

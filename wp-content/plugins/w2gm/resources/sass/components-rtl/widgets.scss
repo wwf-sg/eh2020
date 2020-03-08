@@ -1,0 +1,23 @@
+.w2gm-categories-widget a,
+.w2gm-locations-widget a {
+	color: inherit;
+	display: inline-block;
+	padding: 3px 0;
+}
+li.w2gm-widget-listing {
+	list-style: none;
+	margin-bottom: 15px;
+	min-height: 45px;
+}
+li.w2gm-widget-listing::before {
+	content: none !important;
+}
+.w2gm-widget-listing-logo {
+	float: left;
+}
+.w2gm-widget-listing-title {
+	margin-left: 50px;
+}
+.w2gm-widget-listing-title-nologo {
+	margin-left: 5px;
+}

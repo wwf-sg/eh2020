@@ -1,0 +1,5 @@
+<div class="w2gm-demo-prev-next-demos">
+<span class="w2gm-demo-prev-demo">Prev demo: <a href="[base_url]/radius-circle-map/">Radius circle</a></span><span class="w2gm-demo-next-demo">Next demo: <a href="[base_url]/all-markers-of-location/">All markers of location</a></span>
+</div>
+
+[webmap id={map_id}]

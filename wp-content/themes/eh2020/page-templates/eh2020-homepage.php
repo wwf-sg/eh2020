@@ -9,10 +9,10 @@
 
 <?php get_template_part('/includes/header'); ?>
 
-<div id="primary" class="bg-black entry">
+<div id="primary" class="entry">
 
     <!-- Hero section -->
-    <div class="hero-section bg-black py-5" style="padding-top: 0rem">
+    <div class="hero-section bg-black" style="padding-top: 0rem">
         <div class="container py-md-2">
             <div class="row align-items-center">
                 <div class="col-12 text-center">
@@ -81,8 +81,12 @@
         </svg>
     </section>
 
-    <section id="youtube" class="text-white text-center my-5 pt-5">
+    <section id="youtube" class="bg-black text-white text-center my-5 pt-5">
         <div class="container pt-5">
+            <div class="embed-responsive embed-responsive-16by9 mb-3">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/IwaIWvwRmBQ?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
             <h2>Stay tuned for our live event on <span style="color: red">YouTube</span></h2>
             <p class="text-center">
                 <a target="_blank" href="https://www.youtube.com/channel/UCRvj6BrtcT-lMAoOS_aVz4w" class="btn btn-lg btn-red">SUBSCRIBE</a>
@@ -119,7 +123,7 @@
     </section>
 
     <!-- About -->
-    <div id="about" class="py-5 text-center">
+    <div id="about" class="py-5 text-center bg-black">
         <div class="container pb-5">
             <div class="row">
                 <div class="col col-lg-8 offset-lg-2 text-white">
@@ -170,7 +174,7 @@
     </div>
 
     <!-- Line-Up -->
-    <section class="line-up my-5 py-5 text-white text-center" style="background: #000">
+    <section class="line-up my-5 py-5 text-white text-center bg-black">
         <div class="container">
             <h2 class="mb-5">Performances</h2>
             <div class="row">
@@ -282,48 +286,6 @@
             </g>
         </svg>
     </section>
-
-    <!-- Sponsors -->
-    <section class="sponsorsFooter py-5" style="background-color: white;">
-        <div class="container py-md-5">
-            <!-- <h2 class="mb-5">Sponsors</h2> -->
-            <div class="row">
-                <div class="col-12 col-lg-5">
-                    <p class="card-text mt-5 mb-3" style="color:black;">
-                        Supporting Donors
-                    </p>
-                    <div class="row">
-                        <div class="col-4 p-0">
-                            <img class="card-img-top mx-auto samsonite py-4" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/samsonite.jpg" alt="Card image cap" />
-                        </div>
-                        <div class="col-4">
-                            <img class="card-img-top mx-auto thebodyshop" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/thebodyshop_white.jpg" alt="Card image cap" />
-                        </div>
-                        <div class="col-4">
-                            <img class="card-img-top mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/thermos.jpg" alt="Card image cap" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg">
-                    <p class="card-text mt-5 mb-3" style="color:black;">
-                        Official Media Partner
-                    </p>
-                    <img class="card-img-top mx-auto py-4 starhub" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/starhub.jpg" alt="starhub" />
-                </div>
-                <div class="col-12 col-lg">
-                    <p class="card-text mt-5 mb-3" style="color:black;">
-                        Official Radio Station
-                    </p>
-                    <img class="card-img-top mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/kiss92-01.jpg" alt="Card image cap" />
-                </div>
-                <div class="col-12 col-lg">
-                    <p class="card-text mt-5 mb-3" style="color:black;">Supporting Radio Station</p>
-                    <img class="card-img-top mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/onefm.jpg" alt="Card image cap" />
-                </div>
-            </div>
-        </div>
-    </section>
-
 </div><!-- #primary -->
 
 <?php get_template_part('/includes/footer'); ?>

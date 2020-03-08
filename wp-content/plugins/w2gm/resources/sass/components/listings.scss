@@ -1,0 +1,133 @@
+/************************ Listing Dialog ************************/
+.w2gm-listing-dialog.ui-dialog {
+	border: 0;
+	border-radius: 0;
+	padding: 0;
+	z-index: 100002;
+	position: fixed;
+	top: 0 !important;
+}
+.w2gm-listing-dialog.ui-dialog .ui-widget-header {
+	border: 0;
+	background: none;
+	background-color: #4297d7;
+	font-size: 25px;
+	border-radius: 0;
+}
+.w2gm-listing-dialog.ui-dialog .ui-dialog-content {
+	padding: 30px 15px;
+}
+.w2gm-listing-dialog.ui-dialog .ui-dialog-titlebar {
+	padding: 15px;
+}
+.w2gm-close-listing-dialog {
+	float: right;
+	cursor: pointer;
+	margin-top: 10px;
+}
+.lightbox {
+	z-index: 100005 !important;
+}
+.lightboxOverlay {
+	z-index: 100004 !important;
+}
+.pac-container.pac-logo {
+	z-index: 100005 !important;
+}
+
+/************************ Single Listing ************************/
+.w2gm-listing {
+	position: relative;
+	margin-bottom: 60px;
+	padding: 0;
+}
+article.w2gm-listing {
+	clear: none;
+}
+.w2gm-listing.w2gm-hidden-content {
+	border-top: 0;
+	border-bottom: 0;
+}
+.w2gm-single-listing-text-content-wrap {
+	position: static;
+}
+.w2gm-single-listing-text-content-wrap:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+header.w2gm-listing-header {
+	overflow: hidden;
+}
+header.w2gm-listing-header h2 {
+	margin: 10px 0;
+	padding: 0;
+}
+header.w2gm-listing-header h2 a,
+header.w2gm-listing-header h2 a:hover,
+header.w2gm-listing-header h2 a:focus,
+header.w2gm-listing-header h2 a:visited {
+	font-weight: bold;
+	text-decoration: none;
+}
+.w2gm-author-link,
+.w2gm-listing-date,
+.w2gm-views-counter {
+	float: none;
+	margin-right: 10px;
+}
+.w2gm-meta-data:before,
+.w2gm-meta-data:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+.w2gm-video-iframe {
+	height: 400px !important;
+	width: 100% !important;
+	margin-bottom: 20px;
+}
+.w2gm-tab-content .fluidvids {
+	padding-top: 400px !important;
+}
+em.w2gm-listing-date {
+	font-size: 0.8em;
+	display: block;
+}
+ul.w2gm-listing-tabs.w2gm-nav {
+	margin: 20px 0;
+}
+
+/************************ Listings Logo ************************/
+.w2gm-listing-logo-wrap {
+	width: 100%;
+	max-width: 100%;
+
+	text-align: center;
+	position: relative;
+}
+.w2gm-listing-logo .w2gm-listing-logo-img {
+	width: 100%;
+}
+figure.w2gm-listing-logo {
+	margin: 0;
+	position: relative;
+}
+figure.w2gm-listing-logo .w2gm-listing-logo-img-wrap {
+	display: block;
+	overflow: hidden;
+}
+
+figure.w2gm-listing-logo .w2gm-listing-logo-img {
+	max-width: 100%;
+	display: block;
+	position: relative;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+/* We are working with background image, so hide native image */
+figure.w2gm-listing-logo .w2gm-listing-logo-img img {
+	visibility: hidden;
+	float: none;
+}

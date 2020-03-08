@@ -1,0 +1,13 @@
+/************************  Search dropdowns menues & jquery UI   ************************/
+.w2gm-content .ui-selectmenu-menu .ui-icon,
+.w2gm-dropdowns-menu.ui-autocomplete .ui-icon {
+	right: 0.5em;
+	left: 0;
+}
+.w2gm-dropdowns-menu.ui-menu .ui-menu-item {
+	padding: 3px 35px 3px 3px !important;
+}
+.w2gm-dropdowns-menu.ui-menu .ui-menu-item.ui-state-hover,
+.w2gm-dropdowns-menu.ui-menu .ui-menu-item.ui-state-focus {
+	padding: 3px 35px 3px 3px !important;
+}

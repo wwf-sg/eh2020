@@ -1,0 +1,93 @@
+/************************ Bootstrap Custom Styles ************************/
+.w2gm-content {
+	.w2gm-col-md-1,
+	.w2gm-col-md-2,
+	.w2gm-col-md-3,
+	.w2gm-col-md-4,
+	.w2gm-col-md-5,
+	.w2gm-col-md-6,
+	.w2gm-col-md-7,
+	.w2gm-col-md-8,
+	.w2gm-col-md-9,
+	.w2gm-col-md-10,
+	.w2gm-col-md-11,
+	.w2gm-col-md-12 {
+		float: right;
+	}
+	.w2gm-list-group {
+		margin-right: 0;
+	}
+	.w2gm-form-horizontal .w2gm-control-label {
+		text-align: right;
+	}
+	.w2gm-has-feedback .w2gm-form-control,
+	.w2gm-has-feedback .w2gm-form-control:focus {
+		padding-left: 42.5px;
+		padding-right: 12px;
+	}
+	.w2gm-form-control-feedback {
+		left: 0;
+		right: inherit !important;
+	}
+	.w2gm-radio input[type="radio"], .w2gm-radio-inline input[type="radio"], .w2gm-checkbox input[type="checkbox"], .w2gm-checkbox-inline input[type="checkbox"] {
+		margin-right: -20px;
+	}
+	.w2gm-radio label, .w2gm-checkbox label {
+		padding-right: 20px;
+	}
+	.w2gm-pull-left {
+		float: right !important;
+	}
+	.w2gm-pull-right {
+		float: left !important;
+	}
+	.w2gm-text-right {
+		text-align: left;
+	}
+	.w2gm-text-left {
+		text-align: right;
+	}
+	.w2gm-nav-tabs > li {
+		float: right;
+	}
+	.w2gm-pagination > li > a,
+	.w2gm-pagination > li > span {
+		float: right;
+		margin-right: -1px;
+	}
+	.w2gm-pagination > li:first-child > a,
+	.w2gm-pagination > li:first-child > span {
+		border-bottom-right-radius: $border-radius;
+		border-top-right-radius: $border-radius;
+		border-bottom-left-radius: 0;
+		border-top-left-radius: 0;
+		margin-right: 0;
+	}
+	.w2gm-pagination > li:last-child > a,
+	.w2gm-pagination > li:last-child > span {
+		border-bottom-left-radius: $border-radius;
+		border-top-left-radius: $border-radius;
+		border-bottom-right-radius: 0;
+		border-top-right-radius: 0;
+	}
+	.w2gm-btn-group > .w2gm-btn:first-child:not(:last-child):not(.w2gm-dropdown-toggle) {
+		border-bottom-right-radius: $border-radius;
+		border-top-right-radius: $border-radius;
+		border-bottom-left-radius: 0;
+		border-top-left-radius: 0;
+		margin-left: -1px;
+	}
+	.w2gm-btn-group > .w2gm-btn:last-child:not(:first-child),
+	.w2gm-btn-group > .w2gm-dropdown-toggle:not(:first-child) {
+		border-bottom-left-radius: $border-radius;
+		border-top-left-radius: $border-radius;
+		border-bottom-right-radius: 0;
+		border-top-right-radius: 0;
+		margin-right: -1px;
+		margin-left: 0;
+	}
+	.w2gm-btn-group > .w2gm-btn,
+	.w2gm-btn-group-vertical > .w2gm-btn {
+		float: right;
+	}
+}

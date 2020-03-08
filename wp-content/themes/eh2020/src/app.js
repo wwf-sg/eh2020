@@ -7,13 +7,37 @@ import $ from "jquery";
 // import "vue-select/dist/vue-select.css";
 // Vue.component("v-select", vSelect);
 
-// import TelInput from "vue-tel-input";
-// import "vue-tel-input/dist/vue-tel-input.css";
-// Vue.component("vue-tel-input", TelInput);
+import VuePhoneNumberInput from "vue-phone-number-input";
+import "vue-phone-number-input/dist/vue-phone-number-input.css";
+Vue.component("vue-phone-number-input", VuePhoneNumberInput);
 
 // require("bootstrap");
 
 $(document).ready(function() {
+  $(".w2gm-content-fields-metabox").css("display", "block");
+  $('form input[name="post_title"]').val(" any value here ");
+  $(".w2gm-field-input-block-11").insertAfter("#wwf-c-name");
+  $(".w2gm-field-input-block-6").insertAfter("#wwf-c-mail");
+  $(window).bind("load", function() {
+    $("#post_content_ifr").css("height", "200px");
+    $('.w2gm-location-input select.w2gm-selectmenu option[value="55"]').attr(
+      "selected",
+      true
+    );
+    $(".w2gm-location-input select.w2gm-selectmenu").attr(
+      "disabled",
+      "disabled"
+    );
+    $(".w2gm-submit-section-description .w2gm-description").insertAfter(
+      "#tinymce > p"
+    );
+  });
+  $("#w2gm-categorychecklist input").attr("checked", "checked");
+  $(".w2gm-submit-section-categories").fadeOut();
+  $(".w2gm-submit-section-label:contains('Contact Information')")
+    .parent("div")
+    .hide();
+
   setInterval(function time() {
     var d = new Date();
     var target = new Date("March 28, 2020 17:30:00");
@@ -134,7 +158,9 @@ v8n.extend({
 var app = new Vue({
   el: "#contente",
   template: "#voice-template",
-  components: {},
+  components: {
+    VuePhoneNumberInput
+  },
   data: function() {
     return {
       _nonce: nonce,
@@ -143,21 +169,25 @@ var app = new Vue({
       signatureCount: 0,
       shareImage: "",
       shareUrl: "https://earthhour.sg/",
-      step: 3,
-      cta_check: false,
+      step: 2,
       maxSteps: 4,
       form: {
         first_name: "Manoj",
         last_name: "hl",
         name: "",
         email: "123@gmail.com",
+        phone_withcc: "",
         phone: "123",
         age: 22,
         country: "SG",
         check_pdpc: true,
+        feelings: {
+          Anxious: false,
+          Hopeful: false
+        },
         issues: {
           health: false,
-          economy: true,
+          economy: false,
           standardOfLiving: false,
           custom_message: ""
         }
@@ -269,7 +299,7 @@ var app = new Vue({
                   .number()
                   .greaterThan(20)
               )
-              .test(parseInt(this.form.age))
+              .test(parseInt(this.form.age, 10))
           ) {
             this.errors.age =
               "You need to be 21 and over to sign this open letter";
@@ -354,6 +384,17 @@ var app = new Vue({
     },
     prevStep() {
       return (this.step = this.step > 1 ? this.step - 1 : this.step);
+    },
+    onUpdatePhone(payload) {
+      this.form.phone_withcc = payload.formattedNumber;
+      this.form.phonea = payload;
+    },
+    updateFeeling(name) {
+      this.form.feelings[name] = !this.form.feelings[name];
+      console.log(!this.form.feelings[name]);
+    },
+    addFeelingInput() {
+      return true;
     }
   },
   mounted() {

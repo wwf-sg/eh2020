@@ -1,0 +1,57 @@
+<div class="w2gm-demo-prev-next-demos">
+<span class="w2gm-demo-prev-demo">Prev demo: <a href="[base_url]/markers-of-one-category/">Markers of One Category</a></span><span class="w2gm-demo-next-demo">Next demo: <a href="[base_url]/google-maps-locator-plugin/">Home page</a></span>
+</div>
+
+Default
+[webmap id={map_id} map_style="Default"]
+
+Pale Dawn
+[webmap id={map_id} map_style="Pale Dawn"]
+
+Gowalla
+[webmap id={map_id} map_style="Gowalla"]
+
+Subtle Grayscale
+[webmap id={map_id} map_style="Subtle Grayscale"]
+
+Blue water
+[webmap id={map_id} map_style="Blue water"]
+
+Retro
+[webmap id={map_id} map_style="Retro"]
+
+Avocado World
+[webmap id={map_id} map_style="Avocado World"]
+
+Apple Maps-esque
+[webmap id={map_id} map_style="Apple Maps-esque"]
+
+MapBox
+[webmap id={map_id} map_style="MapBox"]
+
+Bentley
+[webmap id={map_id} map_style="Bentley"]
+
+Flat green
+[webmap id={map_id} map_style="Flat green"]
+
+Unsaturated Browns
+[webmap id={map_id} map_style="Unsaturated Browns"]
+
+Blue Essence
+[webmap id={map_id} map_style="Blue Essence"]
+
+Midnight Commander
+[webmap id={map_id} map_style="Midnight Commander"]
+
+Light dream
+[webmap id={map_id} map_style="Light dream"]
+
+Paper
+[webmap id={map_id} map_style="Paper"]
+
+Clean Cut
+[webmap id={map_id} map_style="Clean Cut"]
+
+Pastel Tones
+[webmap id={map_id} map_style="Pastel Tones"]

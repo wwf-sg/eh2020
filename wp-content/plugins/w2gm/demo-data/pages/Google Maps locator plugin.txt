@@ -1,0 +1,7 @@
+<div class="w2gm-demo-prev-next-demos">
+<span class="w2gm-demo-prev-demo">Prev demo: <a href="[base_url]/map-styles/">Map styles</a></span><span class="w2gm-demo-next-demo">Next demo: <a href="[base_url]/search-map/">Search + Map</a></span>
+</div>
+
+[webmap-search uid="u1"]
+
+[webmap id={map_id}]

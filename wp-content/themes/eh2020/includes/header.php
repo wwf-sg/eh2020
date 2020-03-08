@@ -45,6 +45,9 @@
                             <a class="text-white nav-link" href="#about">About</a>
                         </li>
                         <!-- <li class="nav-item">
+                            <a class="text-white nav-link" href="https://www.earthhour.sg/lights-out/">Lights Out</a>
+                        </li> -->
+                        <!-- <li class="nav-item">
                                 <a class="nav-link" href="#LightsOut">Lights Out</a>
                             </li> -->
                         <?php if (false) { ?>

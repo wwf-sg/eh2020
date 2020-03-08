@@ -105,3 +105,13 @@ if (isset($_GET['test'])) {
 require_once 'functions/generate-image/index.php';
 require_once 'functions/required.php';
 require_once 'functions/signatures.php';
+
+// submition redirect 
+add_filter('w2gm_redirect_after_submit', 'w2gm_redirect_after_submit');
+
+function w2gm_redirect_after_submit($url)
+{
+  $url = get_permalink(84);
+
+  return $url;
+}

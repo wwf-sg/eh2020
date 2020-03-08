@@ -13,6 +13,14 @@ $title = "title";
 $description = "description";
 $share_text = "Twitter share text";
 
+$age = [];
+$age[] = 'Below 18';
+$age[] = '18-24';
+$age[] = '25-35';
+$age[] = '36-50';
+$age[] = '51-69';
+$age[] = '70 and above';
+
 ?>
 
 <script type="text/x-template" id="voice-template">
@@ -20,16 +28,18 @@ $share_text = "Twitter share text";
         <form id="voice-form" class="d-flex align-items-center justify-content-center">
             <div id="" action='' class="px-4 p-md-4 p-lg-5 w-100">
 
-                <div id="step1" class="container" v-show="isStep(1)">
+                <div id="step0" class="container" v-show="isStep(0)">
                     <div class="row align-items-center">
                         <div class="col-6">
                             <div class="mb-4 ">
                                 <h2 class="mb-">Open Letter to Singapore</h2>
-                                <p>Earth Hour 2020 - Live & Unplugged will also feature lively discourse between changemakers and local personalities exploring how our planetary emergency and global loss of nature impacts our lives — hot-button topics close to the hearts of Singaporeans everywhere. Here, we want you to contribute to the Open Letter to Singapore to voice out the future you envision for the next decade.</p>
+                                <p>Nature and the food security, clean air, water sources and good health it provides us are at risk.</p>
+                                <p>2020 is the year for governments to take action to make sure our future here in Singapore and on this planet is secure.</p>
+                                <p>Add your voice to an open letter that we will use to push Singapore’s decision makers to make tough decisions that protect your future.</p>
                             </div>
                             <div class="mt-4">
                                 <button id="first-button" type="button" class="btn btn-gradient text-white" @click="nextStep">
-                                    <span>Build Open letter</span>
+                                    <span>Write Your Future Now</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                                         <polyline points="9 18 15 12 9 6"></polyline>
                                     </svg>
@@ -42,31 +52,144 @@ $share_text = "Twitter share text";
                     </div>
                 </div>
 
+                <div id="step1" class="container" v-show="isStep(1)">
+                    <div class="row align-items-center">
+                        <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-0">
+                            <div class="mb-3 mb-md-3">
+                                <p><strong>Step 1</strong></p>
+                                <h3>Write your future.</h3>
+                                <p>Let’s kick this off. How are you feeling about your future?</p>
+                                <div>
+                                    <input type="button" class="btn btn-outline-gradient text-white mr-2" :class="{active: selected}" v-for="(selected, name) in form.feelings" :value="name" @click="updateFeeling(name)">
+                                    <div class="btn btn-outline-gradient text-white mr-2" @click="addFeelingInput">+</div>
+                                </div>
+                                <p class="error" v-if="errors.feelings">{{ errors.feelings }}</p>
+                            </div>
+
+                            <div class="mt-5">
+                                <button type="button" class="btn btn-block btn-outline-gradient text-white" @click="nextStep">
+                                    <span>NEXT</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </button>
+
+                                <button type="button" class="btn btn-block btn-outline-gradient text-white" @click="prevStep">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left">
+                                        <polyline points="15 18 9 12 15 6"></polyline>
+                                    </svg>
+                                    <span>PREV</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 d-none d-lg-block">
+                            <div class="openletter w-100 h-100 bg-white text-dark">
+                                <h3 class="h6 mb-3">AN OPEN LETTER TO SINGAPORE</h3>
+                                <p>Dear Singapore,</p>
+                                <p>It’s been a rough start to 2020. Forest fires, health emergencies and more.</p>
+                                <p>I’m feeling <span v-for="(selected, name) in form.feelings">{{selected ? `${name}, ` : ''}}</span>.</p>
+                                <!-- TODO:
+                                    1. If user only picks one adjective, and when they click next, place a "." at the end.
+                                    2. If user picks 2 adjectives, place an "and" in between of the 2 adjectives for e.g. "I'm feeling anxious and hopeful."
+                                    3. If user picks more than 3 adjectives, and they click next, place "and" before the last adjective, for e.g. "I'm feeling anxious, hopeful and demonic."
+                                 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="step2" class="container" v-show="isStep(2)">
                     <div class="row align-items-center">
                         <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-0">
                             <div class="mb-3 mb-md-3">
+                                <p>Step 2</p>
                                 <h2>Write your future.</h2>
-                                <p>To the decision makers in my community, workplace and country, I have an important question for you. </p>
-                                <p>In 10 years’ time, will I still be able to: </p>
+                                <p>What do you hope for in 2030?</p>
                                 <div>
                                     <div ref="issues" class="form-check">
                                         <input class="form-check-input" type="checkbox" v-model="form.issues.health" value="" id="health">
                                         <label class="form-check-label" for="health">
-                                            Health &amp; Well-being
+                                            I want to continue enjoying the quality of life I’m accustomed to
                                         </label>
+                                        <div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
+                                                <label class="form-check-label" for="economy">
+                                                    With amazing natural green spaces for everyone to enjoy
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
+                                                <label class="form-check-label" for="economy">
+                                                    With the food I love remaining readily available and affordable
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
+                                                <label class="form-check-label" for="economy">
+                                                    Is there anything else you're worried about?
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
                                         <label class="form-check-label" for="economy">
-                                            Economy &amp; Livelihoods
+                                            I want to maintain the good health I’ve enjoyed
                                         </label>
+                                        <div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
+                                                <label class="form-check-label" for="economy">
+                                                    With the air I breathe being free from haze
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
+                                                <label class="form-check-label" for="economy">
+                                                    With the food I eat being free of microplastics
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
+                                                <label class="form-check-label" for="economy">
+                                                    Is there anything else you're worried about?
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" v-model="form.issues.standardOfLiving" value="" id="standardOfLiving">
                                         <label class="form-check-label" for="standardOfLiving">
-                                            Standard of Living
+                                            I want to see a bright and prosperous future for Singapore
                                         </label>
+                                        <div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
+                                                <label class="form-check-label" for="economy">
+                                                    With my home safe from sea level rise and climate change
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
+                                                <label class="form-check-label" for="economy">
+                                                    With confidence for my family’s future
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
+                                                <label class="form-check-label" for="economy">
+                                                    With continued economic growth for Singapore
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
+                                                <label class="form-check-label" for="economy">
+                                                    Is there anything else you're worried about?
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <textarea class="mt-2 w-100 p-2" style="outline: 0" v-model="form.issues.custom_message" maxlength="120" cols="30" rows="3" placeholder="Add your own message"></textarea>
@@ -97,28 +220,19 @@ $share_text = "Twitter share text";
                         <div class="col-lg-6 d-none d-lg-block">
                             <div class="openletter w-100 h-100 bg-white text-dark">
                                 <h3 class="h6 mb-3">AN OPEN LETTER TO SINGAPORE</h3>
+                                <h3 class="h6 mb-3">AN OPEN LETTER TO SINGAPORE</h3>
                                 <p>Dear Singapore,</p>
-                                <p>How are you holding up? What a start to 2020! Fear and uncertainty have gripped the world with relentless forest fires, devastating health emergencies and more.</p>
-                                <p>I’m anxious. You probably are too. </p>
-                                <p>I’m not used to worrying so much in Singapore, where we enjoy a good standard of living and a sense of well-being. But lately I’ve started to wonder if we are taking it all for granted.</p>
-                                <p>The world in 2020 seems like a pretty frightening place. Our demands on the planet are coming back to us. In my lifetime, I’ve seen more natural disasters caused by climate change and an unprecedented loss of wildlife around the world. </p>
+                                <p>It’s been a rough start to 2020. Forest fires, health emergencies and more.</p>
+                                <p>I’m feeling <span v-for="(selected, name) in form.feelings">{{selected ? `${name}, ` : ''}}</span>.</p>
+                                <p>I’m not used to worrying so much, and lately I’ve started to wonder if we are taking everything we have here in Singapore for granted.</p>
+                                <p>The world in 2020 seems like a pretty frightening place. Our demands on the planet are coming back to us with more natural disasters exacerbated by climate change and an unprecedented loss of nature around the world.</p>
                                 <p>So what will 2030 look like? Will I still be able to:</p>
-                                <ul>
-                                    <li v-if="form.issues.standardOfLiving"><strong>Enjoy the quality of life we are accustomed to here in Singapore? </strong><br>With amazing natural green spaces and readily available, affordable seafood</li>
-                                    <li v-if="form.issues.health"><strong>Maintain the good health I’ve enjoyed?</strong><br>With breathable air and food free of microplastics</li>
-                                    <li v-if="form.issues.economy"><strong>See a bright and prosperous future for Singapore?</strong><br>With a future-proofed energy strategy and readiness for the new reality that our climate changed world will bring</li>
-                                    <li v-if="form.issues.custom_message" style="line-break: anywhere;">{{ form.issues.custom_message }}</li>
-                                </ul>
-                                <p>These fears are not something that future generations will have to deal with. I feel it. Today, I am writing to ask you to help ensure the well-being of Singapore’s people, our families and the economy. 2020 is a year of important decisions that will set the path for the next decade.</p>
-                                <p>I’m doing everything I can. But I cannot face this alone. In writing this letter I invite Singapore’s decision makers - our politicians, our community leaders, our businesses, our lawmakers - to help me understand how we can reach a 2030 free from the uncertainty and anxiety that I feel for it right now. For me, for my family, for my future children and beyond.</p>
-                                <p>Sincerely,</p>
-                                <p>[YOUR NAME]</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div id="step3" v-show="isStep(3)" class="container">
+                <div id="step3" class="container" v-show="isStep(3)">
                     <div class="row  align-items-center">
                         <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-0">
                             <div class="row my-3">
@@ -146,14 +260,18 @@ $share_text = "Twitter share text";
                                 <div class="col-7">
                                     <div class="form-group">
                                         <label for="phone">Your Mobile Number</label>
-                                        <input ref="phone" id="phone" :disabled="loading" type="number" class="form-control" v-model="form.phone" placeholder="Your mobile number">
+                                        <VuePhoneNumberInput ref="phone" id="phone" :no-flags=true :translations="{countrySelectorLabel: 'Code pays', countrySelectorError: 'Choisir un pays', phoneNumberLabel: 'Numéro de téléphone', example: 'Example : '}" :disabled="loading" v-model="form.phone" :default-country-code="form.country" @update="onUpdatePhone" :key="form.country" color="#000000" valid-color="#000000" error-color="#000000" />
+                                        <!-- <input :disabled="loading" type="number" class="form-control" v-model="form.phone" placeholder="Your mobile number"> -->
                                         <p class="error my-2" v-show="errors.phone">Please enter a valid phone.</p>
                                     </div>
                                 </div>
                                 <div class="col-5">
                                     <div class="form-group">
                                         <label for="age">Your Age</label>
-                                        <input ref="age" id="age" :disabled="loading" type="number" class="form-control" v-model="form.age" placeholder="How old are you?">
+                                        <select ref="age" :disabled="loading" class="form-control bg-white" v-model="form.age"  id="age">
+                                            <option value="">- Age -</option>
+                                            <?php foreach ($age as $a) { ?><option value="<?php echo $a ?>"><?php echo $a ?></option><?php } ?>
+                                        </select>
                                         <p class="error my-2" v-show="errors.age">{{ errors.age }}</p>
                                     </div>
                                 </div>
@@ -552,13 +670,3 @@ $share_text = "Twitter share text";
 <div id="contente">
     <plastictest></plastictest>
 </div>
-
-<script>
-    var nonce = '<?= wp_create_nonce('voice_form'); ?>';
-    var step = 1;
-    var utm_campaign = '<?php echo (isset($_GET['utm_campaign']) && !empty($_GET['utm_campaign'])) ? $_GET['utm_campaign'] : '' ?>';
-    var utm_source = '<?php echo (isset($_GET['utm_source']) && !empty($_GET['utm_source'])) ? $_GET['utm_source'] : '' ?>';
-    var utm_medium = '<?php echo (isset($_GET['utm_medium']) && !empty($_GET['utm_medium'])) ? $_GET['utm_medium'] : '' ?>';
-    var utm_content = '<?php echo (isset($_GET['utm_content']) && !empty($_GET['utm_content'])) ? $_GET['utm_content'] : '' ?>';
-    var utm_term = '<?php echo (isset($_GET['utm_term']) && !empty($_GET['utm_term'])) ? $_GET['utm_term'] : '' ?>';
-</script>

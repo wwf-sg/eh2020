@@ -1,0 +1,167 @@
+/************************ Misc ************************/
+.w2gm-contact-form label {
+	display: block;
+}
+input[type=submit], input[type=button] {
+	-webkit-appearance: none;
+	-webkit-border-radius: 0;
+}
+a.w2gm-hint-icon:before {
+	content: "\f059";
+}
+a.w2gm-hint-icon {
+	font-family: 'FontAwesome' !important;
+	text-decoration: none !important;
+	font-size: 24px;
+}
+.w2gm-popover {
+    width: 100%;
+}
+
+/************************ Frontpanel Buttons ************************/
+.w2gm-listing-frontpanel {
+	margin-bottom: 10px;
+}
+.w2gm-listing-single .w2gm-listing-frontpanel {
+	margin: 0;
+	float: right;
+}
+@media screen and (max-width: $mobile-screen-width) {
+	.w2gm-listing-single .w2gm-listing-frontpanel {
+		float: none;
+	}
+}
+.w2gm-listing-frontpanel a.w2gm-btn {
+	margin: 10px 10px 10px 0;
+}
+
+/* Avoid fluid-width-video-wrapper */
+.w2gm-content .fluid-width-video-wrapper {
+	padding-top: 0 !important;
+	height: 400px !important;
+}
+
+.g-recaptcha {
+	margin: 10px 0;
+}
+
+.w2gm-red-asterisk {
+	color: red;
+	font-weight: bold;
+	font-size: 1.2em;
+	line-height: 1px;
+	padding: 2px;
+}
+
+/************************ Lightbox styles  ************************/
+.w2gm-content .lb-prev,
+.w2gm-content .lb-next {
+	outline: 0 none !important;
+}
+/* 
+	Bootstrap has default img max-width set to 100% and for some reason lightbox stops resizing
+	http://stackoverflow.com/questions/17523977/lightbox-v2-shrinks-the-image-in-the-box
+*/
+.lb-image {
+	max-width: inherit;
+}
+.lb-number {
+	display: none !important;
+}
+
+/************************ Profile template ************************/
+.dashicons, .dashicons-before::before {
+	line-height: inherit;
+}
+
+/************************ Adapted for Contact Fotm 7 plugin ************************/
+.w2gm-content .wpcf7-form .wpcf7-text,
+.w2gm-content .wpcf7-form .wpcf7-select,
+.w2gm-content .wpcf7-form .wpcf7-number,
+.w2gm-content .wpcf7-form .wpcf7-date,
+.w2gm-content .wpcf7-form .wpcf7-textarea {
+	width: 100%;
+}
+div.w2gm-content .wpcf7-form .wpcf7-submit,
+div.w2gm-content .wpcf7-form .wpcf7-submit:hover
+div.w2gm-content .wpcf7-form .wpcf7-submit:visited,
+div.w2gm-content .wpcf7-form .wpcf7-submit:focus {
+	background-image: none;
+}
+
+/************************ Paginator ************************/
+.w2gm-content {
+	.w2gm-pagination > li:first-child > a,
+	.w2gm-pagination > li:first-child > span {
+		border-bottom-left-radius: $border-radius;
+		border-top-left-radius: $border-radius;
+	}
+	.w2gm-pagination > li:last-child > a,
+	.w2gm-pagination > li:last-child > span {
+		border-bottom-right-radius: $border-radius;
+		border-top-right-radius: $border-radius;
+	}
+	.w2gm-pagination .w2gm-btn-group > .w2gm-btn:first-child:not(:last-child):not(.w2gm-dropdown-toggle) {
+		border-bottom-left-radius: $border-radius;
+		border-top-left-radius: $border-radius;
+	}
+	.w2gm-pagination .w2gm-btn-group > .w2gm-btn:last-child:not(:first-child),
+	.w2gm-pagination .w2gm-btn-group > .w2gm-dropdown-toggle:not(:first-child) {
+		border-bottom-right-radius: $border-radius;
+		border-top-right-radius: $border-radius;
+	}
+	.w2gm-pagination-wrapper {
+		text-align: center;
+		margin: 20px 0;
+	}
+	.w2gm-pagination li {
+		margin: 0;
+	}
+}
+
+/************************ Badges ************************/
+.w2gm-badge.w2gm-listing-status-active {
+	background-color: $status-active-color;
+}
+.w2gm-badge.w2gm-listing-status-expired {
+	background-color: $status-expired-color;
+}
+.w2gm-badge.w2gm-listing-status-unpaid {
+	background-color: $status-unpaid-color;
+}
+.w2gm-badge.w2gm-listing-status-stopped {
+	background-color: $status-stopped-color;
+}
+
+/************************ Demo ************************/
+.w2gm-demo-prev-next-demos {
+	padding: 30px;
+	background-color: #e6f5ff;
+	margin-bottom: 80px;
+	font-size: 26px;
+}
+@media screen and (max-width: $mobile-screen-width) {
+	.w2gm-demo-prev-next-demos {
+		padding: 10px;
+		margin-bottom: 40px;
+		font-size: 16px;
+	}
+}
+.w2gm-demo-prev-next-demos:after{
+	clear: both;
+	content: "";
+	display: table;
+}
+.w2gm-demo-prev-next-demos a {
+	text-decoration: underline;
+}
+.w2gm-demo-prev-demo {
+	float: left;
+	width: 50%;
+	text-align: left;
+}
+.w2gm-demo-next-demo {
+	float: right;
+	width: 50%;
+	text-align: right;
+}

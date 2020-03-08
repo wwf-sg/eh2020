@@ -1,10 +1,15 @@
 window.Vue = require("vue");
 import v8n from "v8n";
 import axios from "axios";
+import tippy from "tippy.js";
 
 // import vSelect from "vue-select";
 // import "vue-select/dist/vue-select.css";
 // Vue.component("v-select", vSelect);
+
+import VuePhoneNumberInput from "vue-phone-number-input";
+import "vue-phone-number-input/dist/vue-phone-number-input.css";
+Vue.component("vue-phone-number-input", VuePhoneNumberInput);
 
 // import TelInput from "vue-tel-input";
 // import "vue-tel-input/dist/vue-tel-input.css";
@@ -12,102 +17,6 @@ import axios from "axios";
 
 // require("jquery");
 require("bootstrap");
-
-$ = jQuery;
-
-$(document).ready(function() {
-  setInterval(function time() {
-    var d = new Date();
-    var target = new Date("March 27, 2020 00:00:00");
-    var diffTime = Math.abs(target - d);
-    var days = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    var hours = ("0" + (23 - d.getHours())).slice(-2);
-    var min = ("0" + (59 - d.getMinutes())).slice(-2);
-    if ((min + "").length == 1) {
-      min = "0" + min;
-    }
-    var sec = 60 - d.getSeconds();
-    if ((sec + "").length == 1) {
-      sec = "0" + sec;
-    }
-    jQuery("#countdown #day").html(days);
-    jQuery("#countdown #hour").html(hours);
-    jQuery("#countdown #min").html(min);
-    jQuery("#countdown #sec").html(sec);
-  }, 1000);
-
-  /**
-   * This object controls the nav bar. Implement the add and remove
-   * action over the elements of the nav bar that we want to change.
-   *
-   * @type {{flagAdd: boolean, elements: string[], add: Function, remove: Function}}
-   */
-  var myNavBar = {
-    flagAdd: true,
-
-    elements: [],
-
-    init: function(elements) {
-      this.elements = elements;
-    },
-
-    add: function() {
-      if (this.flagAdd) {
-        for (var i = 0; i < this.elements.length; i++) {
-          if (document.getElementById(this.elements[i])) {
-            document.getElementById(this.elements[i]).className +=
-              " fixed-theme";
-          }
-        }
-        this.flagAdd = false;
-      }
-    },
-
-    remove: function() {
-      for (var i = 0; i < this.elements.length; i++) {
-        const ele = document.getElementById(this.elements[i]);
-        if (ele) {
-          ele.classList.remove("fixed-theme");
-        }
-      }
-      this.flagAdd = true;
-    }
-  };
-
-  /**
-   * Init the object. Pass the object the array of elements
-   * that we want to change when the scroll goes down
-   */
-  myNavBar.init(["masthead"]);
-
-  /**
-   * Function that manage the direction
-   * of the scroll
-   */
-  function offSetManager() {
-    var yOffset = 0;
-    var currYOffSet = window.pageYOffset;
-
-    if (yOffset < currYOffSet) {
-      myNavBar.add();
-    } else if (currYOffSet === yOffset) {
-      myNavBar.remove();
-    }
-  }
-
-  /**
-   * bind to the document scroll detection
-   */
-  window.onscroll = function(e) {
-    offSetManager();
-  };
-
-  /**
-   * We have to do a first detectation of offset because the page
-   * could be load with scroll down set.
-   */
-  offSetManager();
-});
 
 Vue.component("v-style", {
   render: function(createElement) {
@@ -133,10 +42,13 @@ v8n.extend({
     };
   }
 });
+
 var app = new Vue({
   el: "#contente",
-  template: "#voice-template",
-  components: {},
+  template: "#plastictest-template",
+  components: {
+    VuePhoneNumberInput
+  },
   data: function() {
     return {
       iframe: iframe,
@@ -699,3 +611,28 @@ var app = new Vue({
   }
 });
 window.app = app;
+
+tippy("div.tt", {
+  arrow: true
+});
+
+const step6 = document.querySelectorAll("a[href='#what-can-i-do']");
+for (let em of step6) {
+  em.addEventListener("click", function() {
+    if (app._data.step == 1) {
+      app._data.step = 6;
+      app._data.path = 2;
+      return app._data.path;
+    }
+  });
+}
+const step1 = document.querySelectorAll("a[href='#take-the-plastic-test']");
+for (let em of step1) {
+  em.addEventListener("click", function() {
+    if (app._data.step == 6) {
+      app._data.step = 1;
+      app._data.path = 1;
+      return app._data.path;
+    }
+  });
+}
