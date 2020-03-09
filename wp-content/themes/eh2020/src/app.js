@@ -155,6 +155,62 @@ v8n.extend({
     };
   }
 });
+
+Vue.component("openletter", {
+  props: ["data"],
+  data: function() {
+    return {};
+  },
+  computed: {
+    getFeelings: function() {
+      const feelings = this.data.form.feelings;
+      let count = 0;
+      let out = "";
+      let selected = [];
+
+      // console.log(feelings);
+
+      for (const name in feelings) {
+        if (feelings.hasOwnProperty(name)) {
+          if (feelings[name]) {
+            selected.push(name);
+          }
+        }
+      }
+
+      selected.forEach((element, index) => {
+        count += 1;
+
+        if (selected.length == 1) {
+          out += element;
+        }
+
+        if (selected.length == 2) {
+          if (index == 1) out += element;
+          else out += element + " and ";
+        }
+
+        if (selected.length >= 3) {
+          out += element;
+
+          if (index !== selected.length - 2 && index !== selected.length - 1)
+            out += ", ";
+
+          if (index == selected.length - 2) out += " and ";
+        }
+      });
+
+      // if none of them are slected return ...
+      if (count == 0) out = "..";
+
+      return out;
+    }
+  },
+  mounted() {
+    console.log(this);
+  },
+  template: "#openletter-template"
+});
 var app = new Vue({
   el: "#contente",
   template: "#voice-template",
@@ -163,13 +219,14 @@ var app = new Vue({
   },
   data: function() {
     return {
+      someVariable: 0,
       _nonce: nonce,
       loading: false,
       image_loading: false,
       signatureCount: 0,
       shareImage: "",
       shareUrl: "https://earthhour.sg/",
-      step: 2,
+      step: 1,
       maxSteps: 4,
       form: {
         first_name: "Manoj",
@@ -186,10 +243,15 @@ var app = new Vue({
           Hopeful: false
         },
         issues: {
-          health: false,
-          economy: false,
-          standardOfLiving: false,
-          custom_message: ""
+          health_1: "",
+          health_2: "",
+          health_custom: "",
+          future_1: "",
+          future_2: "",
+          future_custom: "",
+          qualityOfLiving_1: "",
+          qualityOfLiving_2: "",
+          qualityOfLiving_custom: ""
         }
       },
       errors: {}
@@ -197,6 +259,24 @@ var app = new Vue({
   },
   mounted: function() {},
   methods: {
+    forceRerender: function() {
+      this.someVariable += 1;
+    },
+    addFeeling: function(e) {
+      this.form.feelings[e.target.value] = true;
+      e.target.parentElement.classList.remove("active");
+      this.forceRerender();
+    },
+    updateFeeling(name) {
+      this.form.feelings[name] = !this.form.feelings[name];
+      this.forceRerender();
+    },
+    openissue: function(e) {
+      e.target.parentElement.classList.add("active");
+    },
+    showCustomMessageBox: function(e) {
+      e.target.parentElement.classList.add("active");
+    },
     isStep: function(step) {
       if (step >= 5) {
         return this.cta_check && this.step === step;
@@ -215,10 +295,15 @@ var app = new Vue({
         case 2:
           if (
             !(
-              this.form.issues.economy ||
-              this.form.issues.health ||
-              this.form.issues.standardOfLiving ||
-              this.form.issues.custom_message
+              this.form.issues.health_1 ||
+              this.form.issues.health_2 ||
+              this.form.issues.health_custom ||
+              this.form.issues.qualityOfLiving_1 ||
+              this.form.issues.qualityOfLiving_2 ||
+              this.form.issues.qualityOfLiving_custom ||
+              this.form.issues.prosper_1 ||
+              this.form.issues.prosper_2 ||
+              this.form.issues.prosper_custom
             )
           ) {
             this.errors.issues = "Please select atleast one checkbox";
@@ -388,18 +473,15 @@ var app = new Vue({
     onUpdatePhone(payload) {
       this.form.phone_withcc = payload.formattedNumber;
       this.form.phonea = payload;
-    },
-    updateFeeling(name) {
-      this.form.feelings[name] = !this.form.feelings[name];
-      console.log(!this.form.feelings[name]);
-    },
-    addFeelingInput() {
-      return true;
     }
   },
   mounted() {
     // console.log(this.);
   },
-  computed: {}
+  computed: {
+    feelin: function() {
+      return this.form.feelings;
+    }
+  }
 });
 window.app = app;

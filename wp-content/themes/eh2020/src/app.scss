@@ -276,7 +276,34 @@ h4,
 
 @import "./eh2020.scss";
 
+.openletter-wrapper {
+  position: relative;
+
+  .bg {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    top: 15px;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border: 1px solid #bbb;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+  }
+}
+
 .openletter {
+  position: relative;
+  background-color: #fff;
+  box-shadow: 2px 1px 1px rgba(0, 0, 0, 0.15);
+  border: 1px solid #bbb;
+  padding: 30px;
+  overflow-y: scroll;
+  min-height: 70vh;
+  @include media-breakpoint-up(md) {
+    max-height: 70vh;
+    min-height: 50vh;
+  }
   // font-size: 12px;
   // line-height: 1.5;
   // padding: 20px;
@@ -288,13 +315,6 @@ h4,
   // overflow: scroll;
   // font-family: monospace;
   // box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
-  // border: 1px solid #bbb;
-  box-shadow: 2px 1px 1px rgba(0, 0, 0, 0.15);
-  background-color: #fff;
-  /* Need position to allow stacking of pseudo-elements */
-  position: relative;
-  /* Padding for demo purposes */
-  padding: 30px;
 
   h3 {
     color: #000 !important;
@@ -307,32 +327,11 @@ h4,
   & li {
     // line-break: anywhere;
   }
-  &:before,
-  &:after {
-    /* Styles to distinguish sheets from one another */
-    box-shadow: 2px 1px 1px rgba(0, 0, 0, 0.15);
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #eee;
-  }
-  &:before {
-    left: 7px;
-    top: 5px;
-    z-index: -1;
-  }
-
-  &:after {
-    left: 12px;
-    top: 10px;
-    z-index: -2;
-  }
 }
 @include media-breakpoint-up(lg) {
   #step2,
   #step3 {
-    .openletter {
+    .openletter-wrapper {
       max-height: 750px;
     }
   }
@@ -340,7 +339,7 @@ h4,
 @include media-breakpoint-up(xl) {
   #step2,
   #step3 {
-    .openletter {
+    .openletter-wrapper {
       max-height: 600px;
     }
   }
@@ -744,4 +743,88 @@ header:not(.with_hover_bg_color) nav.main_menu > ul > li:hover > a {
 
 .w2gm-content {
   color: #000;
+}
+
+.issue-wrapper {
+  margin-bottom: 0.75rem;
+  .issue-title {
+    margin-bottom: 0.5rem;
+    &:before {
+      content: "+";
+      position: absolute;
+      left: 0;
+      top: 5px;
+      background-color: #fff;
+      border-radius: 4px;
+      color: #000;
+      width: 13px;
+      height: 13px;
+      margin-right: 5px;
+      line-height: 10px;
+      font-size: 14px;
+      padding: 2px;
+    }
+  }
+  .issue-details {
+    display: none;
+  }
+  &.active {
+    .issue-title:before {
+      content: "-";
+      line-height: 5px;
+      padding: 4px;
+    }
+    .issue-details {
+      display: block;
+    }
+  }
+}
+
+.issue {
+  margin-bottom: 0.5rem;
+
+  .custom-message-label {
+    position: relative;
+    cursor: pointer;
+    &:before {
+      content: "+";
+      position: absolute;
+      left: -20px;
+      top: 5px;
+      width: 13px;
+      height: 13px;
+      margin-right: 5px;
+      line-height: 10px;
+      font-size: 20px;
+      padding: 2px;
+      color: #fff;
+    }
+  }
+
+  .custom-message {
+    display: none;
+  }
+
+  &.active {
+    .custom-message-label {
+      display: none;
+    }
+    .custom-message {
+      display: block;
+    }
+  }
+}
+
+.feelings {
+  .custom-feeling {
+    display: none;
+  }
+  &.active {
+    .handler {
+      display: none;
+    }
+    .custom-feeling {
+      display: block;
+    }
+  }
 }

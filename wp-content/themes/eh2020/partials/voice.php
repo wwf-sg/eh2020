@@ -23,10 +23,57 @@ $age[] = '70 and above';
 
 ?>
 
+<script type="text/x-template" id="openletter-template">
+
+    <div class="openletter-wrapper">
+        <div class="d-none">{{ data.someVariable }}</div>
+        <div class="bg"></div>
+        <div class="openletter w-100 bg-white text-dark">
+            <h3 class="h6 mb-3">AN OPEN LETTER TO SINGAPORE</h3>
+            <p>Dear Singapore,</p>
+            <p>It’s been a rough start to 2020. Forest fires, health emergencies and more.</p>
+            <p>I’m feeling {{ getFeelings }}.</p>
+            <div v-if="data.step >= 2">
+                <p>I’m not used to worrying so much, and lately I’ve started to wonder if we are taking everything we have here in Singapore for granted.</p>
+                <p>Nature is changing. We have lost much of the world’s biodiversity in the past 40 years. Climate change has become a matter of survival. Our demands on the planet are now coming back to us, and this is shaping how I live.</p>
+                <p>So what will the future look like for me? Will I still be able to:</p>
+                <ul>
+                    <li v-if="data.form.issues.health_1 || data.form.issues.health_2 || data.form.issues.health_custom">
+                        <strong>Enjoy good health</strong>
+                        <ul>
+                            <li v-if="data.form.issues.health_1">With the air I breathe being free from haze?</li>
+                            <li v-if="data.form.issues.health_2">Will the food I eat be free of microplastics?</li>
+                            <li v-if="data.form.issues.health_custom">{{ data.form.issues.health_custom }}</li>
+                        </ul>
+                    </li>
+                    <li v-if="data.form.issues.qualityOfLiving_1 || data.form.issues.qualityOfLiving_2 || data.form.issues.qualityOfLiving_custom">
+                        <strong>Maintain my quality of life </strong>
+                        <ul>
+                            <li v-if="data.form.issues.qualityOfLiving_1">With the air I breathe being free from haze?</li>
+                            <li v-if="data.form.issues.qualityOfLiving_2">Will the food I eat be free of microplastics?</li>
+                            <li v-if="data.form.issues.qualityOfLiving_custom">{{ data.form.issues.qualityOfLiving_custom }}</li>
+                        </ul>
+                    </li>
+                    <li v-if="data.form.issues.prosper_1 || data.form.issues.prosper_2 || data.form.issues.prosper_custom">
+                        <strong>Prosper</strong>
+                        <ul>
+                            <li v-if="data.form.issues.prosper_1">Will I feel confident about my family’s future?</li>
+                            <li v-if="data.form.issues.prosper_2">Will I know that my home is safe from sea level rise and climate change?</li>
+                            <li v-if="data.form.issues.prosper_custom">{{ data.form.issues.prosper_custom }}</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</script>
+
 <script type="text/x-template" id="voice-template">
     <div id="voice-component" class="voice-form m-0" :class="['step-' + step]">
         <form id="voice-form" class="d-flex align-items-center justify-content-center">
             <div id="" action='' class="px-4 p-md-4 p-lg-5 w-100">
+
+                <div class="d-none">{{ this.someVariable }}</div>
 
                 <div id="step0" class="container" v-show="isStep(0)">
                     <div class="row align-items-center">
@@ -56,45 +103,38 @@ $age[] = '70 and above';
                     <div class="row align-items-center">
                         <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-0">
                             <div class="mb-3 mb-md-3">
-                                <p><strong>Step 1</strong></p>
+                                <p>
+                                    <strong>Step 1</strong>
+                                    <br>
+                                    <span class="step-pills">
+                                        <span class="step-pill" :class="{active: step >= 1}"></span>
+                                        <span class="step-pill" :class="{active: step >= 2}"></span>
+                                        <span class="step-pill" :class="{active: step >= 3}"></span>
+                                        <span class="step-pill" :class="{active: step >= 4}"></span>
+                                    </span>
+                                </p>
                                 <h3>Write your future.</h3>
                                 <p>Let’s kick this off. How are you feeling about your future?</p>
-                                <div>
-                                    <input type="button" class="btn btn-outline-gradient text-white mr-2" :class="{active: selected}" v-for="(selected, name) in form.feelings" :value="name" @click="updateFeeling(name)">
-                                    <div class="btn btn-outline-gradient text-white mr-2" @click="addFeelingInput">+</div>
+                                <div ref="feelings" class="feelings">
+                                    <input type="button" class="btn btn-outline-gradient text-white mr-2 mb-2" :class="{active: selected}" v-for="(selected, name) in feelin" :value="name" :key="name" @click="updateFeeling(name)">
+                                    <input type="text" class="custom-feeling btn border-2 btn-outline-gradient selected border-white text-white mr-2 text-left" @keyup.enter="addFeeling" style="text-transform: none !important;">
+                                    <input type="button" class="handler btn btn-outline-gradient text-white mr-2 mb-2" @click="openissue" value="+" />
                                 </div>
                                 <p class="error" v-if="errors.feelings">{{ errors.feelings }}</p>
                             </div>
 
                             <div class="mt-5">
-                                <button type="button" class="btn btn-block btn-outline-gradient text-white" @click="nextStep">
+                                <button type="button" class="btn btn-lg btn-block btn-gradient text-white" @click="nextStep">
                                     <span>NEXT</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
                                 </button>
-
-                                <button type="button" class="btn btn-block btn-outline-gradient text-white" @click="prevStep">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left">
-                                        <polyline points="15 18 9 12 15 6"></polyline>
-                                    </svg>
-                                    <span>PREV</span>
-                                </button>
+                                <a :disabled="loading" class="text-center d-block mt-3 text-white" @click="prevStep">
+                                    <span>Back to Homepage</span>
+                                </a>
                             </div>
                         </div>
 
-                        <div class="col-lg-6 d-none d-lg-block">
-                            <div class="openletter w-100 h-100 bg-white text-dark">
-                                <h3 class="h6 mb-3">AN OPEN LETTER TO SINGAPORE</h3>
-                                <p>Dear Singapore,</p>
-                                <p>It’s been a rough start to 2020. Forest fires, health emergencies and more.</p>
-                                <p>I’m feeling <span v-for="(selected, name) in form.feelings">{{selected ? `${name}, ` : ''}}</span>.</p>
-                                <!-- TODO:
-                                    1. If user only picks one adjective, and when they click next, place a "." at the end.
-                                    2. If user picks 2 adjectives, place an "and" in between of the 2 adjectives for e.g. "I'm feeling anxious and hopeful."
-                                    3. If user picks more than 3 adjectives, and they click next, place "and" before the last adjective, for e.g. "I'm feeling anxious, hopeful and demonic."
-                                 -->
-                            </div>
+                        <div class="col-lg-6 mt-5 mt-lg-0">
+                            <openletter :data="this._data"></openletter>
                         </div>
                     </div>
                 </div>
@@ -103,131 +143,113 @@ $age[] = '70 and above';
                     <div class="row align-items-center">
                         <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-0">
                             <div class="mb-3 mb-md-3">
-                                <p>Step 2</p>
+                                <p>
+                                    <strong>Step 2</strong>
+                                    <br>
+                                    <span class="step-pills">
+                                        <span class="step-pill" :class="{active: step >= 1}"></span>
+                                        <span class="step-pill" :class="{active: step >= 2}"></span>
+                                        <span class="step-pill" :class="{active: step >= 3}"></span>
+                                        <span class="step-pill" :class="{active: step >= 4}"></span>
+                                    </span>
+                                </p>
                                 <h2>Write your future.</h2>
-                                <p>What do you hope for in 2030?</p>
+                                <p>And what’s on your mind?</p>
                                 <div>
-                                    <div ref="issues" class="form-check">
-                                        <input class="form-check-input" type="checkbox" v-model="form.issues.health" value="" id="health">
-                                        <label class="form-check-label" for="health">
-                                            I want to continue enjoying the quality of life I’m accustomed to
-                                        </label>
-                                        <div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
-                                                <label class="form-check-label" for="economy">
-                                                    With amazing natural green spaces for everyone to enjoy
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
-                                                <label class="form-check-label" for="economy">
-                                                    With the food I love remaining readily available and affordable
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
-                                                <label class="form-check-label" for="economy">
-                                                    Is there anything else you're worried about?
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
-                                        <label class="form-check-label" for="economy">
-                                            I want to maintain the good health I’ve enjoyed
-                                        </label>
-                                        <div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
-                                                <label class="form-check-label" for="economy">
+                                    <p class="error" v-if="errors.issues">{{ errors.issues }}</p>
+                                    <div class="form-check issue-wrapper active">
+                                        <p class="issue-title" @click="openissue">I want to maintain the good health I’ve enjoyed</p>
+                                        <div class="issue-details">
+                                            <div class="form-check issue">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.health_1" value="" id="health_1">
+                                                <label class="form-check-label" for="health_1">
                                                     With the air I breathe being free from haze
                                                 </label>
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
-                                                <label class="form-check-label" for="economy">
+                                            <div class="form-check issue">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.health_2" value="" id="health_2">
+                                                <label class="form-check-label" for="health_2">
                                                     With the food I eat being free of microplastics
                                                 </label>
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
-                                                <label class="form-check-label" for="economy">
+                                            <div class="form-check issue">
+                                                <label class="mb-0 custom-message-label text-muted" for="health_custom" @click="showCustomMessageBox">
                                                     Is there anything else you're worried about?
                                                 </label>
+                                                <div class="custom-message">
+                                                    <textarea id="health_custom" class="w-100 p-2" style="outline: 0" v-model="form.issues.health_custom" maxlength="120" rows="2" placeholder="Add your own message"></textarea>
+                                                    <small>{{ 120 - (form.issues.health_custom ? form.issues.health_custom.length : 0) }} characters left.</small>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" v-model="form.issues.standardOfLiving" value="" id="standardOfLiving">
-                                        <label class="form-check-label" for="standardOfLiving">
-                                            I want to see a bright and prosperous future for Singapore
-                                        </label>
-                                        <div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
-                                                <label class="form-check-label" for="economy">
+                                    <div class="form-check issue-wrapper">
+                                        <p class="issue-title" @click="openissue">I want to continue enjoying the quality of life I’m accustomed to</p>
+                                        <div class="issue-details">
+                                            <div ref="issues" class="form-check issue">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.qualityOfLiving_1" value="" id="qualityOfLiving_1">
+                                                <label class="form-check-label" for="qualityOfLiving_1">
+                                                    With amazing natural green spaces for everyone to enjoy
+                                                </label>
+                                            </div>
+                                            <div class="form-check issue">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.qualityOfLiving_2" value="" id="qualityOfLiving_2">
+                                                <label class="form-check-label" for="qualityOfLiving_2">
+                                                    With the food I love remaining readily available and affordable
+                                                </label>
+                                            </div>
+                                            <div class="form-check issue">
+                                                <label class="mb-0 custom-message-label text-muted" for="qualityOfLiving_custom" @click="showCustomMessageBox">
+                                                    Is there anything else you're worried about?
+                                                </label>
+                                                <div class="custom-message">
+                                                    <textarea id="qualityOfLiving_custom" class="w-100 p-2" style="outline: 0" v-model="form.issues.qualityOfLiving_custom" maxlength="120" rows="2" placeholder="Add your own message"></textarea>
+                                                    <small>{{ 120 - (form.issues.qualityOfLiving_custom ? form.issues.qualityOfLiving_custom.length : 0) }} characters left.</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-check issue-wrapper">
+                                        <p class="issue-title" @click="openissue">I want to see a bright and prosperous future for Singapore</p>
+                                        <div class="issue-details">
+                                            <div class="form-check issue">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.prosper_1" value="" id="prosper_1">
+                                                <label class="form-check-label" for="prosper_1">
                                                     With my home safe from sea level rise and climate change
                                                 </label>
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
-                                                <label class="form-check-label" for="economy">
+                                            <div class="form-check issue">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.prosper_2" value="" id="prosper_2">
+                                                <label class="form-check-label" for="prosper_2">
                                                     With confidence for my family’s future
                                                 </label>
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
-                                                <label class="form-check-label" for="economy">
-                                                    With continued economic growth for Singapore
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" v-model="form.issues.economy" value="" id="economy">
-                                                <label class="form-check-label" for="economy">
+                                            <div class="form-check issue">
+                                                <label class="mb-0 custom-message-label text-muted" for="prosper_custom" @click="showCustomMessageBox">
                                                     Is there anything else you're worried about?
                                                 </label>
+                                                <div class="custom-message">
+                                                    <textarea id="prosper_custom" class="w-100 p-2" style="outline: 0" v-model="form.issues.prosper_custom" maxlength="120" rows="2" placeholder="Add your own message"></textarea>
+                                                    <small>{{ 120 - (form.issues.prosper_custom ? form.issues.prosper_custom.length : 0) }} characters left.</small>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <textarea class="mt-2 w-100 p-2" style="outline: 0" v-model="form.issues.custom_message" maxlength="120" cols="30" rows="3" placeholder="Add your own message"></textarea>
-                                <small>{{ 120 - form.issues.custom_message.length }} characters left.</small>
-                                <p class="error" v-if="errors.issues">{{ errors.issues }}</p>
                             </div>
 
-                            <div class="row">
-                                <div class="col">
-                                    <button type="button" class="btn btn-block btn-outline-gradient text-white" @click="prevStep">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left">
-                                            <polyline points="15 18 9 12 15 6"></polyline>
-                                        </svg>
-                                        <span>PREV</span>
-                                    </button>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-block btn-outline-gradient text-white" @click="nextStep">
-                                        <span>NEXT</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                                            <polyline points="9 18 15 12 9 6"></polyline>
-                                        </svg>
-                                    </button>
-                                </div>
+                            <div class="">
+                                <button type="button" class="btn btn-lg btn-block btn-gradient text-white" @click="nextStep">
+                                    <span>NEXT</span>
+                                </button>
+                                <a :disabled="loading" class="text-center d-block mt-3 text-white" @click="prevStep">
+                                    <span>Back to Previous Step</span>
+                                </a>
                             </div>
                         </div>
 
                         <div class="col-lg-6 d-none d-lg-block">
-                            <div class="openletter w-100 h-100 bg-white text-dark">
-                                <h3 class="h6 mb-3">AN OPEN LETTER TO SINGAPORE</h3>
-                                <h3 class="h6 mb-3">AN OPEN LETTER TO SINGAPORE</h3>
-                                <p>Dear Singapore,</p>
-                                <p>It’s been a rough start to 2020. Forest fires, health emergencies and more.</p>
-                                <p>I’m feeling <span v-for="(selected, name) in form.feelings">{{selected ? `${name}, ` : ''}}</span>.</p>
-                                <p>I’m not used to worrying so much, and lately I’ve started to wonder if we are taking everything we have here in Singapore for granted.</p>
-                                <p>The world in 2020 seems like a pretty frightening place. Our demands on the planet are coming back to us with more natural disasters exacerbated by climate change and an unprecedented loss of nature around the world.</p>
-                                <p>So what will 2030 look like? Will I still be able to:</p>
-                            </div>
+                            <openletter :data="this._data"></openletter>
                         </div>
                     </div>
                 </div>
@@ -549,32 +571,14 @@ $age[] = '70 and above';
                                     </svg>
                                 </button>
                                 <a :disabled="loading" class="text-center d-block mt-3 text-white" @click="prevStep">
-                                    <span>Go back to previous step</span>
+                                    <span>Back to Previous Step</span>
                                 </a>
                             </div>
                             
                         </div>
 
                         <div class="col-lg-6 d-none d-lg-block">
-                            <div class="openletter w-100 h-100 bg-white text-dark">
-                                <h3 class="h6 mb-3">AN OPEN LETTER TO SINGAPORE</h3>
-                                <p>Dear Singapore,</p>
-                                <p>How are you holding up? What a start to 2020! Fear and uncertainty have gripped the world with relentless forest fires, devastating health emergencies and more.</p>
-                                <p>I’m anxious. You probably are too. </p>
-                                <p>I’m not used to worrying so much in Singapore, where we enjoy a good standard of living and a sense of well-being. But lately I’ve started to wonder if we are taking it all for granted.</p>
-                                <p>The world in 2020 seems like a pretty frightening place. Our demands on the planet are coming back to us. In my lifetime, I’ve seen more natural disasters caused by climate change and an unprecedented loss of wildlife around the world. </p>
-                                <p>So what will 2030 look like? Will I still be able to:</p>
-                                <ul>
-                                    <li v-if="form.issues.standardOfLiving"><strong>Enjoy the quality of life we are accustomed to here in Singapore? </strong><br>With amazing natural green spaces and readily available, affordable seafood</li>
-                                    <li v-if="form.issues.health"><strong>Maintain the good health I’ve enjoyed?</strong><br>With breathable air and food free of microplastics</li>
-                                    <li v-if="form.issues.economy"><strong>See a bright and prosperous future for Singapore?</strong><br>With a future-proofed energy strategy and readiness for the new reality that our climate changed world will bring</li>
-                                    <li v-if="form.issues.custom_message">{{ form.issues.custom_message }}</li>
-                                </ul>
-                                <p>These fears are not something that future generations will have to deal with. I feel it. Today, I am writing to ask you to help ensure the well-being of Singapore’s people, our families and the economy. 2020 is a year of important decisions that will set the path for the next decade.</p>
-                                <p>I’m doing everything I can. But I cannot face this alone. In writing this letter I invite Singapore’s decision makers - our politicians, our community leaders, our businesses, our lawmakers - to help me understand how we can reach a 2030 free from the uncertainty and anxiety that I feel for it right now. For me, for my family, for my future children and beyond.</p>
-                                <p>Sincerely,</p>
-                                <p>[YOUR NAME]</p>
-                            </div>
+                            <openletter :data="this._data"></openletter>
                         </div>
                     </div>
                 </div>

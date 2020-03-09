@@ -29,7 +29,7 @@ global $post;
             <div id="voice" class="alignfull">
                 <?php include(__DIR__ . '/../partials/voice.php'); ?>
 
-                <svg class="wave" viewBox="0 0 1024 307" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <!-- <svg class="wave" viewBox="0 0 1024 307" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <defs>
                         <filter x="-1.2%" y="-4.0%" width="102.3%" height="108.0%" filterUnits="objectBoundingBox" id="filter-1">
                             <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
@@ -56,7 +56,7 @@ global $post;
                             </g>
                         </g>
                     </g>
-                </svg>
+                </svg> -->
             </div>
         </div>
 
