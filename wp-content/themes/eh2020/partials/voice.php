@@ -26,14 +26,14 @@ $age[] = '70 and above';
 <script type="text/x-template" id="openletter-template">
 
     <div class="openletter-wrapper">
-        <div class="d-none">{{ data.someVariable }}</div>
+        <div class="d-none">{{ step }}</div>
         <div class="bg"></div>
         <div class="openletter w-100 bg-white text-dark">
             <h3 class="h6 mb-3">AN OPEN LETTER TO SINGAPORE</h3>
             <p>Dear Singapore,</p>
             <p>It’s been a rough start to 2020. Forest fires, health emergencies and more.</p>
             <p>I’m feeling {{ getFeelings }}.</p>
-            <div v-if="data.step >= 2">
+            <div v-if="step >= 2">
                 <p>I’m not used to worrying so much, and lately I’ve started to wonder if we are taking everything we have here in Singapore for granted.</p>
                 <p>Nature is changing. We have lost much of the world’s biodiversity in the past 40 years. Climate change has become a matter of survival. Our demands on the planet are now coming back to us, and this is shaping how I live.</p>
                 <p>So what will the future look like for me? Will I still be able to:</p>
@@ -43,15 +43,13 @@ $age[] = '70 and above';
                         <ul>
                             <li v-if="data.form.issues.health_1">With the air I breathe being free from haze?</li>
                             <li v-if="data.form.issues.health_2">Will the food I eat be free of microplastics?</li>
-                            <li v-if="data.form.issues.health_custom">{{ data.form.issues.health_custom }}</li>
                         </ul>
                     </li>
                     <li v-if="data.form.issues.qualityOfLiving_1 || data.form.issues.qualityOfLiving_2 || data.form.issues.qualityOfLiving_custom">
                         <strong>Maintain my quality of life </strong>
                         <ul>
-                            <li v-if="data.form.issues.qualityOfLiving_1">With the air I breathe being free from haze?</li>
-                            <li v-if="data.form.issues.qualityOfLiving_2">Will the food I eat be free of microplastics?</li>
-                            <li v-if="data.form.issues.qualityOfLiving_custom">{{ data.form.issues.qualityOfLiving_custom }}</li>
+                            <li v-if="data.form.issues.qualityOfLiving_1">Will we still have natural green spaces for everyone across Singapore to enjoy?</li>
+                            <li v-if="data.form.issues.qualityOfLiving_2">Will all of the food I love be readily available and affordable?</li>
                         </ul>
                     </li>
                     <li v-if="data.form.issues.prosper_1 || data.form.issues.prosper_2 || data.form.issues.prosper_custom">
@@ -59,10 +57,16 @@ $age[] = '70 and above';
                         <ul>
                             <li v-if="data.form.issues.prosper_1">Will I feel confident about my family’s future?</li>
                             <li v-if="data.form.issues.prosper_2">Will I know that my home is safe from sea level rise and climate change?</li>
-                            <li v-if="data.form.issues.prosper_custom">{{ data.form.issues.prosper_custom }}</li>
                         </ul>
                     </li>
+                    <li v-if="data.form.issues.custom_issue">{{ data.form.issues.custom_issue }}</li>
                 </ul>
+            </div>
+            <div v-if="step >= 3">
+                <p>This is the year for action. Let’s bring nature back.</p>
+                <p>With this letter, I am asking our decision makers - Singapore’s political leaders, our businesses, our schools and institutions - to fight for a better future. In our policies, our workplaces and our homes, we want systemic change that restores nature and stops its destruction. When we do so, we protect everything good that comes along with it: clean air, food, water and a future for everyone. </p>
+                <p>Sincerely,</p>
+                <p>{{ data.form.first_name }} {{ data.form.last_name }}</p>
             </div>
         </div>
     </div>
@@ -116,9 +120,9 @@ $age[] = '70 and above';
                                 <h3>Write your future.</h3>
                                 <p>Let’s kick this off. How are you feeling about your future?</p>
                                 <div ref="feelings" class="feelings">
-                                    <input type="button" class="btn btn-outline-gradient text-white mr-2 mb-2" :class="{active: selected}" v-for="(selected, name) in feelin" :value="name" :key="name" @click="updateFeeling(name)">
-                                    <input type="text" class="custom-feeling btn border-2 btn-outline-gradient selected border-white text-white mr-2 text-left" @keyup.enter="addFeeling" style="text-transform: none !important;">
-                                    <input type="button" class="handler btn btn-outline-gradient text-white mr-2 mb-2" @click="openissue" value="+" />
+                                    <input type="button" class="btn btn-outline-gradient text-white mr-2 mb-2" :class="{active: selected}" v-for="(selected, name) in feelin" :value="name" :key="name" @click="updateFeeling(name)" style="text-transform: none !important;">
+                                    <input ref="custom_feeling" type="text" class="custom-feeling btn border-2 selected border-white text-white mr-2 text-left" @keyup.enter="addFeeling" style="text-transform: none !important;">
+                                    <input type="button" class="handler btn btn-outline-gradient text-white mr-2 mb-2" @click="openCustomFeeling" value="+" />
                                 </div>
                                 <p class="error" v-if="errors.feelings">{{ errors.feelings }}</p>
                             </div>
@@ -127,14 +131,14 @@ $age[] = '70 and above';
                                 <button type="button" class="btn btn-lg btn-block btn-gradient text-white" @click="nextStep">
                                     <span>NEXT</span>
                                 </button>
-                                <a :disabled="loading" class="text-center d-block mt-3 text-white" @click="prevStep">
+                                <a :disabled="loading" class="text-center d-block mt-3 text-white" href="/">
                                     <span>Back to Homepage</span>
                                 </a>
                             </div>
                         </div>
 
                         <div class="col-lg-6 mt-5 mt-lg-0">
-                            <openletter :data="this._data"></openletter>
+                            <openletter :feelings="this._data.form.feelings" :data="this._data" :step="this._data.step"></openletter>
                         </div>
                     </div>
                 </div>
@@ -172,7 +176,7 @@ $age[] = '70 and above';
                                                     With the food I eat being free of microplastics
                                                 </label>
                                             </div>
-                                            <div class="form-check issue">
+                                            <!-- <div class="form-check issue">
                                                 <label class="mb-0 custom-message-label text-muted" for="health_custom" @click="showCustomMessageBox">
                                                     Is there anything else you're worried about?
                                                 </label>
@@ -180,7 +184,7 @@ $age[] = '70 and above';
                                                     <textarea id="health_custom" class="w-100 p-2" style="outline: 0" v-model="form.issues.health_custom" maxlength="120" rows="2" placeholder="Add your own message"></textarea>
                                                     <small>{{ 120 - (form.issues.health_custom ? form.issues.health_custom.length : 0) }} characters left.</small>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <div class="form-check issue-wrapper">
@@ -198,7 +202,7 @@ $age[] = '70 and above';
                                                     With the food I love remaining readily available and affordable
                                                 </label>
                                             </div>
-                                            <div class="form-check issue">
+                                            <!-- <div class="form-check issue">
                                                 <label class="mb-0 custom-message-label text-muted" for="qualityOfLiving_custom" @click="showCustomMessageBox">
                                                     Is there anything else you're worried about?
                                                 </label>
@@ -206,7 +210,7 @@ $age[] = '70 and above';
                                                     <textarea id="qualityOfLiving_custom" class="w-100 p-2" style="outline: 0" v-model="form.issues.qualityOfLiving_custom" maxlength="120" rows="2" placeholder="Add your own message"></textarea>
                                                     <small>{{ 120 - (form.issues.qualityOfLiving_custom ? form.issues.qualityOfLiving_custom.length : 0) }} characters left.</small>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <div class="form-check issue-wrapper">
@@ -224,7 +228,7 @@ $age[] = '70 and above';
                                                     With confidence for my family’s future
                                                 </label>
                                             </div>
-                                            <div class="form-check issue">
+                                            <!-- <div class="form-check issue">
                                                 <label class="mb-0 custom-message-label text-muted" for="prosper_custom" @click="showCustomMessageBox">
                                                     Is there anything else you're worried about?
                                                 </label>
@@ -232,9 +236,14 @@ $age[] = '70 and above';
                                                     <textarea id="prosper_custom" class="w-100 p-2" style="outline: 0" v-model="form.issues.prosper_custom" maxlength="120" rows="2" placeholder="Add your own message"></textarea>
                                                     <small>{{ 120 - (form.issues.prosper_custom ? form.issues.prosper_custom.length : 0) }} characters left.</small>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
+                                    <br>
+                                    <label for="custom_issue">Is there anything else you're worried about?</label>
+                                    <textarea ref="custom_issue" class="mt-2 w-100 p-2" style="outline: 0" v-model="form.issues.custom_issue" maxlength="120" cols="30" rows="3" placeholder="Add your own message"></textarea>
+                                    <small>{{ 120 - form.issues.custom_issue.length }} characters left.</small>
+                                    <p class="error" v-if="errors.issues">{{ errors.issues }}</p>
                                 </div>
                             </div>
 
@@ -249,7 +258,7 @@ $age[] = '70 and above';
                         </div>
 
                         <div class="col-lg-6 d-none d-lg-block">
-                            <openletter :data="this._data"></openletter>
+                            <openletter :feelings="this._data.form.feelings" :data="this._data" :step="this._data.step"></openletter>
                         </div>
                     </div>
                 </div>
@@ -282,7 +291,7 @@ $age[] = '70 and above';
                                 <div class="col-7">
                                     <div class="form-group">
                                         <label for="phone">Your Mobile Number</label>
-                                        <VuePhoneNumberInput ref="phone" id="phone" :no-flags=true :translations="{countrySelectorLabel: 'Code pays', countrySelectorError: 'Choisir un pays', phoneNumberLabel: 'Numéro de téléphone', example: 'Example : '}" :disabled="loading" v-model="form.phone" :default-country-code="form.country" @update="onUpdatePhone" :key="form.country" color="#000000" valid-color="#000000" error-color="#000000" />
+                                        <VuePhoneNumberInput ref="phone" id="phone" :no-flags=true :translations="{countrySelectorLabel: 'Country code', countrySelectorError: 'Choose a country', phoneNumberLabel: 'Phone number', example: 'Example : '}" :disabled="loading" v-model="form.phone" :default-country-code="form.country" @update="onUpdatePhone" :key="form.country" color="#000000" valid-color="#000000" error-color="#000000" />
                                         <!-- <input :disabled="loading" type="number" class="form-control" v-model="form.phone" placeholder="Your mobile number"> -->
                                         <p class="error my-2" v-show="errors.phone">Please enter a valid phone.</p>
                                     </div>
@@ -528,7 +537,7 @@ $age[] = '70 and above';
                                 <div>
                                     <input ref="check_pdpc" :disabled="loading" class="custom-control-input" type="checkbox" value="Yes" v-model="form.check_pdpc" id="check_pdpc">
                                     <label class="custom-control-label pt-1" for="check_pdpc">
-                                        By submitting this form, you agree to WWF's <a href="https://www.wwf.sg/wwf_singapore/pdp_policy/" target="_blank">Privacy Policy</a> and Terms and Conditions. WWF will use the information you give to be in touch with you and to provide updates on our areas of work and actions you can take. By accepting, you acknowledge and consent to WWF sending you such updates.
+                                        By submitting this form, you agree to WWF’s <a href="https://www.wwf.sg/wwf_singapore/pdp_policy/" target="_blank">Privacy Policy</a> and Terms and Conditions. By accepting, you acknowledge and consent to WWF sending you such updates.
                                     </label>
                                 </div>
                                 <div class="mt-2">
@@ -578,16 +587,17 @@ $age[] = '70 and above';
                         </div>
 
                         <div class="col-lg-6 d-none d-lg-block">
-                            <openletter :data="this._data"></openletter>
+                            <openletter :feelings="this._data.form.feelings" :data="this._data" :step="this._data.step"></openletter>
                         </div>
                     </div>
                 </div>
 
                 <div id="step4" v-show="step == 4">
                     <div class="container">
-                        <!-- <h3 class="h6 mb-3">AN OPEN LETTER TO SINGAPORE</h3> -->
-                        <h5>Thank you for adding your voice to this open letter to Singapore, from Singapore.</h5>
-                        <p>Your voice will be used in 2020 to help Singapore’s decision-makers in our community, workplace and country tackle our planetary emergency.</p>
+                        <h2>Thank you for contributing to this Open Letter.</h2>
+                        <p>2020 is the year that will make or break the next decade. It needs all of us - citizens, politicians, community leaders, businesses and lawmakers - to make some tough decisions and bold leadership that puts nature first. </p>
+                        <p>To make tough decisions, politicians need to feel empowered by their voters. We will take your voice to Singapore’s decision makers but also give you constant opportunities to get involved, on the range of issues that we know you’re worried about. Together, we will fix this. Alone, we won’t. Join us.</p>
+                        
                         <svg width="40" height="24" class="loading" v-show="loading" version="1.1" id="L4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
                             <circle fill="#000000" stroke="none" cx="0" cy="50" r="8">
@@ -615,55 +625,68 @@ $age[] = '70 and above';
                                 begin="0.3"/>     
                             </circle>
                         </svg>
-                        <img  v-show="!image_loading" class="share-image" :src="shareImage" alt="">
+                        <!-- <img  v-show="!image_loading" class="share-image" :src="shareImage" alt=""> -->
                         <div class="my-4">
                             <h5 class="sub-heading pb-2 pb-md-4">Spread the word</h5>
-                            <a style="background-color: rgb(71, 89, 147);" class="btn-social mb-2 btn btn-outline-dark text-white btn-share-fb border-0" :href="'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl" target="_blank">
-                                <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 408.788 408.788" style="enabl-background:new 0 0 408.788 408.788;" xml:space="preserve">
-                                    <path style="fill:#fff;" d="M353.701,0H55.087C24.665,0,0.002,24.662,0.002,55.085v298.616c0,30.423,24.662,55.085,55.085,55.085 h147.275l0.251-146.078h-37.951c-4.932,0-8.935-3.988-8.954-8.92l-0.182-47.087c-0.019-4.959,3.996-8.989,8.955-8.989h37.882 v-45.498c0-52.8,32.247-81.55,79.348-81.55h38.65c4.945,0,8.955,4.009,8.955,8.955v39.704c0,4.944-4.007,8.952-8.95,8.955 l-23.719,0.011c-25.615,0-30.575,12.172-30.575,30.035v39.389h56.285c5.363,0,9.524,4.683,8.892,10.009l-5.581,47.087 c-0.534,4.506-4.355,7.901-8.892,7.901h-50.453l-0.251,146.078h87.631c30.422,0,55.084-24.662,55.084-55.084V55.085 C408.786,24.662,384.124,0,353.701,0z"/>
-                                </svg>  SHARE
+                            <a style="backgroundcolor: rgb(71, 89, 147);" class="btn-social mb-2 btn btn-outline-dark text-white border-0" :href="'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl" target="_blank">
+                            <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g id="Open-Letter" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="Step-4" transform="translate(-51.000000, -520.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                        <g id="facebook-(1)" transform="translate(51.000000, 520.000000)">
+                                            <path d="M19.25,0 L2.75,0 C1.233375,0 0,1.233375 0,2.75 L0,19.25 C0,20.766625 1.233375,22 2.75,22 L11,22 L11,14.4375 L8.25,14.4375 L8.25,11 L11,11 L11,8.25 C11,5.971625 12.846625,4.125 15.125,4.125 L17.875,4.125 L17.875,7.5625 L16.5,7.5625 C15.741,7.5625 15.125,7.491 15.125,8.25 L15.125,11 L18.5625,11 L17.1875,14.4375 L15.125,14.4375 L15.125,22 L19.25,22 C20.766625,22 22,20.766625 22,19.25 L22,2.75 C22,1.233375 20.766625,0 19.25,0 Z" id="Path"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
                             </a>
-                            <a style="background-color: #76A9EA;" class="btn-social mb-2 btn btn-outline-dark text-white btn-share-tw border-0" :href="'https://twitter.com/intent/tweet?text=<?= $share_text ?>&hashtags=PlasticDiet&url=' + shareUrl" target="_blank">
-                                <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 410.155 410.155" style="enabl-background:new 0 0 410.155 410.155;" xml:space="preserve">
-                                    <path style="fill:#fff;" d="M403.632,74.18c-9.113,4.041-18.573,7.229-28.28,9.537c10.696-10.164,18.738-22.877,23.275-37.067
-                                        l0,0c1.295-4.051-3.105-7.554-6.763-5.385l0,0c-13.504,8.01-28.05,14.019-43.235,17.862c-0.881,0.223-1.79,0.336-2.702,0.336
-                                        c-2.766,0-5.455-1.027-7.57-2.891c-16.156-14.239-36.935-22.081-58.508-22.081c-9.335,0-18.76,1.455-28.014,4.325
-                                        c-28.672,8.893-50.795,32.544-57.736,61.724c-2.604,10.945-3.309,21.9-2.097,32.56c0.139,1.225-0.44,2.08-0.797,2.481
-                                        c-0.627,0.703-1.516,1.106-2.439,1.106c-0.103,0-0.209-0.005-0.314-0.015c-62.762-5.831-119.358-36.068-159.363-85.14l0,0
-                                        c-2.04-2.503-5.952-2.196-7.578,0.593l0,0C13.677,65.565,9.537,80.937,9.537,96.579c0,23.972,9.631,46.563,26.36,63.032
-                                        c-7.035-1.668-13.844-4.295-20.169-7.808l0,0c-3.06-1.7-6.825,0.485-6.868,3.985l0,0c-0.438,35.612,20.412,67.3,51.646,81.569
-                                        c-0.629,0.015-1.258,0.022-1.888,0.022c-4.951,0-9.964-0.478-14.898-1.421l0,0c-3.446-0.658-6.341,2.611-5.271,5.952l0,0
-                                        c10.138,31.651,37.39,54.981,70.002,60.278c-27.066,18.169-58.585,27.753-91.39,27.753l-10.227-0.006
-                                        c-3.151,0-5.816,2.054-6.619,5.106c-0.791,3.006,0.666,6.177,3.353,7.74c36.966,21.513,79.131,32.883,121.955,32.883
-                                        c37.485,0,72.549-7.439,104.219-22.109c29.033-13.449,54.689-32.674,76.255-57.141c20.09-22.792,35.8-49.103,46.692-78.201
-                                        c10.383-27.737,15.871-57.333,15.871-85.589v-1.346c-0.001-4.537,2.051-8.806,5.631-11.712c13.585-11.03,25.415-24.014,35.16-38.591
-                                        l0,0C411.924,77.126,407.866,72.302,403.632,74.18L403.632,74.18z"/>
-                                </svg> TWEET
-                            </a>
-                            <a style="background-color: #7AD06D;" class="btn-social mb-2 btn btn-outline-dark text-white btn-share-tw border-0" :href="'https://api.whatsapp.com/send?text=<?= $share_text ?>&hashtags=PlasticDiet&url=' + shareUrl" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 418.135 418.135" style="enabl-background:new 0 0 418.135 418.135;" xml:space="preserve">
-                                    <g>
-                                        <path style="fill:#fff;" d="M198.929,0.242C88.5,5.5,1.356,97.466,1.691,208.02c0.102,33.672,8.231,65.454,22.571,93.536 L2.245,408.429c-1.191,5.781,4.023,10.843,9.766,9.483l104.723-24.811c26.905,13.402,57.125,21.143,89.108,21.631 c112.869,1.724,206.982-87.897,210.5-200.724C420.113,93.065,320.295-5.538,198.929,0.242z M323.886,322.197 c-30.669,30.669-71.446,47.559-114.818,47.559c-25.396,0-49.71-5.698-72.269-16.935l-14.584-7.265l-64.206,15.212l13.515-65.607 l-7.185-14.07c-11.711-22.935-17.649-47.736-17.649-73.713c0-43.373,16.89-84.149,47.559-114.819 c30.395-30.395,71.837-47.56,114.822-47.56C252.443,45,293.218,61.89,323.887,92.558c30.669,30.669,47.559,71.445,47.56,114.817 C371.446,250.361,354.281,291.803,323.886,322.197z"/>
-                                        <path style="fill:#fff;" d="M309.712,252.351l-40.169-11.534c-5.281-1.516-10.968-0.018-14.816,3.903l-9.823,10.008 c-4.142,4.22-10.427,5.576-15.909,3.358c-19.002-7.69-58.974-43.23-69.182-61.007c-2.945-5.128-2.458-11.539,1.158-16.218 l8.576-11.095c3.36-4.347,4.069-10.185,1.847-15.21l-16.9-38.223c-4.048-9.155-15.747-11.82-23.39-5.356 c-11.211,9.482-24.513,23.891-26.13,39.854c-2.851,28.144,9.219,63.622,54.862,106.222c52.73,49.215,94.956,55.717,122.449,49.057 c15.594-3.777,28.056-18.919,35.921-31.317C323.568,266.34,319.334,255.114,309.712,252.351z"/>
+                            <a style="backgroundcolor: #76A9EA;" class="btn-social mb-2 btn btn-outline-dark text-white border-0" :href="'https://twitter.com/intent/tweet?text=<?= $share_text ?>&hashtags=PlasticDiet&url=' + shareUrl" target="_blank">
+                                <svg width="24px" height="19px" viewBox="0 0 24 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g id="Open-Letter" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <g id="Step-4" transform="translate(-89.000000, -523.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                            <g id="twitter-(1)" transform="translate(89.000000, 523.000000)">
+                                                <path d="M24,2.24930769 C23.1075,2.63076923 22.1565,2.88361538 21.165,3.00638462 C22.185,2.413 22.9635,1.48053846 23.3295,0.356615385 C22.3785,0.909076923 21.3285,1.29930769 20.2095,1.51707692 C19.3065,0.580230769 18.0195,0 16.6155,0 C13.8915,0 11.6985,2.15430769 11.6985,4.79530769 C11.6985,5.17530769 11.7315,5.54069231 11.8125,5.88853846 C7.722,5.69415385 4.1025,3.78392308 1.671,0.874 C1.2465,1.59161538 0.9975,2.413 0.9975,3.29723077 C0.9975,4.95753846 1.875,6.42930769 3.183,7.28138462 C2.3925,7.26676923 1.617,7.04315385 0.96,6.69092308 C0.96,6.70553846 0.96,6.72453846 0.96,6.74353846 C0.96,9.07323077 2.6655,11.0083077 4.902,11.4540769 C4.5015,11.5607692 4.065,11.6119231 3.612,11.6119231 C3.297,11.6119231 2.979,11.5943846 2.6805,11.5300769 C3.318,13.4286154 5.127,14.8243846 7.278,14.8696923 C5.604,16.1456154 3.4785,16.9143846 1.1775,16.9143846 C0.774,16.9143846 0.387,16.8968462 0,16.8486154 C2.1795,18.2180769 4.7625,19 7.548,19 C16.602,19 21.552,11.6923077 21.552,5.358 C21.552,5.14607692 21.5445,4.94146154 21.534,4.73830769 C22.5105,4.06307692 23.331,3.21976923 24,2.24930769 Z" id="Path"></path>
+                                            </g>
+                                        </g>
                                     </g>
                                 </svg>
-                                <!-- &nbsp; WHATSAPP -->
                             </a>
-                            <a style="background-color: #039be5;" class="btn-social mb-2 btn btn-outline-dark text-white btn-share-tw border-0" :href="'tg://msg_url?text=<?= $share_text ?>&url=' + shareUrl" target="_blank">
-                                <svg viewBox="5 5 14 14" xmlns="http://www.w3.org/2000/svg">
-                                    <!-- <circle cx="12" cy="12" fill="#" r="12"/> -->
-                                    <path d="m5.491 11.74 11.57-4.461c.537-.194 1.006.131.832.943l.001-.001-1.97 9.281c-.146.658-.537.818-1.084.508l-3-2.211-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953z" fill="#fff"/>
-                                </svg> 
-                                <!-- &nbsp; TELEGRAM -->
-                            </a>
-                            <a style="background-color: #0077B7" class="btn-social mb-2 btn btn-outline-dark text-white btn-share-tw border-0" :href="'https://www.linkedin.com/shareArticle?mini=true&title=<?= $title ?>&summary=<?= $description ?>&url=' + shareUrl" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 382 382" style="enabl-background:new 0 0 382 382;" xml:space="preserve">
-                                    <path style="fill:#fff;" d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889 C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056 H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806 c5.554,0,10.056,4.502,10.056,10.056V329.844z M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1 s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73 c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079 c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426 c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472 L341.91,330.654L341.91,330.654z"/>
+                            <a style="backgroundcolor: #7AD06D;" class="btn-social mb-2 btn btn-outline-dark text-white border-0" :href="'https://api.whatsapp.com/send?text=<?= $share_text ?>&hashtags=PlasticDiet&url=' + shareUrl" target="_blank">
+                                <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g id="Open-Letter" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <g id="Step-4" transform="translate(-168.000000, -520.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                            <g id="whatsapp-(1)" transform="translate(168.000000, 520.000000)">
+                                                <path d="M11.00275,0 L10.99725,0 C4.932125,0 0,4.9335 0,11 C0,13.40625 0.7755,15.6365 2.094125,17.447375 L0.72325,21.533875 L4.951375,20.18225 C6.69075,21.3345 8.765625,22 11.00275,22 C17.067875,22 22,17.065125 22,11 C22,4.934875 17.067875,0 11.00275,0 Z M17.403375,15.533375 C17.138,16.28275 16.08475,16.90425 15.244625,17.08575 C14.669875,17.208125 13.919125,17.30575 11.391875,16.258 C8.15925,14.91875 6.0775,11.633875 5.91525,11.42075 C5.759875,11.207625 4.609,9.681375 4.609,8.102875 C4.609,6.524375 5.410625,5.75575 5.73375,5.42575 C5.999125,5.154875 6.43775,5.031125 6.8585,5.031125 C6.994625,5.031125 7.117,5.038 7.227,5.0435 C7.550125,5.05725 7.712375,5.0765 7.9255,5.586625 C8.190875,6.226 8.837125,7.8045 8.914125,7.96675 C8.9925,8.129 9.070875,8.349 8.960875,8.562125 C8.85775,8.782125 8.767,8.87975 8.60475,9.06675 C8.4425,9.25375 8.2885,9.39675 8.12625,9.5975 C7.97775,9.772125 7.81,9.959125 7.997,10.28225 C8.184,10.5985 8.83025,11.653125 9.78175,12.500125 C11.009625,13.59325 12.005125,13.9425 12.36125,14.091 C12.626625,14.201 12.942875,14.174875 13.13675,13.968625 C13.382875,13.70325 13.68675,13.26325 13.996125,12.830125 C14.216125,12.519375 14.493875,12.480875 14.785375,12.590875 C15.082375,12.694 16.654,13.470875 16.977125,13.63175 C17.30025,13.794 17.513375,13.871 17.59175,14.007125 C17.66875,14.14325 17.66875,14.782625 17.403375,15.533375 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
                                 </svg>
-                                <!-- &nbsp; LINKEDIN -->
+                            </a>
+                            <a style="backgroundcolor: #039be5;" class="btn-social mb-2 btn btn-outline-dark text-white border-0" :href="'tg://msg_url?text=<?= $share_text ?>&url=' + shareUrl" target="_blank">
+                                <svg width="22px" height="19px" viewBox="0 0 22 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g id="Open-Letter" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <g id="Step-4" transform="translate(-206.000000, -523.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                            <g id="telegram-(1)" transform="translate(206.000000, 523.000000)">
+                                                <path d="M5.29354856,11.0089496 L8.02978516,17.7301996 L11.5919952,14.2298785 L17.6996002,19 L22,0 L0,9.00454861 L5.29354856,11.0089496 Z M15.7134704,5.45128472 L8.97962953,11.4865885 L8.14089968,14.5927257 L6.59150697,10.7857986 L15.7134704,5.45128472 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </a>
+                            <a style="backgroundcolor: #0077B7" class="btn-social mb-2 btn btn-outline-dark text-white border-0" :href="'https://www.linkedin.com/shareArticle?mini=true&title=<?= $title ?>&summary=<?= $description ?>&url=' + shareUrl" target="_blank">
+                                <svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g id="Open-Letter" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <g id="Step-4" transform="translate(-129.000000, -519.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                            <g id="linkedin-(1)" transform="translate(129.000000, 519.000000)">
+                                                <rect id="Rectangle" x="0" y="7" width="5" height="16"></rect>
+                                                <path d="M19.1076364,7.18763636 C19.0523636,7.17018182 19,7.15127273 18.9418182,7.13527273 C18.872,7.11927273 18.8021818,7.10618182 18.7309091,7.09454545 C18.4545455,7.03927273 18.152,7 17.7970909,7 C14.7629091,7 12.8385455,9.20654545 12.2043636,10.0589091 L12.2043636,7 L7,7 L7,23 L12.2043636,23 L12.2043636,14.2727273 C12.2043636,14.2727273 16.1374545,8.79490909 17.7970909,12.8181818 C17.7970909,16.4094545 17.7970909,23 17.7970909,23 L23,23 L23,12.2029091 C23,9.78545455 21.3432727,7.77090909 19.1076364,7.18763636 Z" id="Path"></path>
+                                                <circle id="Oval" cx="2.5" cy="2.5" r="2.5"></circle>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
                             </a>
                         </div>
-                        <p>Want to do more? Check your inbox for a special digital emergency kit and take action today!</p>
+                        <p>What happens to my letter?</p>
                     </div>
                 </div>
             </div>

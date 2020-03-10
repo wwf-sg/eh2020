@@ -136,6 +136,7 @@ Vue.component("v-style", {
     return createElement("style", this.$slots.default);
   }
 });
+
 // Register a global custom directive called v-focus
 Vue.directive("focus", {
   // When the bound element is inserted into the DOM...
@@ -144,6 +145,7 @@ Vue.directive("focus", {
     el.focus();
   }
 });
+
 window.v = v8n;
 v8n.extend({
   email: expected => {
@@ -157,13 +159,13 @@ v8n.extend({
 });
 
 Vue.component("openletter", {
-  props: ["data"],
+  props: ["feelings", "step", "issues", "data"],
   data: function() {
     return {};
   },
   computed: {
     getFeelings: function() {
-      const feelings = this.data.form.feelings;
+      const feelings = this.feelings;
       let count = 0;
       let out = "";
       let selected = [];
@@ -206,11 +208,9 @@ Vue.component("openletter", {
       return out;
     }
   },
-  mounted() {
-    console.log(this);
-  },
   template: "#openletter-template"
 });
+
 var app = new Vue({
   el: "#contente",
   template: "#voice-template",
@@ -226,16 +226,21 @@ var app = new Vue({
       signatureCount: 0,
       shareImage: "",
       shareUrl: "https://earthhour.sg/",
-      step: 1,
+      step: 0,
       maxSteps: 4,
       form: {
-        first_name: "Manoj",
-        last_name: "hl",
         name: "",
-        email: "123@gmail.com",
         phone_withcc: "",
-        phone: "123",
-        age: 22,
+        phone: "",
+        first_name: "",
+        last_name: "",
+        email: "",
+        age: 0,
+        // phone: "123",
+        // first_name: "Manoj",
+        // last_name: "hl",
+        // email: "123@gmail.com",
+        // age: 22,
         country: "SG",
         check_pdpc: true,
         feelings: {
@@ -245,31 +250,37 @@ var app = new Vue({
         issues: {
           health_1: "",
           health_2: "",
-          health_custom: "",
           future_1: "",
           future_2: "",
-          future_custom: "",
           qualityOfLiving_1: "",
           qualityOfLiving_2: "",
-          qualityOfLiving_custom: ""
+          custom_issue: ""
         }
       },
       errors: {}
     };
   },
-  mounted: function() {},
   methods: {
     forceRerender: function() {
       this.someVariable += 1;
     },
     addFeeling: function(e) {
-      this.form.feelings[e.target.value] = true;
+      const feelings = { ...this.form.feelings };
+      feelings[e.target.value] = true;
+      this.form.feelings = feelings;
+
       e.target.parentElement.classList.remove("active");
       this.forceRerender();
     },
     updateFeeling(name) {
       this.form.feelings[name] = !this.form.feelings[name];
+
       this.forceRerender();
+    },
+    openCustomFeeling: function(e) {
+      e.target.parentElement.classList.add("active");
+      this.$refs["custom_feeling"].value = "";
+      this.$refs["custom_feeling"].focus();
     },
     openissue: function(e) {
       e.target.parentElement.classList.add("active");
@@ -284,13 +295,33 @@ var app = new Vue({
       return this.step === step;
     },
     nextStep() {
+      this.forceRerender();
       const forme = document.getElementById("voice-component");
       this.errors = {};
       switch (this.step) {
         case 1:
-          this.step = 2;
+          const feelings = this.form.feelings;
+          let selected = [];
+
+          // console.log(feelings);
+
+          for (const name in feelings) {
+            if (feelings.hasOwnProperty(name)) {
+              if (feelings[name]) {
+                selected.push(name);
+              }
+            }
+          }
+
+          if (selected.length) {
+            this.step = 2;
+            return this.step;
+          }
+
+          this.errors.feelings = "Please select atleast one";
           forme.scrollIntoView();
           return this.step;
+
           break;
         case 2:
           if (
@@ -474,9 +505,6 @@ var app = new Vue({
       this.form.phone_withcc = payload.formattedNumber;
       this.form.phonea = payload;
     }
-  },
-  mounted() {
-    // console.log(this.);
   },
   computed: {
     feelin: function() {
