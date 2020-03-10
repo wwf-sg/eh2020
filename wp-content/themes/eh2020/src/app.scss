@@ -289,6 +289,7 @@ h4,
     background-color: #fff;
     border: 1px solid #bbb;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+    transform: skew(-6deg, 6deg);
   }
 }
 
@@ -516,6 +517,51 @@ div.w2gm-categories-tree-panel {
 blockquote {
   padding: 40px;
   border-left: 0px;
+}
+.w2gm-content .w2gm-field-input-block-6 > div,
+.w2gm-content .w2gm-field-input-block-11 > div,
+.w2gm-content .w2gm-field-input-block-12 > div,
+.w2gm-content .w2gm-field-input-block-8 > div {
+  width: 100%;
+  padding: 0;
+  margin-top: 15px;
+}
+.w2gm-content-fields-metabox .w2gm-field {
+  padding: 0px 20px 0px 20px;
+}
+#_form_1_submit {
+  background: #254ba5 !important;
+  background: -moz-linear-gradient(top, #254ba5 0%, #ac64ac 100%) !important;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #254ba5),
+    color-stop(100%, #ac64ac)
+  ) !important;
+  background: -webkit-linear-gradient(top, #254ba5 0%, #ac64ac 100%) !important;
+  background: -o-linear-gradient(top, #254ba5 0%, #ac64ac 100%) !important;
+  background: -ms-linear-gradient(top, #254ba5 0%, #ac64ac 100%) !important;
+  background: linear-gradient(to bottom, #254ba5 0%, #ac64ac 100%) !important;
+  background-position-x: 0%;
+  background-position-y: 0%;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr= #254ba5 , endColorstr= #ac64ac ,GradientType=0 ) !important;
+  color: #ffffff;
+  background-position: center !important;
+  border: none;
+  margin: 0;
+  max-width: 100%;
+  float: none;
+  border-radius: 2px;
+  height: 48px;
+  font-size: 16px;
+  padding: 12px;
+}
+._form-content div {
+  display: none;
+}
+.w2gm-content p.submit {
+  display: none;
 }
 
 .latest_post_holder.image_in_box .latest_post_text .excerpt {
