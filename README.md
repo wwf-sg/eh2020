@@ -31,4 +31,13 @@ Code for the image generation can be found here - https://github.com/wwf-sg/eh20
 
 
 
+# Setting up your own local WP 
+
+There is no easy solution to have wp locally installed, you need to have LAMP stack (preferably) or something similar but minimum requirement is PHP v7.3 and mysql 5.6 locally installed. 
+
+- clone the repo
+- update wp-config.php with local database credentials
+- import the db sql dump for quick 
+- run `php -S localhost:300` to start the server
+- install dependencies under the lo
 
