@@ -113,6 +113,18 @@
 					</div>
 				<?php endif; ?>
 
+				<div class="text-left custom-control custom-checkbox mx-2" style="margin-top: -50px; margin-bottom: 20px">
+					<div>
+						<input type="checkbox" value="Yes" id="check_pdpc" class="custom-control-input">
+						<label for="check_pdpc" class="custom-control-label pt-1">
+							By submitting this form, you agree to WWF’s <a href="https://www.wwf.sg/wwf_singapore/pdp_policy/" target="_blank">Privacy Policy</a> and Terms and Conditions. By accepting, you acknowledge and consent to WWF sending you such updates.
+						</label>
+					</div>
+					<div class="mt-2">
+						<p class="error mb-0" style="display: none;">Please accept privacy policy and terms and conditions</p>
+					</div>
+				</div>
+
 
 				<?php require_once(ABSPATH . 'wp-admin/includes/template.php'); ?>
 				<?php submit_button(__('Submit', 'W2GM'), 'w2gm-btn w2gm-btn-primary') ?>
@@ -471,10 +483,10 @@
 				})();
 				//active campagin
 				jQuery(function($) {
-					$("input[name='w2gm-field-input-12']").on('keyup', function() {
+					$("input[name='w2gm-field-input-8']").on('keyup', function() {
 						$("input[name='email']").val($(this).val());
 					});
-					$("input[name='w2gm-field-input-8']").on('keyup', function() {
+					$("input[name='w2gm-field-input-12']").on('keyup', function() {
 						$("input[name='fullname']").val($(this).val());
 					});
 					$('#_form_1_submit').click(function() {
@@ -483,5 +495,5 @@
 				});
 			</script>
 		</div>
-	</div>13
+	</div>
 </div>

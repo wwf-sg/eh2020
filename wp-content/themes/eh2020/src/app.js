@@ -34,9 +34,9 @@ $(document).ready(function() {
   });
   $("#w2gm-categorychecklist input").attr("checked", "checked");
   $(".w2gm-submit-section-categories").fadeOut();
-  $(".w2gm-submit-section-label:contains('Contact Information')")
-    .parent("div")
-    .hide();
+  // $(".w2gm-submit-section-label:contains('Contact Information')")
+  //   .parent("div")
+  //   .hide();
 
   setInterval(function time() {
     var d = new Date();
@@ -332,9 +332,9 @@ var app = new Vue({
               this.form.issues.qualityOfLiving_1 ||
               this.form.issues.qualityOfLiving_2 ||
               this.form.issues.qualityOfLiving_custom ||
-              this.form.issues.prosper_1 ||
-              this.form.issues.prosper_2 ||
-              this.form.issues.prosper_custom
+              this.form.issues.future_1 ||
+              this.form.issues.future_2 ||
+              this.form.issues.future_custom
             )
           ) {
             this.errors.issues = "Please select atleast one checkbox";
@@ -444,6 +444,10 @@ var app = new Vue({
 
             return this.errors;
           }
+
+          // var feelings = this._data.form.feelings.keys(obj).map(function(key) {
+          //   return [Number(key), obj[key]];
+          // });
 
           var data = {
             action: "getSignature",

@@ -52,11 +52,11 @@ $age[] = '70 and above';
                             <li v-if="data.form.issues.qualityOfLiving_2">Will all of the food I love be readily available and affordable?</li>
                         </ul>
                     </li>
-                    <li v-if="data.form.issues.prosper_1 || data.form.issues.prosper_2 || data.form.issues.prosper_custom">
+                    <li v-if="data.form.issues.future_1 || data.form.issues.future_2 || data.form.issues.future_custom">
                         <strong>Prosper</strong>
                         <ul>
-                            <li v-if="data.form.issues.prosper_1">Will I feel confident about my family’s future?</li>
-                            <li v-if="data.form.issues.prosper_2">Will I know that my home is safe from sea level rise and climate change?</li>
+                            <li v-if="data.form.issues.future_1">Will I feel confident about my family’s future?</li>
+                            <li v-if="data.form.issues.future_2">Will I know that my home is safe from sea level rise and climate change?</li>
                         </ul>
                     </li>
                     <li v-if="data.form.issues.custom_issue">{{ data.form.issues.custom_issue }}</li>
@@ -131,7 +131,7 @@ $age[] = '70 and above';
                                 <button type="button" class="btn btn-lg btn-block btn-gradient text-white" @click="nextStep">
                                     <span>NEXT</span>
                                 </button>
-                                <a :disabled="loading" class="text-center d-block mt-3 text-white" href="/">
+                                <a :disabled="loading" class="text-center d-block mt-3 text-white" href="https://www.earthhour.sg/">
                                     <span>Back to Homepage</span>
                                 </a>
                             </div>
@@ -165,13 +165,13 @@ $age[] = '70 and above';
                                         <p class="issue-title" @click="openissue">I want to maintain the good health I’ve enjoyed</p>
                                         <div class="issue-details">
                                             <div class="form-check issue">
-                                                <input class="form-check-input" type="checkbox" v-model="form.issues.health_1" value="" id="health_1">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.health_1" value="With the air I breathe being free from haze" id="health_1">
                                                 <label class="form-check-label" for="health_1">
                                                     With the air I breathe being free from haze
                                                 </label>
                                             </div>
                                             <div class="form-check issue">
-                                                <input class="form-check-input" type="checkbox" v-model="form.issues.health_2" value="" id="health_2">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.health_2" value="With the food I eat being free of microplastics" id="health_2">
                                                 <label class="form-check-label" for="health_2">
                                                     With the food I eat being free of microplastics
                                                 </label>
@@ -217,24 +217,24 @@ $age[] = '70 and above';
                                         <p class="issue-title" @click="openissue">I want to see a bright and prosperous future for Singapore</p>
                                         <div class="issue-details">
                                             <div class="form-check issue">
-                                                <input class="form-check-input" type="checkbox" v-model="form.issues.prosper_1" value="" id="prosper_1">
-                                                <label class="form-check-label" for="prosper_1">
-                                                    With my home safe from sea level rise and climate change
-                                                </label>
-                                            </div>
-                                            <div class="form-check issue">
-                                                <input class="form-check-input" type="checkbox" v-model="form.issues.prosper_2" value="" id="prosper_2">
-                                                <label class="form-check-label" for="prosper_2">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.future_1" value="" id="future_1">
+                                                <label class="form-check-label" for="future_1">
                                                     With confidence for my family’s future
                                                 </label>
                                             </div>
+                                            <div class="form-check issue">
+                                                <input class="form-check-input" type="checkbox" v-model="form.issues.future_2" value="" id="future_2">
+                                                <label class="form-check-label" for="future_2">
+                                                    With my home safe from sea level rise and climate change
+                                                </label>
+                                            </div>
                                             <!-- <div class="form-check issue">
-                                                <label class="mb-0 custom-message-label text-muted" for="prosper_custom" @click="showCustomMessageBox">
+                                                <label class="mb-0 custom-message-label text-muted" for="future_custom" @click="showCustomMessageBox">
                                                     Is there anything else you're worried about?
                                                 </label>
                                                 <div class="custom-message">
-                                                    <textarea id="prosper_custom" class="w-100 p-2" style="outline: 0" v-model="form.issues.prosper_custom" maxlength="120" rows="2" placeholder="Add your own message"></textarea>
-                                                    <small>{{ 120 - (form.issues.prosper_custom ? form.issues.prosper_custom.length : 0) }} characters left.</small>
+                                                    <textarea id="future_custom" class="w-100 p-2" style="outline: 0" v-model="form.issues.future_custom" maxlength="120" rows="2" placeholder="Add your own message"></textarea>
+                                                    <small>{{ 120 - (form.issues.future_custom ? form.issues.future_custom.length : 0) }} characters left.</small>
                                                 </div>
                                             </div> -->
                                         </div>
@@ -266,6 +266,18 @@ $age[] = '70 and above';
                 <div id="step3" class="container" v-show="isStep(3)">
                     <div class="row  align-items-center">
                         <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-0">
+                            <p>
+                                <strong>Step 3</strong>
+                                <br>
+                                <span class="step-pills">
+                                    <span class="step-pill" :class="{active: step >= 1}"></span>
+                                    <span class="step-pill" :class="{active: step >= 2}"></span>
+                                    <span class="step-pill" :class="{active: step >= 3}"></span>
+                                    <span class="step-pill" :class="{active: step >= 4}"></span>
+                                </span>
+                            </p>
+                            <h3>Write your future.</h3>
+                            <p>We just need a few personal details from you to take your voice forward. Don't worry, we won't do anything with your personal details and promise not to spam you.</p>
                             <div class="row my-3">
                                 <div class="col-7">
                                     <div class="form-group">
@@ -625,7 +637,7 @@ $age[] = '70 and above';
                                 begin="0.3"/>     
                             </circle>
                         </svg>
-                        <!-- <img  v-show="!image_loading" class="share-image" :src="shareImage" alt=""> -->
+                        
                         <div class="my-4">
                             <h5 class="sub-heading pb-2 pb-md-4">Spread the word</h5>
                             <a style="backgroundcolor: rgb(71, 89, 147);" class="btn-social mb-2 btn btn-outline-dark text-white border-0" :href="'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl" target="_blank">
@@ -687,6 +699,8 @@ $age[] = '70 and above';
                             </a>
                         </div>
                         <p>What happens to my letter?</p>
+
+                        <img  v-show="!image_loading" class="share-image" :src="shareImage" alt="">
                     </div>
                 </div>
             </div>

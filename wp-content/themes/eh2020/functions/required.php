@@ -165,7 +165,7 @@ function afc_load_my_repeater_value($value, $post_id, $field)
 }
 
 
-add_filter('parse_query', 'set_custom_isvars');
+// add_filter('parse_query', 'set_custom_isvars');
 function set_custom_isvars($query)
 {
     if (is_admin() && !isset($_GET['test']) and $query->query['post_type'] == 'signature') {
