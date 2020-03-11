@@ -69,8 +69,6 @@ while (have_posts()) :
 
     <p>Redirecting you to <a href="<?= $url ?>">homepage</a>...</p>
 
-
-
     <script>
         window.location.href = '<?= $url ?>';
     </script>

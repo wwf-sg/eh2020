@@ -31,8 +31,17 @@ function generate_image_do($text, $user_name)
     // return $return->url;
 }
 
-function generate_image($custom_text = '', $user_name = 'a panda', $health = false, $economy = false, $standardOfLiving = false)
-{
+function generate_image(
+    $custom_text = '',
+    $user_name = 'a panda',
+    $feelings = [],
+    $health_1 = false,
+    $health_2 = false,
+    $future_1 = false,
+    $future_2 = false,
+    $qualityOfLiving_1 = false,
+    $qualityOfLiving_2 = false
+) {
     $url_base = get_stylesheet_directory_uri() . '/functions/generate-image/';
     $generated_image_url = get_stylesheet_directory() . '/functions/generate-image/generated-images/';
     $generated_image_name = md5(strtolower($user_name) . '-' . $image . '-' . time()) . '.png';
@@ -55,7 +64,15 @@ function generate_image($custom_text = '', $user_name = 'a panda', $health = fal
     // The promise is returned instead of being awaited, due to the "lazy" modifier.
     // $navigationPromise = $page->waitForNavigation();
 
-    $url = 'https://www.earthhour.sg/wp-content/themes/eh2020/functions/generate-image/image-generator.php?custom_text=' . $custom_text . '&user_name=' . $user_name . '&health=' . $health . '&economy=' . $economy . '&standardOfLiving=' . $standardOfLiving;
+    $url = 'https://www.earthhour.sg/wp-content/themes/eh2020/functions/generate-image/image-generator.php?custom_text=' . $custom_text .
+        '&user_name=' . $user_name .
+        '&feelings=' . $feelings .
+        '&health_1=' . $health_1 .
+        '&health_2=' . $health_2 .
+        '&future_1=' . $future_1 .
+        '&future_2=' . $future_2 .
+        '&qualityOfLiving_1=' . $qualityOfLiving_1 .
+        '&qualityOfLiving_2=' . $qualityOfLiving_2;
     $page->goto($url);
 
     $page->screenshot(

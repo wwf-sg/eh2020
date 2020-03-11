@@ -11,7 +11,7 @@
 
 $title = "title";
 $description = "description";
-$share_text = "Twitter share text";
+$share_text = "Dear Singapore, Write your future.";
 
 $age = [];
 $age[] = 'Below 18';
@@ -81,7 +81,7 @@ $age[] = '70 and above';
 
                 <div id="step0" class="container" v-show="isStep(0)">
                     <div class="row align-items-center">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <div class="mb-4 ">
                                 <h2 class="mb-">Open Letter to Singapore</h2>
                                 <p>Nature and the food security, clean air, water sources and good health it provides us are at risk.</p>
@@ -97,7 +97,7 @@ $age[] = '70 and above';
                                 </button>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <img class="w-100" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/signature.png" alt="">
                         </div>
                     </div>

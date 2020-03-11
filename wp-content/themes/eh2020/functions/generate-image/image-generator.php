@@ -38,7 +38,7 @@
 
         body {
             font-size: 12px;
-            font-family: monospace;
+            font-family: sans-serif;
             line-height: 1.5;
             padding: 100px 40px 20px;
             width: 1200px;
@@ -85,7 +85,6 @@
         }
     </style>
 
-
     <?php if (isset($_GET['short'])) : ?>
         <style>
             body {
@@ -95,7 +94,6 @@
                 max-height: 315px;
             }
 
-            .image-container {}
 
             .image-container>* {
                 width: 270px;
@@ -111,45 +109,78 @@
 </head>
 
 <body>
-    <img class="wwf-logo" src="./images/wwf-logo.png" />
+    <!-- <img class="wwf-logo" src="./images/wwf-logo.png" /> -->
     <div class="image-container">
         <?php
         $user = !empty($_GET['user_name']) ? substr(strtolower($_GET['user_name']), 0, 30) : 'A panda';
-        $health = !empty($_GET['health']) ? $_GET['health'] : "";
-        $economy = !empty($_GET['economy']) ? $_GET['economy'] : "";
-        $standardOfLiving = !empty($_GET['standardOfLiving']) ? $_GET['standardOfLiving'] : "";
+        $feelings = "Hopeful"; // !empty($_GET['feelings']) ? $_GET['feelings'] : "";
+        $health_1 = !empty($_GET['health_1']) ? $_GET['health_1'] : "";
+        $health_2 = !empty($_GET['health_2']) ? $_GET['health_2'] : "";
+        $future_1 = !empty($_GET['future_1']) ? $_GET['future_1'] : "";
+        $future_2 = !empty($_GET['future_2']) ? $_GET['future_2'] : "";
+        $qualityOfLiving_1 = !empty($_GET['qualityOfLiving_1']) ? $_GET['qualityOfLiving_1'] : "";
+        $qualityOfLiving_2 = !empty($_GET['qualityOfLiving_2']) ? $_GET['qualityOfLiving_2'] : "";
         $custom_text = !empty($_GET['custom_text']) ? $_GET['custom_text'] : "";
         ?>
         <p>Dear Singapore,</p>
-        <p>How are you holding up? What a start to 2020! Fear and uncertainty have gripped the world with relentless forest fires, devastating health emergencies and more.</p>
-        <p>I’m anxious. You probably are too. </p>
-        <p>I’m not used to worrying so much in Singapore, where we enjoy a good standard of living and a sense of well-being. But lately I’ve started to wonder if we are taking it all for granted.</p>
-        <p>The world in 2020 seems like a pretty frightening place. Our demands on the planet are coming back to us. In my lifetime, I’ve seen more natural disasters caused by climate change and an unprecedented loss of wildlife around the world. </p>
-        <p>So what will 2030 look like? Will I still be able to:</p>
-        <?php if ($health || $economy || $standardOfLiving || $custom_text) : ?>
-            <ul>
-                <?php
-                echo $standardOfLiving ? '<li><strong>Enjoy the quality of life we are accustomed to here in Singapore? </strong><br>With amazing natural green spaces and readily available, affordable seafood</li>' : '';
-                echo $health ? '<li><strong>Maintain the good health I’ve enjoyed?</strong><br>With breathable air and food free of microplastics</li>' : '';
-                echo $economy ? '<li><strong>See a bright and prosperous future for Singapore?</strong><br>With a future-proofed energy strategy and readiness for the new reality that our climate changed world will bring</li>' : '';
-                ?>
-            </ul>
+        <p>It’s been a rough start to 2020. Forest fires, health emergencies and more.</p>
+
+
+        <p>I’m feeling <span style="text-transform: lowercase;"><?= $feelings ?></span>.</p>
+
+
+        <p>I’m not used to worrying so much, and lately I’ve started to wonder if we are taking everything we have here in Singapore for granted.</p>
+        <p>Nature is changing. We have lost much of the world’s biodiversity in the past 40 years. Climate change has become a matter of survival. Our demands on the planet are now coming back to us, and this is shaping how I live.</p>
+        <p>So what will the future look like for me? Will I still be able to:</p>
+        <ul>
+            <?php if ($health_1 || $health_2) : ?>
+                <li>
+                    <strong>Enjoy good health</strong>
+                    <ul>
+                        <?php if ($health_1) { ?>
+                            <li>With the air I breathe being free from haze?</li>
+                        <?php } ?>
+                        <?php if ($health_2) { ?>
+                            <li>Will the food I eat be free of microplastics?</li>
+                        <?php } ?>
+                    </ul>
+                </li>
+            <?php endif; ?>
+
+            <?php if ($qualityOfLiving_1 || $qualityOfLiving_2) : ?>
+                <li>
+                    <strong>Maintain my quality of life </strong>
+                    <ul>
+                        <?php if ($qualityOfLiving_1) { ?>
+                            <li>Will we still have natural green spaces for everyone across Singapore to enjoy?</li>
+                        <?php } ?>
+                        <?php if ($qualityOfLiving_2) { ?>
+                            <li>Will all of the food I love be readily available and affordable?</li>
+                        <?php } ?>
+                    </ul>
+                </li>
+            <?php endif; ?>
+
+            <?php if ($future_1 || $future_2) : ?>
+                <li>
+                    <strong>Prosper</strong>
+                    <ul>
+                        <?php if ($future_1) { ?>
+                            <li>Will I feel confident about my family’s future?</li>
+                        <?php } ?>
+                        <?php if ($future_2) { ?>
+                            <li>Will I know that my home is safe from sea level rise and climate change?</li>
+                        <?php } ?>
+                    </ul>
+                </li>
+            <?php endif; ?>
 
             <?php if ($custom_text) { ?>
-                <ul>
-                    <li><?= $custom_text ?></li>
-                </ul>
+                <li><?= $custom_text ?></li>
             <?php } ?>
-
-        <?php else : ?>
-            <style>
-                body {
-                    font-size: 14px;
-                }
-            </style>
-        <?php endif; ?>
-        <p>These fears are not something that future generations will have to deal with. I feel it. Today, I am writing to ask you to help ensure the well-being of Singapore’s people, our families and the economy. 2020 is a year of important decisions that will set the path for the next decade.</p>
-        <p>I’m doing everything I can. But I cannot face this alone. In writing this letter I invite Singapore’s decision makers - our politicians, our community leaders, our businesses, our lawmakers - to help me understand how we can reach a 2030 free from the uncertainty and anxiety that I feel for it right now. For me, for my family, for my future children and beyond.</p>
+        </ul>
+        <p>This is the year for action. Let’s bring nature back.</p>
+        <p>With this letter, I am asking our decision makers - Singapore’s political leaders, our businesses, our schools and institutions - to fight for a better future. In our policies, our workplaces and our homes, we want systemic change that restores nature and stops its destruction. When we do so, we protect everything good that comes along with it: clean air, food, water and a future for everyone. </p>
         <p style="margin-top: 10px">Sincerely,</p>
         <p class="signature"><?= $user ?></p>
 

@@ -98,11 +98,14 @@ function getSignature()
             'phone'      => $_POST['data']['form']['phone'],
             'age'        => $_POST['data']['form']['age'],
             'country'    => $_POST['data']['form']['country'],
-            'health'     => $_POST['data']['form']['issues']['health'],
-            'economy'    => $_POST['data']['form']['issues']['economy'],
-            'standardOfLiving' => $_POST['data']['form']['issues']['standardOfLiving'],
-            'custom_message' => $_POST['data']['form']['issues']['custom_message'],
-            'check_pdpc' => $_POST['data']['form']['issues']['check_pdpc'],
+            'health_1'     => $_POST['data']['form']['issues']['health_1'],
+            'health_2'     => $_POST['data']['form']['issues']['health_2'],
+            'future_1'    => $_POST['data']['form']['issues']['future_1'],
+            'future_2'    => $_POST['data']['form']['issues']['future_2'],
+            'qualityOfLiving_1' => $_POST['data']['form']['issues']['qualityOfLiving_1'],
+            'qualityOfLiving_2' => $_POST['data']['form']['issues']['qualityOfLiving_2'],
+            'custom_issue' => $_POST['data']['form']['issues']['custom_issue'],
+            'check_pdpc' => $_POST['data']['form']['check_pdpc'],
             'share_url' => $_POST['data']['shareUrl'],
             'image_url' => $_POST['data']['shareImage'],
             'utm_campaign' => $_POST['data']['form']['utm_campaign'],
@@ -111,6 +114,9 @@ function getSignature()
             'utm_content' => $_POST['data']['form']['utm_content'],
             'utm_term' => $_POST['data']['form']['utm_term'],
         );
+
+        // @todo make the feelings work
+        $addedPost['feelings'] = $_POST['data']['form']['feelings'];
 
         $signature_count = _getSignatureCount($addedPost['country']);
 
@@ -121,13 +127,8 @@ function getSignature()
             'post_name' => md5($_POST['data']['form']['first_name'] . $_POST['data']['form']['country'] . '-' . time())
         );
 
-        // if (isset($_POST['data']['s_id']) && $_POST['data']['s_id']) {
-        //     $s_id = $_POST['data']['s_id'];
-        //     $addedPost['s_id'] = $s_id;
-        // } else {
         $s_id = wp_insert_post($signature);
         $addedPost['s_id'] = $s_id;
-        // }
 
         update_field('first_name', $addedPost['first_name'], $s_id);
         update_field('last_name', $addedPost['last_name'], $s_id);
@@ -135,10 +136,14 @@ function getSignature()
         update_field('phone', $addedPost['phone'], $s_id);
         update_field('age', $addedPost['age'], $s_id);
         update_field('country', $addedPost['country'], $s_id);
-        update_field('health', $addedPost['health'], $s_id);
-        update_field('economy', $addedPost['economy'], $s_id);
-        update_field('standardOfLiving', $addedPost['standardOfLiving'], $s_id);
-        update_field('custom_message', $addedPost['custom_message'], $s_id);
+        update_field('feelings', $addedPost['feelings'], $s_id);
+        update_field('health_1', $addedPost['health_1'], $s_id);
+        update_field('health_2', $addedPost['health_2'], $s_id);
+        update_field('future_1', $addedPost['future_1'], $s_id);
+        update_field('future_2', $addedPost['future_2'], $s_id);
+        update_field('qualityOfLiving_1', $addedPost['qualityOfLiving_1'], $s_id);
+        update_field('qualityOfLiving_2', $addedPost['qualityOfLiving_2'], $s_id);
+        update_field('custom_issue', $addedPost['custom_issue'], $s_id);
         update_field('check_pdpc', $addedPost['check_pdpc'], $s_id);
         update_field('utm_campaign', $addedPost['utm_campaign'], $s_id);
         update_field('utm_source', $addedPost['utm_source'], $s_id);
@@ -147,11 +152,15 @@ function getSignature()
         update_field('utm_term', $addedPost['utm_term'], $s_id);
 
         $path = generate_image(
-            $custom_text = $addedPost['custom_message'],
-            $user_name = $addedPost['first_name'],
-            $health = $addedPost['health'],
-            $economy = $addedPost['economy'],
-            $standardOfLiving = $addedPost['standardOfLiving']
+            $custom_text = $addedPost['custom_issue'],
+            $user_name = $addedPost['first_name'] . ' ' . $addedPost['last_name'],
+            $feelings = $addedPost['feelings'],
+            $health_1 = $addedPost['health_1'],
+            $health_2 = $addedPost['health_2'],
+            $future_1 = $addedPost['future_1'],
+            $future_2 = $addedPost['future_2'],
+            $qualityOfLiving_1 = $addedPost['qualityOfLiving_1'],
+            $qualityOfLiving_2 = $addedPost['qualityOfLiving_2']
         );
 
         $imgUrl = $addedPost['image_url'] = $path;
@@ -161,10 +170,10 @@ function getSignature()
         // $imgUrl = wp_get_attachment_url($addedPost['image_url']);
 
 
-        // if (isset($_POST['data']['form']['email']) && $_POST['data']['form']['email'] && 'sg' == strtolower($addedPost['country'])) {
-        //     addActiveCampaign($addedPost);
-        //     sendEmail_sg($addedPost);
-        // }
+        if (isset($_POST['data']['form']['email']) && $_POST['data']['form']['email'] && 'sg' == strtolower($addedPost['country'])) {
+            addActiveCampaign($addedPost);
+            //     sendEmail_sg($addedPost);
+        }
 
         if ($s_id <= 0) {
             $returnvariable['redirect'] = "We are sorry. Something went wrong with you signature. Please reload and try again.";
@@ -262,10 +271,13 @@ add_action('wp_ajax_nopriv_getSignatureCount', 'getSignatureCount');
 function addActiveCampaign($signature)
 {
     // By default, this sample code is designed to get the result from your ActiveCampaign installation and print out the result
-    $url = 'https://wwfsingapore297.api-us1.com';
-    $api_key = 'd0f002f5c5ba903b3d74478a2952ca91acf04c5d72b4c75702a8051fc30296d62c3aec29';
-    $list_id = '90';
-    $tags = array_merge(['plastic diet', 'OnlineLead'], [$signature['utm_campaign'], $signature['utm_source'], $signature['utm_medium'], $signature['utm_content'], $signature['utm_term'],]);
+    // $url = 'https://wwfsingapore297.api-us1.com';
+    // $api_key = 'd0f002f5c5ba903b3d74478a2952ca91acf04c5d72b4c75702a8051fc30296d62c3aec29';
+    // $list_id = '90';
+    $url = 'https://wwf-worldwidefundfornaturesingaporelimited1552298160.api-us1.com';
+    $api_key = '15921cac81a99f6986315e1921a0882febb222405c7313e41a523ef16d289327ff2ab62d';
+    $list_id = '1';
+    $tags = array_merge(['openletter', 'OnlineLead'], [$signature['utm_campaign'], $signature['utm_source'], $signature['utm_medium'], $signature['utm_content'], $signature['utm_term'],]);
     $tags = implode(', ', array_filter($tags));
 
     $params = array(
@@ -290,7 +302,8 @@ function addActiveCampaign($signature)
     // here we define the data we are posting in order to perform an update
     $post = array(
         'email'                    => $signature['email'],
-        'first_name'               => $signature['name'],
+        'first_name'               => $signature['first_name'],
+        'last_name'               => $signature['last_name'],
         //'ip4'                    => '127.0.0.1',
         'phone'                    => $signature['phone'],
         // 'orgname'                  => 'Acme, Inc.',
@@ -299,8 +312,8 @@ function addActiveCampaign($signature)
         // any custom fields
         //'field[345,0]'           => 'field value', // where 345 is the field ID
         //'field[%PERS_1%,0]'      => 'field value', // using the personalization tag instead
-        "field[%PLASTIC_DIET_PLASTIC_VALUE%, 0]" => $signature['plastic_value'],
-        "field[%PLASTIC_DIET_PLASTIC_NAME%, 0]" => $signature['plastic_name'],
+        // "field[%PLASTIC_DIET_PLASTIC_VALUE%, 0]" => $signature['plastic_value'],
+        // "field[%PLASTIC_DIET_PLASTIC_NAME%, 0]" => $signature['plastic_name'],
 
         // assign to lists:
         'p[$list_id]'              => $list_id, // example list ID (REPLACE '123' WITH ACTUAL LIST ID, IE: p[5] = 5)

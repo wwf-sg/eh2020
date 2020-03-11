@@ -15,7 +15,7 @@ Vue.component("vue-phone-number-input", VuePhoneNumberInput);
 
 $(document).ready(function() {
   $(".w2gm-content-fields-metabox").css("display", "block");
-  $('form input[name="post_title"]').val(" any value here ");
+  $('form input[name="post_title"]').val("Map Title");
   $(".w2gm-field-input-block-11").insertAfter("#wwf-c-name");
   $(".w2gm-field-input-block-6").insertAfter("#wwf-c-mail");
   $(window).bind("load", function() {
@@ -42,9 +42,17 @@ $(document).ready(function() {
     var d = new Date();
     var target = new Date("March 28, 2020 17:30:00");
     var diffTime = Math.abs(target - d);
-    var days = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    var hours = ("0" + (23 - d.getHours())).slice(-2);
-    var min = ("0" + (59 - d.getMinutes())).slice(-2);
+
+    var days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    var hours = (
+      "0" + Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    ).slice(-2);
+    var min = (
+      "0" +
+      Math.floor(
+        ((diffTime % (1000 * 60 * 60 * 24)) % (1000 * 60 * 60)) / (1000 * 60)
+      )
+    ).slice(-2);
     if ((min + "").length == 1) {
       min = "0" + min;
     }
@@ -410,12 +418,8 @@ var app = new Vue({
 
           if (
             !v8n()
-              .optional(
-                v8n()
-                  .number()
-                  .greaterThan(20)
-              )
-              .test(parseInt(this.form.age, 10))
+              .optional(v8n().string())
+              .test(this.form.age)
           ) {
             this.errors.age =
               "You need to be 21 and over to sign this open letter";
