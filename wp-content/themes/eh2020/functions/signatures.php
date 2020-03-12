@@ -98,10 +98,13 @@ function getSignature()
             'phone'      => $_POST['data']['form']['phone'],
             'age'        => $_POST['data']['form']['age'],
             'country'    => $_POST['data']['form']['country'],
+            'health'     => $_POST['data']['form']['issues']['health'],
             'health_1'     => $_POST['data']['form']['issues']['health_1'],
             'health_2'     => $_POST['data']['form']['issues']['health_2'],
+            'future'    => $_POST['data']['form']['issues']['future'],
             'future_1'    => $_POST['data']['form']['issues']['future_1'],
             'future_2'    => $_POST['data']['form']['issues']['future_2'],
+            'qualityOfLiving' => $_POST['data']['form']['issues']['qualityOfLiving'],
             'qualityOfLiving_1' => $_POST['data']['form']['issues']['qualityOfLiving_1'],
             'qualityOfLiving_2' => $_POST['data']['form']['issues']['qualityOfLiving_2'],
             'custom_issue' => $_POST['data']['form']['issues']['custom_issue'],
@@ -137,10 +140,13 @@ function getSignature()
         update_field('age', $addedPost['age'], $s_id);
         update_field('country', $addedPost['country'], $s_id);
         update_field('feelings', $addedPost['feelings'], $s_id);
+        update_field('health', $addedPost['health'], $s_id);
         update_field('health_1', $addedPost['health_1'], $s_id);
         update_field('health_2', $addedPost['health_2'], $s_id);
+        update_field('future', $addedPost['future'], $s_id);
         update_field('future_1', $addedPost['future_1'], $s_id);
         update_field('future_2', $addedPost['future_2'], $s_id);
+        update_field('qualityOfLiving', $addedPost['qualityOfLiving'], $s_id);
         update_field('qualityOfLiving_1', $addedPost['qualityOfLiving_1'], $s_id);
         update_field('qualityOfLiving_2', $addedPost['qualityOfLiving_2'], $s_id);
         update_field('custom_issue', $addedPost['custom_issue'], $s_id);
@@ -278,6 +284,12 @@ function addActiveCampaign($signature)
     $api_key = '15921cac81a99f6986315e1921a0882febb222405c7313e41a523ef16d289327ff2ab62d';
     $list_id = '1';
     $tags = array_merge(['openletter', 'OnlineLead'], [$signature['utm_campaign'], $signature['utm_source'], $signature['utm_medium'], $signature['utm_content'], $signature['utm_term'],]);
+    if ($signature['health_1']) array_push($tags, 'health_1');
+    if ($signature['health_2']) array_push($tags, 'health_2');
+    if ($signature['future_1']) array_push($tags, 'future_1');
+    if ($signature['future_2']) array_push($tags, 'future_2');
+    if ($signature['qualityOfLiving_1']) array_push($tags, 'qualityOfLiving_1');
+    if ($signature['qualityOfLiving_2']) array_push($tags, 'qualityOfLiving_2');
     $tags = implode(', ', array_filter($tags));
 
     $params = array(

@@ -32,7 +32,7 @@ $age[] = '70 and above';
             <h3 class="h6 mb-3">AN OPEN LETTER TO SINGAPORE</h3>
             <p>Dear Singapore,</p>
             <p>It’s been a rough start to 2020. Forest fires, health emergencies and more.</p>
-            <p>I’m feeling {{ getFeelings }}.</p>
+            <p>I’m feeling <span style="text-transform: lowercase;">{{ getFeelings }}</span>.</p>
             <div v-if="step >= 2">
                 <p>I’m not used to worrying so much, and lately I’ve started to wonder if we are taking everything we have here in Singapore for granted.</p>
                 <p>Nature is changing. We have lost much of the world’s biodiversity in the past 40 years. Climate change has become a matter of survival. Our demands on the planet are now coming back to us, and this is shaping how I live.</p>
@@ -48,7 +48,7 @@ $age[] = '70 and above';
                     <li v-if="data.form.issues.qualityOfLiving_1 || data.form.issues.qualityOfLiving_2 || data.form.issues.qualityOfLiving_custom">
                         <strong>Maintain my quality of life </strong>
                         <ul>
-                            <li v-if="data.form.issues.qualityOfLiving_1">Will we still have natural green spaces for everyone across Singapore to enjoy?</li>
+                            <li v-if="data.form.issues.qualityOfLiving_1">Will we still have amazing wildlife and natural green spaces?</li>
                             <li v-if="data.form.issues.qualityOfLiving_2">Will all of the food I love be readily available and affordable?</li>
                         </ul>
                     </li>
@@ -119,16 +119,25 @@ $age[] = '70 and above';
                                 </p>
                                 <h3>Write your future.</h3>
                                 <p>Let’s kick this off. How are you feeling about your future?</p>
+                                
                                 <div ref="feelings" class="feelings">
                                     <input type="button" class="btn btn-outline-gradient text-white mr-2 mb-2" :class="{active: selected}" v-for="(selected, name) in feelin" :value="name" :key="name" @click="updateFeeling(name)" style="text-transform: none !important;">
-                                    <input ref="custom_feeling" type="text" class="custom-feeling btn border-2 selected border-white text-white mr-2 text-left" @keyup.enter="addFeeling" style="text-transform: none !important;">
+                                    
+                                    <div class="custom-feeling rounded input-group mb-2 text-white btn-gradient" style="max-width: 200px;">
+                                        <input ref="custom_feeling" type="text" class="form-control selected text-left" @keyup.enter="addFeeling" pattern="[A-Za-z]" maxlength="20" style="text-transform: none !important;">
+                                        <div class="input-group-append">
+                                            <button class="bg-white border-0 btn px-3" type="button" id="button-addon2" @click="addFeeling">&rarr;</button>
+                                        </div>
+                                    </div>
+
                                     <input type="button" class="handler btn btn-outline-gradient text-white mr-2 mb-2" @click="openCustomFeeling" value="+" />
                                 </div>
+
                                 <p class="error" v-if="errors.feelings">{{ errors.feelings }}</p>
                             </div>
 
                             <div class="mt-5">
-                                <button type="button" class="btn btn-lg btn-block btn-gradient text-white" @click="nextStep">
+                                <button :disabled="loading" type="button" class="btn btn-lg btn-block btn-gradient text-white" @click="nextStep" >
                                     <span>NEXT</span>
                                 </button>
                                 <a :disabled="loading" class="text-center d-block mt-3 text-white" href="https://www.earthhour.sg/">
@@ -145,7 +154,7 @@ $age[] = '70 and above';
 
                 <div id="step2" class="container" v-show="isStep(2)">
                     <div class="row align-items-center">
-                        <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-0">
+                        <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-0 mb-5 mb-lg-0">
                             <div class="mb-3 mb-md-3">
                                 <p>
                                     <strong>Step 2</strong>
@@ -162,7 +171,8 @@ $age[] = '70 and above';
                                 <div>
                                     <p class="error" v-if="errors.issues">{{ errors.issues }}</p>
                                     <div class="form-check issue-wrapper active">
-                                        <p class="issue-title" @click="openissue">I want to maintain the good health I’ve enjoyed</p>
+                                        <input @change="openissue" type="checkbox" class="form-check-input" v-model="form.issues.health" id="health" value="health">
+                                        <label class="form-check-label" for="health" >I want to maintain the good health I’ve enjoyed</label>
                                         <div class="issue-details">
                                             <div class="form-check issue">
                                                 <input class="form-check-input" type="checkbox" v-model="form.issues.health_1" value="With the air I breathe being free from haze" id="health_1">
@@ -188,12 +198,13 @@ $age[] = '70 and above';
                                         </div>
                                     </div>
                                     <div class="form-check issue-wrapper">
-                                        <p class="issue-title" @click="openissue">I want to continue enjoying the quality of life I’m accustomed to</p>
+                                        <input @change="openissue" type="checkbox" class="form-check-input" v-model="form.issues.qualityOfLiving" id="qualityOfLiving" value="qualityOfLiving">
+                                        <label class="form-check-label" for="qualityOfLiving" >I want to continue enjoying the quality of life I’m accustomed to</label>
                                         <div class="issue-details">
                                             <div ref="issues" class="form-check issue">
                                                 <input class="form-check-input" type="checkbox" v-model="form.issues.qualityOfLiving_1" value="" id="qualityOfLiving_1">
                                                 <label class="form-check-label" for="qualityOfLiving_1">
-                                                    With amazing natural green spaces for everyone to enjoy
+                                                    With wildlife and amazing natural green spaces
                                                 </label>
                                             </div>
                                             <div class="form-check issue">
@@ -214,7 +225,8 @@ $age[] = '70 and above';
                                         </div>
                                     </div>
                                     <div class="form-check issue-wrapper">
-                                        <p class="issue-title" @click="openissue">I want to see a bright and prosperous future for Singapore</p>
+                                        <input @change="openissue" type="checkbox" class="form-check-input" v-model="form.issues.future" id="future" value="future">
+                                        <label class="form-check-label" for="future" >I want to see a bright and prosperous future for Singapore</label>
                                         <div class="issue-details">
                                             <div class="form-check issue">
                                                 <input class="form-check-input" type="checkbox" v-model="form.issues.future_1" value="" id="future_1">
@@ -257,7 +269,7 @@ $age[] = '70 and above';
                             </div>
                         </div>
 
-                        <div class="col-lg-6 d-none d-lg-block">
+                        <div class="col-lg-6 ">
                             <openletter :feelings="this._data.form.feelings" :data="this._data" :step="this._data.step"></openletter>
                         </div>
                     </div>

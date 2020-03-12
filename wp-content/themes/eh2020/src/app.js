@@ -178,8 +178,6 @@ Vue.component("openletter", {
       let out = "";
       let selected = [];
 
-      // console.log(feelings);
-
       for (const name in feelings) {
         if (feelings.hasOwnProperty(name)) {
           if (feelings[name]) {
@@ -234,7 +232,7 @@ var app = new Vue({
       signatureCount: 0,
       shareImage: "",
       shareUrl: "https://earthhour.sg/",
-      step: 0,
+      step: 2,
       maxSteps: 4,
       form: {
         name: "",
@@ -256,12 +254,15 @@ var app = new Vue({
           Hopeful: false
         },
         issues: {
-          health_1: "",
-          health_2: "",
-          future_1: "",
-          future_2: "",
-          qualityOfLiving_1: "",
-          qualityOfLiving_2: "",
+          health: false,
+          health_1: false,
+          health_2: false,
+          future: false,
+          future_1: false,
+          future_2: false,
+          qualityOfLiving: false,
+          qualityOfLiving_1: false,
+          qualityOfLiving_2: false,
           custom_issue: ""
         }
       },
@@ -274,10 +275,22 @@ var app = new Vue({
     },
     addFeeling: function(e) {
       const feelings = { ...this.form.feelings };
-      feelings[e.target.value] = true;
-      this.form.feelings = feelings;
+      let feel = this.$refs.custom_feeling.value.trim();
+      if (feel.match(/[^a-zA-Z]/g)) {
+        feel = feel.replace(/[^a-zA-Z]/g, "");
+      }
+      if (feel != "") {
+        feelings[feel] = true;
+        this.form.feelings = feelings;
 
-      e.target.parentElement.classList.remove("active");
+        this.$refs.custom_feeling.parentElement.parentElement.classList.remove(
+          "active"
+        );
+        this.loading = false;
+      } else {
+        // this.error["feelings"] = "Please enter";
+      }
+
       this.forceRerender();
     },
     updateFeeling(name) {
@@ -287,11 +300,19 @@ var app = new Vue({
     },
     openCustomFeeling: function(e) {
       e.target.parentElement.classList.add("active");
+      this.loading = true;
       this.$refs["custom_feeling"].value = "";
       this.$refs["custom_feeling"].focus();
     },
     openissue: function(e) {
       e.target.parentElement.classList.add("active");
+      if (e.target.checked) {
+        this.form.issues[e.target.value + "_1"] = true;
+        this.form.issues[e.target.value + "_2"] = true;
+      } else {
+        this.form.issues[e.target.value + "_1"] = false;
+        this.form.issues[e.target.value + "_2"] = false;
+      }
     },
     showCustomMessageBox: function(e) {
       e.target.parentElement.classList.add("active");
@@ -311,7 +332,7 @@ var app = new Vue({
           const feelings = this.form.feelings;
           let selected = [];
 
-          // console.log(feelings);
+          this.addFeeling();
 
           for (const name in feelings) {
             if (feelings.hasOwnProperty(name)) {
@@ -418,7 +439,8 @@ var app = new Vue({
 
           if (
             !v8n()
-              .optional(v8n().string())
+              .string()
+              .minLength(3)
               .test(this.form.age)
           ) {
             this.errors.age =
@@ -434,8 +456,6 @@ var app = new Vue({
             const name = Object.keys(this.errors)[0] || "";
 
             if (name !== "") {
-              console.log(name);
-
               let ele = document.getElementById(name);
               // .focus()
               ele.scrollIntoView({
@@ -512,6 +532,31 @@ var app = new Vue({
     onUpdatePhone(payload) {
       this.form.phone_withcc = payload.formattedNumber;
       this.form.phonea = payload;
+    }
+  },
+  watch: {
+    "form.issues": {
+      handler: function(newval, oldval) {
+        const issues = this.form.issues;
+
+        // depending on parent value set child value
+        if (issues.health_1 && issues.health_2) {
+          issues.health = true;
+        } else {
+          issues.health = false;
+        }
+        if (issues.future_1 && issues.future_2) {
+          issues.future = true;
+        } else {
+          issues.future = false;
+        }
+        if (issues.qualityOfLiving_1 && issues.qualityOfLiving_2) {
+          issues.qualityOfLiving = true;
+        } else {
+          issues.qualityOfLiving = false;
+        }
+      },
+      deep: true
     }
   },
   computed: {

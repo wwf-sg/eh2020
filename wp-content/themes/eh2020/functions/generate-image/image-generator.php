@@ -152,7 +152,7 @@
                     <strong>Maintain my quality of life </strong>
                     <ul>
                         <?php if ($qualityOfLiving_1) { ?>
-                            <li>Will we still have natural green spaces for everyone across Singapore to enjoy?</li>
+                            <li>Will we still have amazing wildlife and natural green spaces?</li>
                         <?php } ?>
                         <?php if ($qualityOfLiving_2) { ?>
                             <li>Will all of the food I love be readily available and affordable?</li>
