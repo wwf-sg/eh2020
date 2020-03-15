@@ -36,6 +36,13 @@ function Signature_Post_type()
         'items_list_navigation' => __('Items list navigation', '_s'),
         'filter_items_list'     => __('Filter items list', '_s'),
     );
+
+    $rewrite = array(
+        'slug'                  => 'open-letter',
+        'with_front'            => true,
+        'pages'                 => false,
+        'feeds'                 => false,
+    );
     $args = array(
         'label'                 => __('Signature', '_s'),
         'description'           => __('Post Type Description', '_s'),
@@ -54,6 +61,7 @@ function Signature_Post_type()
         'publicly_queryable'    => true,
         'capability_type'       => 'page',
         'show_in_rest'          => true,
+        'rewrite' => $rewrite
     );
     register_post_type('signature', $args);
 }
@@ -283,13 +291,13 @@ function addActiveCampaign($signature)
     $url = 'https://wwf-worldwidefundfornaturesingaporelimited1552298160.api-us1.com';
     $api_key = '15921cac81a99f6986315e1921a0882febb222405c7313e41a523ef16d289327ff2ab62d';
     $list_id = '1';
-    $tags = array_merge(['openletter', 'OnlineLead'], [$signature['utm_campaign'], $signature['utm_source'], $signature['utm_medium'], $signature['utm_content'], $signature['utm_term'],]);
-    if ($signature['health_1']) array_push($tags, 'health_1');
-    if ($signature['health_2']) array_push($tags, 'health_2');
-    if ($signature['future_1']) array_push($tags, 'future_1');
-    if ($signature['future_2']) array_push($tags, 'future_2');
-    if ($signature['qualityOfLiving_1']) array_push($tags, 'qualityOfLiving_1');
-    if ($signature['qualityOfLiving_2']) array_push($tags, 'qualityOfLiving_2');
+    $tags = array_merge(['OL', 'OnlineLead'], [$signature['utm_campaign'], $signature['utm_source'], $signature['utm_medium'], $signature['utm_content'], $signature['utm_term'],]);
+    if ($signature['health_1']) array_push($tags, 'OL_health', 'OL_haze');
+    if ($signature['health_2']) array_push($tags, 'OL_health', 'OL_plastic');
+    if ($signature['future_1']) array_push($tags, 'OL_quality', 'OL_wildlife');
+    if ($signature['future_2']) array_push($tags, 'OL_quality', 'OL_food');
+    if ($signature['qualityOfLiving_1']) array_push($tags, 'OL_prosperity', 'OL_climate');
+    if ($signature['qualityOfLiving_2']) array_push($tags, 'OL_prosperity', 'OL_future');
     $tags = implode(', ', array_filter($tags));
 
     $params = array(

@@ -124,9 +124,9 @@ $age[] = '70 and above';
                                     <input type="button" class="btn btn-outline-gradient text-white mr-2 mb-2" :class="{active: selected}" v-for="(selected, name) in feelin" :value="name" :key="name" @click="updateFeeling(name)" style="text-transform: none !important;">
                                     
                                     <div class="custom-feeling rounded input-group mb-2 text-white btn-gradient" style="max-width: 200px;">
-                                        <input ref="custom_feeling" type="text" class="form-control selected text-left" @keyup.enter="addFeeling" pattern="[A-Za-z]" maxlength="20" style="text-transform: none !important;">
+                                        <input ref="custom_feeling" type="text" class="form-control selected text-left rounded-left border-0 bg-black" @keyup.enter="addFeeling" pattern="[A-Za-z]" maxlength="20" style="text-transform: none !important; background: #000 !important; color: #fff !important; ">
                                         <div class="input-group-append">
-                                            <button class="bg-white border-0 btn px-3" type="button" id="button-addon2" @click="addFeeling">&rarr;</button>
+                                            <button class="bg-black text-white border-0 btn px-3 py-1" type="button" id="button-addon2" @click="addFeeling">&rarr;</button>
                                         </div>
                                     </div>
 
@@ -170,7 +170,7 @@ $age[] = '70 and above';
                                 <p>And what’s on your mind?</p>
                                 <div>
                                     <p class="error" v-if="errors.issues">{{ errors.issues }}</p>
-                                    <div class="form-check issue-wrapper active">
+                                    <div class="form-check issue-wrapper">
                                         <input @change="openissue" type="checkbox" class="form-check-input" v-model="form.issues.health" id="health" value="health">
                                         <label class="form-check-label" for="health" >I want to maintain the good health I’ve enjoyed</label>
                                         <div class="issue-details">

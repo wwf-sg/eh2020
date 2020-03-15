@@ -232,7 +232,7 @@ var app = new Vue({
       signatureCount: 0,
       shareImage: "",
       shareUrl: "https://earthhour.sg/",
-      step: 2,
+      step: 0,
       maxSteps: 4,
       form: {
         name: "",
