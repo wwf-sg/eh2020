@@ -7,30 +7,6 @@ use Nesk\Puphpeteer\Puppeteer;
 // START IMAGE GENERATION
 //=============================
 
-
-function generate_image_do($text, $user_name)
-{
-    $url_base = 'https://yourplasticdiet.org/wp-content/themes/your-plastic-diet/functions/generate-image/';
-    $generated_image_url = get_stylesheet_directory() . '/functions/generate-image/generated-images/';
-    $generated_image_name = md5(strtolower($user_name) . '-' . $image . '-' . time()) . '.png';
-    $generated_image_full = $generated_image_url . $generated_image_name;
-
-    $url = $url_base . 'image-generator.php?text=' . $text . '&user_name=' . $user_name;
-
-    $curl_url = "http://157.230.44.162/?url=" . urlencode($url) . "&name=" . $generated_image_name;
-
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $curl_url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    $data = curl_exec($ch);
-    curl_close($ch);
-
-    $return = json_decode($data);
-
-    error_log($return->url);
-    // return $return->url;
-}
-
 function generate_image(
     $custom_text = '',
     $user_name = 'a panda',
@@ -44,7 +20,7 @@ function generate_image(
 ) {
     $url_base = get_stylesheet_directory_uri() . '/functions/generate-image/';
     $generated_image_url = get_stylesheet_directory() . '/functions/generate-image/generated-images/';
-    $generated_image_name = md5(strtolower($user_name) . '-' . $image . '-' . time()) . '.png';
+    $generated_image_name = md5(strtolower($user_name) . '-' . time()) . '.png';
     $generated_image_full = $generated_image_url . $generated_image_name;
 
     $config = ['executable_path' => '/usr/bin/node'];

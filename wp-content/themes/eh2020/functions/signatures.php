@@ -105,18 +105,21 @@ function getSignature()
             'email'      => $_POST['data']['form']['email'],
             'phone'      => $_POST['data']['form']['phone'],
             'age'        => $_POST['data']['form']['age'],
+            'citizen'    => $_POST['data']['form']['citizen'],
+            'postalcode' => $_POST['data']['form']['postalcode'],
             'country'    => $_POST['data']['form']['country'],
             'health'     => $_POST['data']['form']['issues']['health'],
-            'health_1'     => $_POST['data']['form']['issues']['health_1'],
-            'health_2'     => $_POST['data']['form']['issues']['health_2'],
-            'future'    => $_POST['data']['form']['issues']['future'],
-            'future_1'    => $_POST['data']['form']['issues']['future_1'],
-            'future_2'    => $_POST['data']['form']['issues']['future_2'],
-            'qualityOfLiving' => $_POST['data']['form']['issues']['qualityOfLiving'],
+            'health_1'   => $_POST['data']['form']['issues']['health_1'],
+            'health_2'   => $_POST['data']['form']['issues']['health_2'],
+            'future'     => $_POST['data']['form']['issues']['future'],
+            'future_1'   => $_POST['data']['form']['issues']['future_1'],
+            'future_2'   => $_POST['data']['form']['issues']['future_2'],
+            'qualityOfLiving'   => $_POST['data']['form']['issues']['qualityOfLiving'],
             'qualityOfLiving_1' => $_POST['data']['form']['issues']['qualityOfLiving_1'],
             'qualityOfLiving_2' => $_POST['data']['form']['issues']['qualityOfLiving_2'],
             'custom_issue' => $_POST['data']['form']['issues']['custom_issue'],
             'check_pdpc' => $_POST['data']['form']['check_pdpc'],
+            'check_consent' => $_POST['data']['form']['check_consent'],
             'share_url' => $_POST['data']['shareUrl'],
             'image_url' => $_POST['data']['shareImage'],
             'utm_campaign' => $_POST['data']['form']['utm_campaign'],
@@ -146,6 +149,8 @@ function getSignature()
         update_field('email', $addedPost['email'], $s_id);
         update_field('phone', $addedPost['phone'], $s_id);
         update_field('age', $addedPost['age'], $s_id);
+        update_field('citizen', $addedPost['citizen'], $s_id);
+        update_field('postalcode', $addedPost['postalcode'], $s_id);
         update_field('country', $addedPost['country'], $s_id);
         update_field('feelings', $addedPost['feelings'], $s_id);
         update_field('health', $addedPost['health'], $s_id);
@@ -159,6 +164,7 @@ function getSignature()
         update_field('qualityOfLiving_2', $addedPost['qualityOfLiving_2'], $s_id);
         update_field('custom_issue', $addedPost['custom_issue'], $s_id);
         update_field('check_pdpc', $addedPost['check_pdpc'], $s_id);
+        update_field('check_consent', $addedPost['check_consent'], $s_id);
         update_field('utm_campaign', $addedPost['utm_campaign'], $s_id);
         update_field('utm_source', $addedPost['utm_source'], $s_id);
         update_field('utm_medium', $addedPost['utm_medium'], $s_id);
@@ -177,12 +183,11 @@ function getSignature()
             $qualityOfLiving_2 = $addedPost['qualityOfLiving_2']
         );
 
-        $imgUrl = $addedPost['image_url'] = $path;
+        // $imgUrl = $addedPost['image_url'] = $path;
 
-        // $addedPost['image_url'] = Generate_Featured_Image($file = $path, $post_id = $s_id, $desc = '');
+        $addedPost['image_url'] = Generate_Featured_Image($file = $path, $post_id = $s_id, $desc = '');
         update_field('image_url', $addedPost['image_url'], $s_id);
-        // $imgUrl = wp_get_attachment_url($addedPost['image_url']);
-
+        $imgUrl = wp_get_attachment_url($addedPost['image_url']);
 
         if (isset($_POST['data']['form']['email']) && $_POST['data']['form']['email'] && 'sg' == strtolower($addedPost['country'])) {
             addActiveCampaign($addedPost);

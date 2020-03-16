@@ -247,8 +247,11 @@ var app = new Vue({
         // last_name: "hl",
         // email: "123@gmail.com",
         // age: 22,
+        citizen: "singaporean",
+        postalcode: "",
         country: "SG",
-        check_pdpc: true,
+        check_pdpc: false,
+        check_consent: false,
         feelings: {
           Anxious: false,
           Hopeful: false
@@ -292,6 +295,9 @@ var app = new Vue({
       }
 
       this.forceRerender();
+    },
+    updateCitizen: function(value) {
+      this.form.citizen = value;
     },
     updateFeeling(name) {
       this.form.feelings[name] = !this.form.feelings[name];
@@ -450,6 +456,10 @@ var app = new Vue({
           if (!this.form.check_pdpc) {
             this.errors.check_pdpc =
               "Please accept privacy policy and terms and conditions";
+          }
+
+          if (!this.form.check_consent) {
+            this.errors.check_consent = "Please check the concent";
           }
 
           if (Object.keys(this.errors).length) {

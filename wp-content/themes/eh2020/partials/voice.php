@@ -37,30 +37,28 @@ $age[] = '70 and above';
                 <p>I’m not used to worrying so much, and lately I’ve started to wonder if we are taking everything we have here in Singapore for granted.</p>
                 <p>Nature is changing. We have lost much of the world’s biodiversity in the past 40 years. Climate change has become a matter of survival. Our demands on the planet are now coming back to us, and this is shaping how I live.</p>
                 <p>So what will the future look like for me? Will I still be able to:</p>
-                <ul>
-                    <li v-if="data.form.issues.health_1 || data.form.issues.health_2 || data.form.issues.health_custom">
-                        <strong>Enjoy good health</strong>
-                        <ul>
-                            <li v-if="data.form.issues.health_1">With the air I breathe being free from haze?</li>
-                            <li v-if="data.form.issues.health_2">Will the food I eat be free of microplastics?</li>
-                        </ul>
-                    </li>
-                    <li v-if="data.form.issues.qualityOfLiving_1 || data.form.issues.qualityOfLiving_2 || data.form.issues.qualityOfLiving_custom">
-                        <strong>Maintain my quality of life </strong>
-                        <ul>
-                            <li v-if="data.form.issues.qualityOfLiving_1">Will we still have amazing wildlife and natural green spaces?</li>
-                            <li v-if="data.form.issues.qualityOfLiving_2">Will all of the food I love be readily available and affordable?</li>
-                        </ul>
-                    </li>
-                    <li v-if="data.form.issues.future_1 || data.form.issues.future_2 || data.form.issues.future_custom">
-                        <strong>Prosper</strong>
-                        <ul>
-                            <li v-if="data.form.issues.future_1">Will I feel confident about my family’s future?</li>
-                            <li v-if="data.form.issues.future_2">Will I know that my home is safe from sea level rise and climate change?</li>
-                        </ul>
-                    </li>
-                    <li v-if="data.form.issues.custom_issue">{{ data.form.issues.custom_issue }}</li>
-                </ul>
+                <div v-if="data.form.issues.health_1 || data.form.issues.health_2">
+                    <p>
+                        <strong>Enjoy good health</strong><br>
+                        <span v-if="data.form.issues.health_1">With the air I breathe being free from haze?</span>
+                        <span v-if="data.form.issues.health_2">Will the food I eat be free of microplastics?</span>
+                    </p>
+                </div>
+                <div v-if="data.form.issues.qualityOfLiving_1 || data.form.issues.qualityOfLiving_2">
+                    <p>
+                        <strong>Maintain my quality of life </strong><br>
+                        <span v-if="data.form.issues.qualityOfLiving_1">Will we still have amazing wildlife and natural green spaces?</span>
+                        <span v-if="data.form.issues.qualityOfLiving_2">Will all of the food I love be readily available and affordable?</span>
+                    </p>
+                </div>
+                <div v-if="data.form.issues.future_1 || data.form.issues.future_2">
+                    <p>
+                        <strong>Prosper</strong><br>
+                        <span v-if="data.form.issues.future_1">Will I feel confident about my family’s future?</span>
+                        <span v-if="data.form.issues.future_2">Will I know that my home is safe from sea level rise and climate change?</span>
+                    </p>
+                </div>
+                <p v-if="data.form.issues.custom_issue">{{ data.form.issues.custom_issue }}</p>
             </div>
             <div v-if="step >= 3">
                 <p>This is the year for action. Let’s bring nature back.</p>
@@ -100,6 +98,20 @@ $age[] = '70 and above';
                         <div class="col-md-6">
                             <img class="w-100" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/signature.png" alt="">
                         </div>
+                    </div>
+                    <div class="d-none text-center show-on-dearsg">
+                        <h2>Let’s make decision makers pay attention</h2>
+                        <p>How? By writing a letter to decision makers in Singapore. Our political leaders, businesses, institutions and schools.</p>
+                        <p>In our letter, we’ll urge Singapore to improve policies and practices.</p>
+                        <p>You will not be alone. We will get as many people as possible to write this letter, creating the largest voice for nature in Singapore.</p>
+                            <div class="mt-4">
+                                <button id="first-button" type="button" class="btn btn-gradient text-white" @click="nextStep">
+                                    <span>Write Your Future Now</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
                     </div>
                 </div>
 
@@ -166,8 +178,8 @@ $age[] = '70 and above';
                                         <span class="step-pill" :class="{active: step >= 4}"></span>
                                     </span>
                                 </p>
-                                <h2>Write your future.</h2>
-                                <p>And what’s on your mind?</p>
+                                <h2>Nature is changing. <br>This shapes how we live.</h2>
+                                <p>What do you hope for in 2030?</p>
                                 <div>
                                     <p class="error" v-if="errors.issues">{{ errors.issues }}</p>
                                     <div class="form-check issue-wrapper">
@@ -186,17 +198,9 @@ $age[] = '70 and above';
                                                     With the food I eat being free of microplastics
                                                 </label>
                                             </div>
-                                            <!-- <div class="form-check issue">
-                                                <label class="mb-0 custom-message-label text-muted" for="health_custom" @click="showCustomMessageBox">
-                                                    Is there anything else you're worried about?
-                                                </label>
-                                                <div class="custom-message">
-                                                    <textarea id="health_custom" class="w-100 p-2" style="outline: 0" v-model="form.issues.health_custom" maxlength="120" rows="2" placeholder="Add your own message"></textarea>
-                                                    <small>{{ 120 - (form.issues.health_custom ? form.issues.health_custom.length : 0) }} characters left.</small>
-                                                </div>
-                                            </div> -->
                                         </div>
                                     </div>
+
                                     <div class="form-check issue-wrapper">
                                         <input @change="openissue" type="checkbox" class="form-check-input" v-model="form.issues.qualityOfLiving" id="qualityOfLiving" value="qualityOfLiving">
                                         <label class="form-check-label" for="qualityOfLiving" >I want to continue enjoying the quality of life I’m accustomed to</label>
@@ -213,17 +217,9 @@ $age[] = '70 and above';
                                                     With the food I love remaining readily available and affordable
                                                 </label>
                                             </div>
-                                            <!-- <div class="form-check issue">
-                                                <label class="mb-0 custom-message-label text-muted" for="qualityOfLiving_custom" @click="showCustomMessageBox">
-                                                    Is there anything else you're worried about?
-                                                </label>
-                                                <div class="custom-message">
-                                                    <textarea id="qualityOfLiving_custom" class="w-100 p-2" style="outline: 0" v-model="form.issues.qualityOfLiving_custom" maxlength="120" rows="2" placeholder="Add your own message"></textarea>
-                                                    <small>{{ 120 - (form.issues.qualityOfLiving_custom ? form.issues.qualityOfLiving_custom.length : 0) }} characters left.</small>
-                                                </div>
-                                            </div> -->
                                         </div>
                                     </div>
+
                                     <div class="form-check issue-wrapper">
                                         <input @change="openissue" type="checkbox" class="form-check-input" v-model="form.issues.future" id="future" value="future">
                                         <label class="form-check-label" for="future" >I want to see a bright and prosperous future for Singapore</label>
@@ -240,19 +236,12 @@ $age[] = '70 and above';
                                                     With my home safe from sea level rise and climate change
                                                 </label>
                                             </div>
-                                            <!-- <div class="form-check issue">
-                                                <label class="mb-0 custom-message-label text-muted" for="future_custom" @click="showCustomMessageBox">
-                                                    Is there anything else you're worried about?
-                                                </label>
-                                                <div class="custom-message">
-                                                    <textarea id="future_custom" class="w-100 p-2" style="outline: 0" v-model="form.issues.future_custom" maxlength="120" rows="2" placeholder="Add your own message"></textarea>
-                                                    <small>{{ 120 - (form.issues.future_custom ? form.issues.future_custom.length : 0) }} characters left.</small>
-                                                </div>
-                                            </div> -->
                                         </div>
                                     </div>
+
                                     <br>
-                                    <label for="custom_issue">Is there anything else you're worried about?</label>
+                                    
+                                    <label for="custom_issue">Is there anything else you want to say?</label>
                                     <textarea ref="custom_issue" class="mt-2 w-100 p-2" style="outline: 0" v-model="form.issues.custom_issue" maxlength="120" cols="30" rows="3" placeholder="Add your own message"></textarea>
                                     <small>{{ 120 - form.issues.custom_issue.length }} characters left.</small>
                                     <p class="error" v-if="errors.issues">{{ errors.issues }}</p>
@@ -288,26 +277,26 @@ $age[] = '70 and above';
                                     <span class="step-pill" :class="{active: step >= 4}"></span>
                                 </span>
                             </p>
-                            <h3>Write your future.</h3>
-                            <p>We just need a few personal details from you to take your voice forward. Don't worry, we won't do anything with your personal details and promise not to spam you.</p>
+                            <h3>Your Sign Off</h3>
+                            <p>We just need some details from you, to take your voice forward. Don’t worry, we promise not to spam you.</p>
                             <div class="row my-3">
                                 <div class="col-7">
                                     <div class="form-group">
-                                        <label for="first_name">First Name</label>
+                                        <label for="first_name">First Name <span>*</span></label>
                                         <input ref="first_name" id="first_name" :disabled="loading" type="name" class="form-control" v-model="form.first_name" placeholder="Your first name">
                                         <p class="error my-2" v-if="errors.first_name">Please enter a valid first name.</p>
                                     </div>
                                 </div>
                                 <div class="col-5">
                                     <div class="form-group">
-                                        <label for="last_name">Last Name</label>
+                                        <label for="last_name">Last Name <span>*</span></label>
                                         <input ref="last_name" id="last_name" :disabled="loading" type="name" class="form-control" v-model="form.last_name" placeholder="Your last name">
                                         <p class="error my-2" v-if="errors.last_name">Please enter a valid last name.</p>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="email">Your Email</label>
+                                        <label for="email">Your E-mail <span>*</span></label>
                                         <input ref="email" id="email" :disabled="loading" type="email" class="form-control" v-model="form.email" placeholder="Your email">
                                         <p class="error my-2" v-show="errors.email">Please enter a valid email.</p>
                                     </div>
@@ -322,7 +311,7 @@ $age[] = '70 and above';
                                 </div>
                                 <div class="col-5">
                                     <div class="form-group">
-                                        <label for="age">Your Age</label>
+                                        <label for="age">Your Age <span>*</span></label>
                                         <select ref="age" :disabled="loading" class="form-control bg-white" v-model="form.age"  id="age">
                                             <option value="">- Age -</option>
                                             <?php foreach ($age as $a) { ?><option value="<?php echo $a ?>"><?php echo $a ?></option><?php } ?>
@@ -331,6 +320,20 @@ $age[] = '70 and above';
                                     </div>
                                 </div>
                                 <div class="col-12">
+                                    <label for="citizen">I am a...</label>
+                                    <div class="mb-2">
+                                        <button type="button" @click="updateCitizen('singaporean')"  class="btn text-white mr-2" :class="{'btn-gradient': this.form.citizen == 'singaporean', 'btn-outline-gradient': this.form.citizen != 'singaporean'}">Singaporean/PR</button>
+                                        <button type="button" @click="updateCitizen('non-singaporean')" class="btn text-white" :class="{'btn-gradient': this.form.citizen == 'non-singaporean', 'btn-outline-gradient': this.form.citizen != 'non-singaporean'}">Non-Singaporean/PR</button>
+                                    </div>
+                                </div>
+                                <div class="col-12" v-if="this.form.citizen == 'singaporean'">
+                                    <div class="form-group">
+                                        <label for="postalcode">Postal Code </label>
+                                        <input ref="postalcode" id="postalcode" :disabled="loading" type="number" class="form-control" v-model="form.postalcode" placeholder="Your postal code">
+                                        <p class="error my-2" v-show="errors.postalcode">Please enter a valid email.</p>
+                                    </div>
+                                </div>
+                                <div class="col-12" v-if="this.form.citizen != 'singaporean'">
                                     <label for="country">Your country</label>
                                     <select ref="country" :disabled="loading" id="country" class="form-control bg-white" v-model="form.country">
                                         <option value="">-- Choose a country --</option>
@@ -559,11 +562,23 @@ $age[] = '70 and above';
                             </div>
                             <div :disabled="loading"  class="text-left custom-control custom-checkbox mx-2">
                                 <div>
+                                    <input ref="check_consent" :disabled="loading" class="custom-control-input" type="checkbox" value="Yes" v-model="form.check_consent" id="check_consent">
+                                    <label class="custom-control-label pt-1" for="check_consent">
+                                        I consent to WWF-Singapore to use my comments inputted in the fields for the purpose of marketing and communications.
+                                    </label>
+                                </div>
+                                
+                                <div class="mt-2">
+                                    <p class="error mb-0" v-show="errors.check_consent">{{ errors.check_consent }}</p>
+                                </div>
+
+                                <div>
                                     <input ref="check_pdpc" :disabled="loading" class="custom-control-input" type="checkbox" value="Yes" v-model="form.check_pdpc" id="check_pdpc">
                                     <label class="custom-control-label pt-1" for="check_pdpc">
                                         By submitting this form, you agree to WWF’s <a href="https://www.wwf.sg/wwf_singapore/pdp_policy/" target="_blank">Privacy Policy</a> and Terms and Conditions. By accepting, you acknowledge and consent to WWF sending you such updates.
                                     </label>
                                 </div>
+                                
                                 <div class="mt-2">
                                     <p class="error mb-0" v-show="errors.check_pdpc">Please accept privacy policy and terms and conditions</p>
                                 </div>
@@ -618,9 +633,9 @@ $age[] = '70 and above';
 
                 <div id="step4" v-show="step == 4">
                     <div class="container">
-                        <h2>Thank you for contributing to this Open Letter.</h2>
-                        <p>2020 is the year that will make or break the next decade. It needs all of us - citizens, politicians, community leaders, businesses and lawmakers - to make some tough decisions and bold leadership that puts nature first. </p>
-                        <p>To make tough decisions, politicians need to feel empowered by their voters. We will take your voice to Singapore’s decision makers but also give you constant opportunities to get involved, on the range of issues that we know you’re worried about. Together, we will fix this. Alone, we won’t. Join us.</p>
+                        <h2>Thank you for contributing to this Open Letter</h2>
+                        <p>Wondering what will happen next? We’ve dropped you an email with more information about what you are supporting, and what we will do with your letter. </p>
+                        <p>Will you do one more thing? The louder our voice, the more our decision makers will pay attention. Help us get more people in Singapore to act! </p>
                         
                         <svg width="40" height="24" class="loading" v-show="loading" version="1.1" id="L4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
@@ -651,7 +666,7 @@ $age[] = '70 and above';
                         </svg>
                         
                         <div class="my-4">
-                            <h5 class="sub-heading pb-2 pb-md-4">Spread the word</h5>
+                            <h5 class="sub-heading pb-2 pb-md-4">Share on</h5>
                             <a style="backgroundcolor: rgb(71, 89, 147);" class="btn-social mb-2 btn btn-outline-dark text-white border-0" :href="'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl" target="_blank">
                             <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <g id="Open-Letter" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
