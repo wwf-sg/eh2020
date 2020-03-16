@@ -31,7 +31,9 @@
 					</div>
 				<?php endif; ?>
 
-				<?php if ($listing->level->categories_number > 0 || $listing->level->unlimited_categories) : ?>
+				<?php if (false) : ?>
+					<?php // if ($listing->level->categories_number > 0 || $listing->level->unlimited_categories) : 
+					?>
 					<div class="w2gm-submit-section w2gm-submit-section-categories">
 						<h3 class="w2gm-submit-section-label"><?php echo $w2gm_instance->content_fields->getContentFieldBySlug('categories_list')->name; ?><?php if ($w2gm_instance->content_fields->getContentFieldBySlug('categories_list')->is_required) : ?><span class="w2gm-red-asterisk">*</span><?php endif; ?></h3>
 						<div class="w2gm-submit-section-inside">
@@ -42,6 +44,7 @@
 						</div>
 					</div>
 				<?php endif; ?>
+
 				<?php if (get_option('w2gm_listing_contact_form') && get_option('w2gm_custom_contact_email')) : ?>
 					<div class="w2gm-submit-section w2gm-submit-section-contact-email">
 						<h3 class="w2gm-submit-section-label"><?php _e('Contact email', 'W2GM'); ?></h3>
@@ -81,7 +84,9 @@
 					</div>
 				<?php endif; ?>
 
-				<?php if (post_type_supports(W2GM_POST_TYPE, 'editor')) : ?>
+				<?php if (false) : ?>
+					<?php // if (post_type_supports(W2GM_POST_TYPE, 'editor')) : 
+					?>
 					<div class="w2gm-submit-section w2gm-submit-section-description">
 						<h3 class="w2gm-submit-section-label"><?php echo $w2gm_instance->content_fields->getContentFieldBySlug('content')->name; ?><?php if ($w2gm_instance->content_fields->getContentFieldBySlug('content')->is_required) : ?><span class="w2gm-red-asterisk">*</span><?php endif; ?></h3>
 						<div class="w2gm-submit-section-inside">

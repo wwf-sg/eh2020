@@ -8,12 +8,12 @@
 function Signature_Post_type()
 {
     $labels = array(
-        'name'                  => _x('Signatures', 'Post Type General Name', '_s'),
-        'singular_name'         => _x('Signature', 'Post Type Singular Name', '_s'),
-        'menu_name'             => __('Signatures', '_s'),
-        'name_admin_bar'        => __('Signature', '_s'),
-        'archives'              => __('Signature Archives', '_s'),
-        'attributes'            => __('Signature Attributes', '_s'),
+        'name'                  => _x('Open letters', 'Post Type General Name', '_s'),
+        'singular_name'         => _x('Open letter', 'Post Type Singular Name', '_s'),
+        'menu_name'             => __('Open letters', '_s'),
+        'name_admin_bar'        => __('Open letter', '_s'),
+        'archives'              => __('Open letter Archives', '_s'),
+        'attributes'            => __('Open letter Attributes', '_s'),
         'parent_item_colon'     => __('Parent Item:', '_s'),
         'all_items'             => __('All Items', '_s'),
         'add_new_item'          => __('Add New Item', '_s'),
@@ -44,7 +44,7 @@ function Signature_Post_type()
         'feeds'                 => false,
     );
     $args = array(
-        'label'                 => __('Signature', '_s'),
+        'label'                 => __('Open letter', '_s'),
         'description'           => __('Post Type Description', '_s'),
         'labels'                => $labels,
         'supports'              => array('title'),
