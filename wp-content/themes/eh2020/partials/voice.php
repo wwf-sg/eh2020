@@ -737,4 +737,14 @@ $age[] = '70 and above';
 
 <div id="contente">
     <plastictest></plastictest>
+
+    <script>
+        var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+        var nonce = '<?= wp_create_nonce('voice_form'); ?>';
+        var utm_campaign = '<?php echo (isset($_GET['utm_campaign']) && !empty($_GET['utm_campaign'])) ? $_GET['utm_campaign'] : '' ?>';
+        var utm_source = '<?php echo (isset($_GET['utm_source']) && !empty($_GET['utm_source'])) ? $_GET['utm_source'] : '' ?>';
+        var utm_medium = '<?php echo (isset($_GET['utm_medium']) && !empty($_GET['utm_medium'])) ? $_GET['utm_medium'] : '' ?>';
+        var utm_content = '<?php echo (isset($_GET['utm_content']) && !empty($_GET['utm_content'])) ? $_GET['utm_content'] : '' ?>';
+        var utm_term = '<?php echo (isset($_GET['utm_term']) && !empty($_GET['utm_term'])) ? $_GET['utm_term'] : '' ?>';
+    </script>
 </div>

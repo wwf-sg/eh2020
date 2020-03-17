@@ -191,7 +191,7 @@ function getSignature()
 
         if (isset($_POST['data']['form']['email']) && $_POST['data']['form']['email'] && 'sg' == strtolower($addedPost['country'])) {
             addActiveCampaign($addedPost);
-            //     sendEmail_sg($addedPost);
+            sendEmail_sg($addedPost);
         }
 
         if ($s_id <= 0) {
@@ -435,7 +435,7 @@ function sendEmail_sg($user)
     }
 
     $headers = array(
-        "From: Janissa, Your Plastic Diet <janissa@@yourplasticdiet.org>",
+        "From: Janissa, WWF Singapore <no-reply@earthhour.sg/>",
         "Content-type: text/html; charset=UTF-8",
         "Reply-To: Janissa <commsteam@wwf.sg>"
     );
@@ -526,7 +526,6 @@ function ac_sync_contact()
         endwhile;
     endif;
 }
-
 
 function cron_cron_ac_sync_contact_15af8da1()
 {
