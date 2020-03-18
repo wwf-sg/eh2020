@@ -560,10 +560,6 @@ $age[] = '70 and above';
                                 </div>
                             </div>
                             <div :disabled="loading"  class="text-left custom-control custom-checkbox mx-2">
-                                <div class="mt-2">
-                                    <p class="error mb-0" v-show="errors.check_consent">{{ errors.check_consent }}</p>
-                                </div>
-
                                 <div>
                                     <input ref="check_pdpc" :disabled="loading" class="custom-control-input" type="checkbox" value="Yes" v-model="form.check_pdpc" id="check_pdpc">
                                     <label class="custom-control-label pt-1" for="check_pdpc">
@@ -572,7 +568,7 @@ $age[] = '70 and above';
                                 </div>
                                 
                                 <div class="mt-2">
-                                    <p class="error mb-0" v-show="errors.check_pdpc">Please accept privacy policy and terms and conditions</p>
+                                    <p class="error mb-0" v-show="errors.check_pdpc">Please select the checkbox above to continue.</p>
                                 </div>
                             </div>
                             <p class="error mt-2 text-center" v-show="errors.random">{{ errors.random }}</p>

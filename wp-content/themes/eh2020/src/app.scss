@@ -901,3 +901,10 @@ header:not(.with_hover_bg_color) nav.main_menu > ul > li:hover > a {
 .w2gm-manual-coords-wrapper {
   display: none;
 }
+
+#w2gm-attached-images-wrapper {
+  .w2gm-attached-item-logo,
+  .w2gm-attached-item-input {
+    display: none;
+  }
+}
