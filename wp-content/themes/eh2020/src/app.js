@@ -550,17 +550,17 @@ var app = new Vue({
         const issues = this.form.issues;
 
         // depending on parent value set child value
-        if (issues.health_1 && issues.health_2) {
+        if (issues.health_1 || issues.health_2) {
           issues.health = true;
         } else {
           issues.health = false;
         }
-        if (issues.future_1 && issues.future_2) {
+        if (issues.future_1 || issues.future_2) {
           issues.future = true;
         } else {
           issues.future = false;
         }
-        if (issues.qualityOfLiving_1 && issues.qualityOfLiving_2) {
+        if (issues.qualityOfLiving_1 || issues.qualityOfLiving_2) {
           issues.qualityOfLiving = true;
         } else {
           issues.qualityOfLiving = false;

@@ -63,8 +63,7 @@ $age[] = '70 and above';
             <div v-if="step >= 3">
                 <p>This is the year for action. Let’s bring nature back.</p>
                 <p>With this letter, I am asking our decision makers - Singapore’s political leaders, our businesses, our schools and institutions - to fight for a better future. In our policies, our workplaces and our homes, we want systemic change that restores nature and stops its destruction. When we do so, we protect everything good that comes along with it: clean air, food, water and a future for everyone. </p>
-                <p>Sincerely,</p>
-                <p>{{ data.form.first_name }} {{ data.form.last_name }}</p>
+                <p>Sincerely, <br>{{ data.form.first_name }} {{ data.form.last_name }}</p>
             </div>
         </div>
     </div>
@@ -149,7 +148,7 @@ $age[] = '70 and above';
                             </div>
 
                             <div class="mt-5">
-                                <button :disabled="loading" type="button" class="btn btn-lg btn-block btn-gradient text-white" @click="nextStep" >
+                                <button  type="button" class="btn btn-lg btn-block btn-gradient text-white" @click="nextStep" >
                                     <span>NEXT</span>
                                 </button>
                                 <a :disabled="loading" class="text-center d-block mt-3 text-white" href="https://www.earthhour.sg/">
@@ -182,10 +181,10 @@ $age[] = '70 and above';
                                 <p>What do you hope for in 2030?</p>
                                 <div>
                                     <p class="error" v-if="errors.issues">{{ errors.issues }}</p>
-                                    <div class="form-check issue-wrapper">
+                                    <div class="form-check issue-wrapper active">
                                         <input @change="openissue" type="checkbox" class="form-check-input" v-model="form.issues.health" id="health" value="health">
                                         <label class="form-check-label" for="health" >I want to maintain the good health I’ve enjoyed</label>
-                                        <div class="issue-details">
+                                        <div class="issue-details mt-2">
                                             <div class="form-check issue">
                                                 <input class="form-check-input" type="checkbox" v-model="form.issues.health_1" value="With the air I breathe being free from haze" id="health_1">
                                                 <label class="form-check-label" for="health_1">
@@ -201,10 +200,10 @@ $age[] = '70 and above';
                                         </div>
                                     </div>
 
-                                    <div class="form-check issue-wrapper">
+                                    <div class="form-check issue-wrapper active">
                                         <input @change="openissue" type="checkbox" class="form-check-input" v-model="form.issues.qualityOfLiving" id="qualityOfLiving" value="qualityOfLiving">
                                         <label class="form-check-label" for="qualityOfLiving" >I want to continue enjoying the quality of life I’m accustomed to</label>
-                                        <div class="issue-details">
+                                        <div class="issue-details mt-2">
                                             <div ref="issues" class="form-check issue">
                                                 <input class="form-check-input" type="checkbox" v-model="form.issues.qualityOfLiving_1" value="" id="qualityOfLiving_1">
                                                 <label class="form-check-label" for="qualityOfLiving_1">
@@ -220,10 +219,10 @@ $age[] = '70 and above';
                                         </div>
                                     </div>
 
-                                    <div class="form-check issue-wrapper">
+                                    <div class="form-check issue-wrapper active">
                                         <input @change="openissue" type="checkbox" class="form-check-input" v-model="form.issues.future" id="future" value="future">
                                         <label class="form-check-label" for="future" >I want to see a bright and prosperous future for Singapore</label>
-                                        <div class="issue-details">
+                                        <div class="issue-details mt-2">
                                             <div class="form-check issue">
                                                 <input class="form-check-input" type="checkbox" v-model="form.issues.future_1" value="" id="future_1">
                                                 <label class="form-check-label" for="future_1">
@@ -322,8 +321,8 @@ $age[] = '70 and above';
                                 <div class="col-12">
                                     <label for="citizen">I am a...</label>
                                     <div class="mb-2">
-                                        <button type="button" @click="updateCitizen('singaporean')"  class="btn text-white mr-2" :class="{'btn-gradient': this.form.citizen == 'singaporean', 'btn-outline-gradient': this.form.citizen != 'singaporean'}">Singaporean/PR</button>
-                                        <button type="button" @click="updateCitizen('non-singaporean')" class="btn text-white" :class="{'btn-gradient': this.form.citizen == 'non-singaporean', 'btn-outline-gradient': this.form.citizen != 'non-singaporean'}">Non-Singaporean/PR</button>
+                                        <button type="button" @click="updateCitizen('singaporean')"  class="btn text-white mr-2 no-hover" :class="{'btn-gradient': this.form.citizen == 'singaporean', 'btn-outline-gradient': this.form.citizen != 'singaporean'}">Singaporean/PR</button>
+                                        <button type="button" @click="updateCitizen('non-singaporean')" class="btn text-white no-hover" :class="{'btn-gradient': this.form.citizen == 'non-singaporean', 'btn-outline-gradient': this.form.citizen != 'non-singaporean'}">Non-Singaporean/PR</button>
                                     </div>
                                 </div>
                                 <div class="col-12" v-if="this.form.citizen == 'singaporean'">
@@ -725,7 +724,7 @@ $age[] = '70 and above';
                                 </svg>
                             </a>
                         </div>
-                        <p>What happens to my letter?</p>
+                        <p></p>
 
                         <img  v-show="!image_loading" class="share-image" :src="shareImage" alt="">
                     </div>

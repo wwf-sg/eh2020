@@ -394,6 +394,10 @@ video {
     box-shadow: none;
     color: white;
   }
+
+  &.no-hover:hover {
+    box-shadow: 2px 1000px 1px #000000 inset;
+  }
 }
 
 .btn-gradient {
@@ -418,6 +422,15 @@ video {
       ),
       linear-gradient(to left, #23398b, #d756b5);
     box-shadow: 2px 1000px 1px #000000 inset;
+  }
+
+  &.no-hover:hover {
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0)
+      ),
+      linear-gradient(to left, #23398b, #d756b5);
+    box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
   }
 }
 

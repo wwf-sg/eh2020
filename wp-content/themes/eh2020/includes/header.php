@@ -39,32 +39,14 @@
                     </button> -->
                     <ul class="nav ml-auto">
                         <li class="nav-item active">
-                            <a class="text-white nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                            <a class="text-white nav-link" href="/">Home<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="text-white nav-link" href="#about">About</a>
+                            <a class="text-white nav-link" href="/#about">About</a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="text-white nav-link" href="https://www.earthhour.sg/lights-out/">Lights Out</a>
-                        </li> -->
-                        <!-- <li class="nav-item">
-                                <a class="nav-link" href="#LightsOut">Lights Out</a>
-                            </li> -->
-                        <?php if (false) { ?>
-                            <?php if (have_rows('plastic_diet_menu')) : ?>
-
-                                <?php while (have_rows('plastic_diet_menu')) : the_row(); ?>
-
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="<?php echo the_sub_field('nav_url') ?>"><?php echo the_sub_field('nav_label') ?></a>
-                                    </li>
-
-                                <?php endwhile; ?>
-
-                            <?php else : ?>
-
-                            <?php endif; ?>
-                        <?php } ?>
+                        <li class="nav-item">
+                            <a class="text-white nav-link" href="/lights-out">Lights Out</a>
+                        </li>
                     </ul>
                 </div>
             </div>

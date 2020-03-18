@@ -47,7 +47,7 @@ function Signature_Post_type()
         'label'                 => __('Open letter', '_s'),
         'description'           => __('Post Type Description', '_s'),
         'labels'                => $labels,
-        'supports'              => array('title'),
+        'supports'              => array('title', 'thumbnail'),
         'hierarchical'          => false,
         'public'                => false,
         'show_ui'               => true,
@@ -189,7 +189,7 @@ function getSignature()
         update_field('image_url', $addedPost['image_url'], $s_id);
         $imgUrl = wp_get_attachment_url($addedPost['image_url']);
 
-        if (isset($_POST['data']['form']['email']) && $_POST['data']['form']['email'] && 'sg' == strtolower($addedPost['country'])) {
+        if (isset($_POST['data']['form']['email']) && $_POST['data']['form']['email']) {
             addActiveCampaign($addedPost);
             sendEmail_sg($addedPost);
         }
@@ -426,7 +426,7 @@ function sendEmail_sg($user)
     }
 
     $custEmail = $user['email'];
-    $custFname = $user['name'];
+    $custFname = $user['first_name'];
     $plastic = $user['plastic_name'];
     $content = '';
 
@@ -435,7 +435,7 @@ function sendEmail_sg($user)
     }
 
     $headers = array(
-        "From: Janissa, WWF Singapore <no-reply@earthhour.sg/>",
+        // "From: Janissa, WWF Singapore <no-reply@earthhour.sg/>",
         "Content-type: text/html; charset=UTF-8",
         "Reply-To: Janissa <commsteam@wwf.sg>"
     );
