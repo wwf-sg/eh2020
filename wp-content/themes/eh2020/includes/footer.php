@@ -40,13 +40,19 @@
         </p>
         <div class="row">
           <div class="col-4 p-0">
-            <img class="card-img-top mx-auto samsonite py-4" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/samsonite.jpg" alt="Card image cap" />
+            <a href="https://www.samsonite.com.sg/trade-in/" target="_blank">
+              <img class="card-img-top mx-auto samsonite py-4" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/samsonite.jpg" alt="Card image cap" />
+            </a>
           </div>
           <div class="col-4">
-            <img class="card-img-top mx-auto thebodyshop" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/thebodyshop_white.jpg" alt="Card image cap" />
+            <a href="https://www.thebodyshop.com/en-sg/" target="_blank">
+              <img class="card-img-top mx-auto thebodyshop" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/thebodyshop_white.jpg" alt="Card image cap" />
+            </a>
           </div>
           <div class="col-4">
-            <img class="card-img-top mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/thermos.jpg" alt="Card image cap" />
+            <a href=" https://www.thermos.com.sg/" target="_blank">
+              <img class="card-img-top mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/thermos.jpg" alt="Card image cap" />
+            </a>
           </div>
         </div>
       </div>
@@ -54,7 +60,9 @@
         <p class="card-text mt-5 mb-3" style="color:black;">
           Official Media Partner
         </p>
-        <img class="card-img-top mx-auto py-4 starhub" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/starhub.jpg" alt="starhub" />
+        <a href="www.starhub.com" target="_blank">
+          <img class="card-img-top mx-auto py-4 starhub" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/starhub.jpg" alt="starhub" />
+        </a>
       </div>
       <div class="col-12 col-lg">
         <p class="card-text mt-5 mb-3" style="color:black;">

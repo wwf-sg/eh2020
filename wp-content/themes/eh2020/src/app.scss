@@ -79,6 +79,18 @@ h4,
     }
   }
 
+  @include media-breakpoint-down(md) {
+    .container {
+      padding: 0;
+    }
+    .nav {
+      padding-right: 0.5rem;
+    }
+    .nav-link {
+      padding: 0.5rem;
+    }
+  }
+
   // .navbar-brand {
   //   img {
   //     width: 60px;
@@ -455,10 +467,10 @@ section#youtube {
 #content {
   min-height: 500px;
   background-color: #000;
-  padding-top: 4rem;
+  padding-top: 6rem;
   color: #fff;
   @include media-breakpoint-up(lg) {
-    padding-top: 8rem;
+    padding-top: 10rem;
   }
 }
 

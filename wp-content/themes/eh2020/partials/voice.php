@@ -279,14 +279,14 @@ $age[] = '70 and above';
                             <h3>Your Sign Off</h3>
                             <p>We just need some details from you, to take your voice forward. Don’t worry, we promise not to spam you.</p>
                             <div class="row my-3">
-                                <div class="col-7">
+                                <div class="col-md-7">
                                     <div class="form-group">
                                         <label for="first_name">First Name <span>*</span></label>
                                         <input ref="first_name" id="first_name" :disabled="loading" type="name" class="form-control" v-model="form.first_name" placeholder="Your first name">
                                         <p class="error my-2" v-if="errors.first_name">Please enter a valid first name.</p>
                                     </div>
                                 </div>
-                                <div class="col-5">
+                                <div class="col-md-5">
                                     <div class="form-group">
                                         <label for="last_name">Last Name <span>*</span></label>
                                         <input ref="last_name" id="last_name" :disabled="loading" type="name" class="form-control" v-model="form.last_name" placeholder="Your last name">
@@ -300,15 +300,15 @@ $age[] = '70 and above';
                                         <p class="error my-2" v-show="errors.email">Please enter a valid email.</p>
                                     </div>
                                 </div>
-                                <div class="col-7">
+                                <div class="col-md-7">
                                     <div class="form-group">
                                         <label for="phone">Your Mobile Number</label>
-                                        <VuePhoneNumberInput ref="phone" id="phone" :no-flags=true :translations="{countrySelectorLabel: 'Country code', countrySelectorError: 'Choose a country', phoneNumberLabel: 'Phone number', example: 'Example : '}" :disabled="loading" v-model="form.phone" :default-country-code="form.country" @update="onUpdatePhone" :key="form.country" color="#000000" valid-color="#000000" error-color="#000000" />
+                                        <VuePhoneNumberInput ref="phone" id="phone" :no-flags=true :translations="{countrySelectorLabel: 'Country code', countrySelectorError: 'Choose a country', phoneNumberLabel: 'Phone number', example: 'Example : '}" :disabled="loading" v-model="form.phone" :default-country-code="form.phone_country" @update="onUpdatePhone" :key="form.country" color="#000000" valid-color="#000000" error-color="#000000" />
                                         <!-- <input :disabled="loading" type="number" class="form-control" v-model="form.phone" placeholder="Your mobile number"> -->
                                         <p class="error my-2" v-show="errors.phone">Please enter a valid phone.</p>
                                     </div>
                                 </div>
-                                <div class="col-5">
+                                <div class="col-md-5">
                                     <div class="form-group">
                                         <label for="age">Your Age <span>*</span></label>
                                         <select ref="age" :disabled="loading" class="form-control bg-white" v-model="form.age"  id="age">
@@ -333,7 +333,7 @@ $age[] = '70 and above';
                                     </div>
                                 </div>
                                 <div class="col-12" v-if="this.form.citizen != 'singaporean'">
-                                    <label for="country">Your country</label>
+                                    <label for="country">Residing in..</label>
                                     <select ref="country" :disabled="loading" id="country" class="form-control bg-white" v-model="form.country">
                                         <option value="">-- Choose a country --</option>
                                         <option value="AF">Afghanistan</option> 
@@ -560,13 +560,6 @@ $age[] = '70 and above';
                                 </div>
                             </div>
                             <div :disabled="loading"  class="text-left custom-control custom-checkbox mx-2">
-                                <div>
-                                    <input ref="check_consent" :disabled="loading" class="custom-control-input" type="checkbox" value="Yes" v-model="form.check_consent" id="check_consent">
-                                    <label class="custom-control-label pt-1" for="check_consent">
-                                        I consent to WWF-Singapore to use my comments inputted in the fields for the purpose of marketing and communications.
-                                    </label>
-                                </div>
-                                
                                 <div class="mt-2">
                                     <p class="error mb-0" v-show="errors.check_consent">{{ errors.check_consent }}</p>
                                 </div>
