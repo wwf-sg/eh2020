@@ -102,7 +102,7 @@ if (isset($_GET['test'])) {
 }
 
 
-require_once 'functions/generate-image/index.php';
+// require_once 'functions/generate-image/index.php';
 require_once 'functions/required.php';
 require_once 'functions/signatures.php';
 
@@ -114,4 +114,90 @@ function w2gm_redirect_after_submit($url)
   $url = get_permalink(84);
 
   return $url;
+}
+
+function w2gm_ty_email_callback($listing)
+{
+
+  // error_log(print_r($listing->content_fields[8]->value, true));
+
+  // if (empty($user)) {
+  //   error_log('Customer ID was not provided');
+  // }
+
+  $custEmail = $listing->content_fields[8]->value;
+  // $custFname = $user['first_name'];
+  $content = '';
+
+  if (empty($custEmail)) {
+    error_log('customer donesn\'t have an email address.');
+  }
+
+  $headers = array(
+    // "From: Janissa, WWF Singapore <no-reply@earthhour.sg/>",
+    "Content-type: text/html; charset=UTF-8",
+    "Reply-To: Michael and Janissa, WWF Singapore <volunteer@wwf.sg>"
+  );
+  $subject = 'Thank you for adding your voice.';
+  $template = file_get_contents(get_template_directory() . '/functions/template/email_template_lights_out.html');
+
+  $replace = array();
+  $replace['content'] = $content;
+  $replace['user_name'] = $custFname;
+
+  foreach ($replace as $key => $value) {
+    $template = str_replace('{{ ' . $key . ' }}', $value, $template);
+  }
+
+  // if (isset($EMAIL_RECIPIENT_OVERRIDE)) {
+  // $custEmail = $EMAIL_RECIPIENT_OVERRIDE;
+  // }
+
+  $emailSuccess = wp_mail($custEmail, $subject, $template, $headers);
+
+  return $emailSuccess;
+}
+add_action('w2gm_ty_email', 'w2gm_ty_email_callback', 10, 2);
+
+
+function w2gm_ty_email_callback2($listing)
+{
+
+  // error_log(print_r($listing->content_fields[8]->value, true));
+
+  // if (empty($user)) {
+  //   error_log('Customer ID was not provided');
+  // }
+
+  $custEmail = $listing->content_fields[8]->value;
+  // $custFname = $user['first_name'];
+  $content = '';
+
+  if (empty($custEmail)) {
+    error_log('customer donesn\'t have an email address.');
+  }
+
+  $headers = array(
+    // "From: Janissa, WWF Singapore <no-reply@earthhour.sg/>",
+    "Content-type: text/html; charset=UTF-8",
+    "Reply-To: Michael and Janissa, WWF Singapore <volunteer@wwf.sg>"
+  );
+  $subject = 'Thank you for adding your voice.';
+  $template = file_get_contents(get_template_directory() . '/functions/template/email_template_lights_out.html');
+
+  $replace = array();
+  $replace['content'] = $content;
+  $replace['user_name'] = $custFname;
+
+  foreach ($replace as $key => $value) {
+    $template = str_replace('{{ ' . $key . ' }}', $value, $template);
+  }
+
+  // if (isset($EMAIL_RECIPIENT_OVERRIDE)) {
+  // $custEmail = $EMAIL_RECIPIENT_OVERRIDE;
+  // }
+
+  $emailSuccess = wp_mail($custEmail, $subject, $template, $headers);
+
+  return $emailSuccess;
 }

@@ -11,7 +11,7 @@
     $desc = "On 28 March, 5.30pm, join #nofilter conversations with changemakers about the planetary emergency, enjoy live music by some of Singapore’s top artistes.";
     $url = get_home_url() . "/?share_redirect";
 
-    $img = get_field('image_url');
+    $img = 'https://www.earthhour.sg/wp-content/uploads/2020/03/openletter.png'; //get_field('image_url');
     $feelings = get_field('feelings');
     $health_1 = get_field('health_1');
     $health_2 = get_field('health_2');

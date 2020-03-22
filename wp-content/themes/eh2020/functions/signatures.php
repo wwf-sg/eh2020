@@ -171,23 +171,25 @@ function getSignature()
         update_field('utm_content', $addedPost['utm_content'], $s_id);
         update_field('utm_term', $addedPost['utm_term'], $s_id);
 
-        $path = generate_image(
-            $custom_text = $addedPost['custom_issue'],
-            $user_name = $addedPost['first_name'] . ' ' . $addedPost['last_name'],
-            $feelings = $addedPost['feelings'],
-            $health_1 = $addedPost['health_1'],
-            $health_2 = $addedPost['health_2'],
-            $future_1 = $addedPost['future_1'],
-            $future_2 = $addedPost['future_2'],
-            $qualityOfLiving_1 = $addedPost['qualityOfLiving_1'],
-            $qualityOfLiving_2 = $addedPost['qualityOfLiving_2']
-        );
+        $path = 'https://www.earthhour.sg/wp-content/uploads/2020/03/openletter.png';
 
-        // $imgUrl = $addedPost['image_url'] = $path;
+        // $path = generate_image(
+        //     $custom_text = $addedPost['custom_issue'],
+        //     $user_name = $addedPost['first_name'] . ' ' . $addedPost['last_name'],
+        //     $feelings = $addedPost['feelings'],
+        //     $health_1 = $addedPost['health_1'],
+        //     $health_2 = $addedPost['health_2'],
+        //     $future_1 = $addedPost['future_1'],
+        //     $future_2 = $addedPost['future_2'],
+        //     $qualityOfLiving_1 = $addedPost['qualityOfLiving_1'],
+        //     $qualityOfLiving_2 = $addedPost['qualityOfLiving_2']
+        // );
 
-        $addedPost['image_url'] = Generate_Featured_Image($file = $path, $post_id = $s_id, $desc = '');
+        $imgUrl = $addedPost['image_url'] = $path;
+
+        // $addedPost['image_url'] = Generate_Featured_Image($file = $path, $post_id = $s_id, $desc = '');
         update_field('image_url', $addedPost['image_url'], $s_id);
-        $imgUrl = wp_get_attachment_url($addedPost['image_url']);
+        // $imgUrl = wp_get_attachment_url($addedPost['image_url']);
 
         if (isset($_POST['data']['form']['email']) && $_POST['data']['form']['email']) {
             addActiveCampaign($addedPost);
@@ -439,7 +441,7 @@ function sendEmail_sg($user)
         "Content-type: text/html; charset=UTF-8",
         "Reply-To: Janissa <commsteam@wwf.sg>"
     );
-    $subject = 'Thank you for adding your voice.';
+    $subject = 'Thank you for helping to write your future';
     $template = file_get_contents(get_template_directory() . '/functions/template/email_template.html');
 
     $replace = array();

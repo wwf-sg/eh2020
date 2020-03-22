@@ -353,7 +353,7 @@ var app = new Vue({
             return this.step;
           }
 
-          this.errors.feelings = "Please select atleast one";
+          this.errors.feelings = "Please select at least one";
           forme.scrollIntoView();
           return this.step;
 

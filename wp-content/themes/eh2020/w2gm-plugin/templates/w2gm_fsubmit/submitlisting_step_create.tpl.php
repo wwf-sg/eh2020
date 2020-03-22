@@ -61,7 +61,7 @@
 				<?php if ($listing->level->images_number > 0 || $listing->level->videos_number > 0) : ?>
 					<div class="w2gm-submit-section w2gm-submit-section-media">
 						<h3 class="w2gm-submit-section-label"><?php _e('Upload Company Logo', 'W2GM'); ?></h3>
-						<div style="padding-left:10px;">Note* Image Size - limit of 1MB and below. JPEG and PNG image only.</div>
+						<div style="padding-left:10px; font-size: 80%;">Dimension: Square (300px x 300px recommended). Size: 1MB and below. Format: JPEG and PNG only. </div>
 						<div class="w2gm-submit-section-inside">
 							<?php $w2gm_instance->media_manager->mediaMetabox($listing->post, array('args' => array('target' => 'listings'))); ?>
 						</div>

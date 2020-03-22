@@ -34,45 +34,51 @@
   <div class="container py-md-5">
     <!-- <h2 class="mb-5">Sponsors</h2> -->
     <div class="row">
-      <div class="col-12 col-lg-5">
+      <div class="col-12 col-lg">
         <p class="card-text mt-5 mb-3" style="color:black;">
           Supporting Donors
         </p>
         <div class="row">
           <div class="col-4 p-0">
             <a href="https://www.samsonite.com.sg/trade-in/" target="_blank">
-              <img class="card-img-top mx-auto samsonite py-4" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/samsonite.jpg" alt="Card image cap" />
+              <img class="card-img-top mx-auto samsonite py-4" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/samsonite.jpg" alt="samsonite" />
             </a>
           </div>
           <div class="col-4">
             <a href="https://www.thebodyshop.com/en-sg/" target="_blank">
-              <img class="card-img-top mx-auto thebodyshop" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/thebodyshop_white.jpg" alt="Card image cap" />
+              <img class="card-img-top mx-auto thebodyshop" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/thebodyshop_white.jpg" alt="thebodyshop" />
             </a>
           </div>
           <div class="col-4">
             <a href=" https://www.thermos.com.sg/" target="_blank">
-              <img class="card-img-top mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/thermos.jpg" alt="Card image cap" />
+              <img class="card-img-top mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/thermos.jpg" alt="thermos" />
             </a>
           </div>
         </div>
       </div>
       <div class="col-12 col-lg">
+        <p class="card-text mt-5 mb-3 py-lg-4" style="color:black;">Supporting Partner</p>
+        <img class="card-img-top mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/JCDecaux logo.jpg" alt="JCDecaux logo" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-lg">
         <p class="card-text mt-5 mb-3" style="color:black;">
           Official Media Partner
         </p>
         <a href="www.starhub.com" target="_blank">
-          <img class="card-img-top mx-auto py-4 starhub" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/starhub.jpg" alt="starhub" />
+          <img class="card-img-top mx-auto py-lg-4 starhub" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/starhub.jpg" alt="starhub" />
         </a>
       </div>
       <div class="col-12 col-lg">
         <p class="card-text mt-5 mb-3" style="color:black;">
           Official Radio Station
         </p>
-        <img class="card-img-top mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/kiss92-01.jpg" alt="Card image cap" />
+        <img class="card-img-top mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/kiss92-01.jpg" alt="kiss92" />
       </div>
       <div class="col-12 col-lg">
         <p class="card-text mt-5 mb-3" style="color:black;">Supporting Radio Station</p>
-        <img class="card-img-top mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/onefm.jpg" alt="Card image cap" />
+        <img class="card-img-top mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/onefm.jpg" alt="onefm" />
       </div>
     </div>
   </div>
