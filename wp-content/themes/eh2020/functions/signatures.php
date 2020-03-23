@@ -294,7 +294,7 @@ function addActiveCampaign($signature)
     // By default, this sample code is designed to get the result from your ActiveCampaign installation and print out the result
     // $url = 'https://wwfsingapore297.api-us1.com';
     // $api_key = 'd0f002f5c5ba903b3d74478a2952ca91acf04c5d72b4c75702a8051fc30296d62c3aec29';
-    // $list_id = '90';
+    // $list_id = '96';
     $url = 'https://wwf-worldwidefundfornaturesingaporelimited1552298160.api-us1.com';
     $api_key = '15921cac81a99f6986315e1921a0882febb222405c7313e41a523ef16d289327ff2ab62d';
     $list_id = '1';

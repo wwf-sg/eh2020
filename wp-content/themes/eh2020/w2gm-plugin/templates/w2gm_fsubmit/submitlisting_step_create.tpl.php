@@ -134,32 +134,45 @@
 				<?php require_once(ABSPATH . 'wp-admin/includes/template.php'); ?>
 				<?php submit_button(__('Submit', 'W2GM'), 'w2gm-btn w2gm-btn-primary') ?>
 			</form>
-			<form method="POST" action="https://wwf-worldwidefundfornaturesingaporelimited1552298160.activehosted.com/proc.php" id="_form_1_" class="_form _form_1 _inline-form  _dark" novalidate>
-				<input type="hidden" name="u" value="1" />
-				<input type="hidden" name="f" value="1" />
+
+			<form method="POST" action="https://wwfsingapore297.activehosted.com/proc.php" id="_form_562_" class="_form _form_562 _inline-form  _dark" novalidate>
+				<input type="hidden" name="u" value="562" />
+				<input type="hidden" name="f" value="562" />
 				<input type="hidden" name="s" />
 				<input type="hidden" name="c" value="0" />
 				<input type="hidden" name="m" value="0" />
 				<input type="hidden" name="act" value="sub" />
 				<input type="hidden" name="v" value="2" />
 				<div class="_form-content">
-					<div class="_form_element _x08166466 _full_width ">
+					<div class="_form_element _x55708525 _full_width ">
 						<div class="_field-wrapper">
 							<input type="text" name="fullname" placeholder="Type your name" />
 						</div>
 					</div>
-					<div class="_form_element _x38734575 _full_width ">
+					<div class="_form_element _x01387842 _full_width ">
 						<div class="_field-wrapper">
 							<input type="text" name="email" placeholder="Type your email" required />
 						</div>
 					</div>
-					<button id="_form_1_submit" class="_submit" type="submit">
+					<div class="_form_element _x44471428 _full_width ">
+						<div class="_field-wrapper">
+							<input type="text" name="phone" placeholder="Type your phone number" />
+						</div>
+					</div>
+					<div class="_form_element _field132 _full_width ">
+						<div class="_field-wrapper">
+							<input type="text" name="field[132]" value="" placeholder="" />
+						</div>
+					</div>
+					<button id="_form_562_submit" class="_submit" type="submit">
 						Submit
 					</button>
 				</div>
 			</form>
 			<script type="text/javascript">
-				window.cfields = [];
+				window.cfields = {
+					"132": "name_of_organisationgroup"
+				};
 				window._show_thank_you = function(id, message, trackcmp_url) {
 					var form = document.getElementById('_form_' + id + '_'),
 						thank_you = form.querySelector('._form-thank-you');
@@ -234,7 +247,7 @@
 						}
 					}
 					var _removed = false;
-					var form_to_submit = document.getElementById('_form_1_');
+					var form_to_submit = document.getElementById('_form_562_');
 					var allInputs = form_to_submit.querySelectorAll('input, select, textarea'),
 						tooltips = [],
 						submitted = false;
@@ -476,11 +489,11 @@
 						e.preventDefault();
 						if (validate_form()) {
 							// use this trick to get the submit button & disable it using plain javascript
-							document.querySelector('#_form_1_submit').disabled = true;
-							var serialized = _form_serialize(document.getElementById('_form_1_'));
+							document.querySelector('#_form_562_submit').disabled = true;
+							var serialized = _form_serialize(document.getElementById('_form_562_'));
 							var err = form_to_submit.querySelector('._form_error');
 							err ? err.parentNode.removeChild(err) : false;
-							_load_script('https://wwf-worldwidefundfornaturesingaporelimited1552298160.activehosted.com/proc.php?' + serialized + '&jsonp=true');
+							_load_script('https://wwfsingapore297.activehosted.com/proc.php?' + serialized + '&jsonp=true');
 						}
 						return false;
 					};
@@ -494,7 +507,13 @@
 					$("input[name='w2gm-field-input-12']").on('keyup', function() {
 						$("input[name='fullname']").val($(this).val());
 					});
-					$('#_form_1_submit').click(function() {
+					$("input[name='w2gm-field-input-6']").on('keyup', function() {
+						$("input[name='phone']").val($(this).val());
+					});
+					$("input[name='w2gm-field-input-11']").on('keyup', function() {
+						$("input[name='field[132]']").val($(this).val());
+					});
+					$('#_form_562_submit').click(function() {
 						$("#submit").click();
 					});
 				});
