@@ -34,7 +34,7 @@
   <div class="container py-md-5">
     <!-- <h2 class="mb-5">Sponsors</h2> -->
     <div class="row">
-      <div class="col-12 col-lg">
+      <div class="col-12 col-lg-9">
         <p class="card-text mt-5 mb-3" style="color:black;">
           Supporting Donors
         </p>
@@ -56,9 +56,10 @@
           </div>
         </div>
       </div>
+
       <div class="col-12 col-lg">
-        <p class="card-text mt-5 mb-3 py-lg-4" style="color:black;">Supporting Partner</p>
-        <img class="card-img-top mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/JCDecaux logo.jpg" alt="JCDecaux logo" />
+        <p class="card-text mt-4 mb-3 py-lg-4" style="color:black;">Supporting Partner</p>
+        <img class="card-img-top mt-3 mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/JCDecaux logo.jpg" alt="JCDecaux logo" />
       </div>
     </div>
     <div class="row">
@@ -80,8 +81,24 @@
         <p class="card-text mt-5 mb-3" style="color:black;">Supporting Radio Station</p>
         <img class="card-img-top mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/onefm.jpg" alt="onefm" />
       </div>
+      <div class="col-12 col-lg">
+        <p class="card-text mt-5 mb-3" style="color:black;">Carbon Neutral Partners</p>
+        <img class="card-img-top mx-auto mt-lg-4" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/Enviromental Solutions.png" alt="Enviromental Solutions" />
+      </div>
     </div>
-  </div>
+    <!-- <div class="row">
+      <div class="col-12 col-lg-6 offset-lg-3">
+        <p class="card-text mt-5 mb-3" style="color:black;">Carbon Neutral Partners</p>
+        <div class="row">
+          <div class="col p-0">
+            <img class="card-img-top mx-auto mt-2" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/Enviromental Solutions.png" alt="Enviromental Solutions" />
+          </div>
+          <div class="col">
+            <img class="card-img-top mx-auto mt-1" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/Climate Resource Exchange Logo.png" alt="Climate Resource Exchange" />
+          </div>
+        </div>
+      </div>
+    </div> -->
 </section>
 
 <footer id="colophon" class="site-footer" style="background-color: #fff !important">

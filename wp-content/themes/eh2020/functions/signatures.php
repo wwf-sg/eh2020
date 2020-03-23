@@ -446,7 +446,7 @@ function sendEmail_sg($user)
 
     $replace = array();
     $replace['content'] = $content;
-    $replace['user_name'] = $custFname;
+    $replace['user_name'] = trim($custFname);
     $replace['plastic_name'] = $plastic;
 
     foreach ($replace as $key => $value) {

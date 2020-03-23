@@ -348,10 +348,13 @@
   }
   .share-image {
     box-shadow: 1px 1px 8px -2px #00000091;
-    max-width: 90%;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
 
     @include media-breakpoint-up(md) {
-      max-width: 75%;
+      // width: 100%;
     }
   }
 }
@@ -365,7 +368,6 @@
     font-weight: normal;
     font-family: "Impact Label", "Arial Narrow Bold", sans-serif;
     box-shadow: 1px 1px 2px 3px #22222269;
-    // text-shadow: 1px 1px 0px #22222245;
     padding: 0;
   }
 }

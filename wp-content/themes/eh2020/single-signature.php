@@ -8,8 +8,8 @@
 
     // $country = strtolower(get_field('country'));
 
-    $title = "Earth Hour 2020 - Live & Unplugged";
-    $desc = "On 28 March, 5.30pm, join #nofilter conversations with changemakers about the planetary emergency, enjoy live music by some of Singapore’s top artistes.";
+    $title = "#DearSingapore, the time to shape our future is now.";
+    $desc = "Sign this open letter to Singapore's decision makers and join our fight for a better future.";
     $url = get_home_url() . "/?share_redirect";
 
     $img = 'https://www.earthhour.sg/wp-content/uploads/2020/03/openletter.png'; //get_field('image_url');
@@ -140,10 +140,9 @@
                         <li><?= $custom_issue ?></li>
                     <?php } ?>
                 </ul>
-                <p>This is the year for action. Let’s bring nature back.</p>
-                <p>With this letter, I am asking our decision makers - Singapore’s political leaders, our businesses, our schools and institutions - to fight for a better future. In our policies, our workplaces and our homes, we want systemic change that restores nature and stops its destruction. When we do so, we protect everything good that comes along with it: clean air, food, water and a future for everyone. </p>
-                <p style="margin-top: 10px">Sincerely,</p>
-                <p class="signature"><?= $user ?></p>
+                <p><?= $translations[$locale]['ol']['line7'] ?></p>
+                <p><?= $translations[$locale]['ol']['line8'] ?></p>
+                <p style="margin-top: 10px"><?= $translations[$locale]['ol']['signature'] ?> <br><?= $user ?></p>
 
             </div>
         </div>

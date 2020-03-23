@@ -136,14 +136,14 @@ function w2gm_ty_email_callback($listing)
   $headers = array(
     // "From: Janissa, WWF Singapore <no-reply@earthhour.sg/>",
     "Content-type: text/html; charset=UTF-8",
-    "Reply-To: Michael and Janissa, WWF Singapore <volunteer@wwf.sg>"
+    "Reply-To: Janissa and Michael, WWF Singapore <volunteer@wwf.sg>"
   );
-  $subject = 'Thank you for adding your voice.';
+  $subject = 'See you online for Earth Hour on 28 March!';
   $template = file_get_contents(get_template_directory() . '/functions/template/email_template_lights_out.html');
 
   $replace = array();
   $replace['content'] = $content;
-  $replace['user_name'] = $custFname;
+  // $replace['user_name'] = $custFname;
 
   foreach ($replace as $key => $value) {
     $template = str_replace('{{ ' . $key . ' }}', $value, $template);
@@ -180,14 +180,14 @@ function w2gm_ty_email_callback2($listing)
   $headers = array(
     // "From: Janissa, WWF Singapore <no-reply@earthhour.sg/>",
     "Content-type: text/html; charset=UTF-8",
-    "Reply-To: Michael and Janissa, WWF Singapore <volunteer@wwf.sg>"
+    "Reply-To: Janissa and Michael, WWF Singapore <volunteer@wwf.sg>"
   );
-  $subject = 'Thank you for adding your voice.';
+  $subject = 'A BIG THANK YOU from the Pandas';
   $template = file_get_contents(get_template_directory() . '/functions/template/email_template_lights_out.html');
 
   $replace = array();
   $replace['content'] = $content;
-  $replace['user_name'] = $custFname;
+  // $replace['user_name'] = $custFname;
 
   foreach ($replace as $key => $value) {
     $template = str_replace('{{ ' . $key . ' }}', $value, $template);
