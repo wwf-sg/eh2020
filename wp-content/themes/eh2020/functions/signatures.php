@@ -119,7 +119,7 @@ function getSignature()
             'qualityOfLiving_2' => $_POST['data']['form']['issues']['qualityOfLiving_2'],
             'custom_issue' => $_POST['data']['form']['issues']['custom_issue'],
             'check_pdpc' => $_POST['data']['form']['check_pdpc'],
-            'check_consent' => $_POST['data']['form']['check_consent'],
+            'locale' => $_POST['data']['form']['locale'],
             'share_url' => $_POST['data']['shareUrl'],
             'image_url' => $_POST['data']['shareImage'],
             'utm_campaign' => $_POST['data']['form']['utm_campaign'],
@@ -164,7 +164,7 @@ function getSignature()
         update_field('qualityOfLiving_2', $addedPost['qualityOfLiving_2'], $s_id);
         update_field('custom_issue', $addedPost['custom_issue'], $s_id);
         update_field('check_pdpc', $addedPost['check_pdpc'], $s_id);
-        update_field('check_consent', $addedPost['check_consent'], $s_id);
+        update_field('locale', $addedPost['locale'], $s_id);
         update_field('utm_campaign', $addedPost['utm_campaign'], $s_id);
         update_field('utm_source', $addedPost['utm_source'], $s_id);
         update_field('utm_medium', $addedPost['utm_medium'], $s_id);
@@ -437,9 +437,9 @@ function sendEmail_sg($user)
     }
 
     $headers = array(
-        // "From: Janissa, WWF Singapore <no-reply@earthhour.sg/>",
+        // "From: Janissa and Michael, WWF-Singapore <no-reply@earthhour.sg/>",
         "Content-type: text/html; charset=UTF-8",
-        "Reply-To: Janissa <commsteam@wwf.sg>"
+        "Reply-To: Janissa and Michael, WWF-Singapore <commsteam@wwf.sg>"
     );
     $subject = 'Thank you for helping to write your future';
     $template = file_get_contents(get_template_directory() . '/functions/template/email_template.html');

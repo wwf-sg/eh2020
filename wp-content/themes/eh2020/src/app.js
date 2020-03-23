@@ -11,7 +11,8 @@ import VuePhoneNumberInput from "vue-phone-number-input";
 import "vue-phone-number-input/dist/vue-phone-number-input.css";
 Vue.component("vue-phone-number-input", VuePhoneNumberInput);
 
-// require("bootstrap");
+import VueI18n from "vue-i18n";
+Vue.use(VueI18n);
 
 $(document).ready(function() {
   $(".w2gm-content-fields-metabox").css("display", "block");
@@ -190,21 +191,50 @@ Vue.component("openletter", {
         count += 1;
 
         if (selected.length == 1) {
-          out += element;
+          if (element === "Anxious") {
+            out += this.$i18n.t("ol." + element);
+          } else if (element === "Hopeful") {
+            out += this.$i18n.t("ol." + element);
+          } else {
+            out += element;
+          }
         }
 
         if (selected.length == 2) {
-          if (index == 1) out += element;
-          else out += element + " and ";
+          if (index == 1) {
+            if (element === "Anxious") {
+              out += this.$i18n.t("ol." + element);
+            } else if (element === "Hopeful") {
+              out += this.$i18n.t("ol." + element);
+            } else {
+              out += element;
+            }
+          } else {
+            if (element === "Anxious") {
+              out += this.$i18n.t("ol." + element);
+            } else if (element === "Hopeful") {
+              out += this.$i18n.t("ol." + element);
+            } else {
+              out += element;
+            }
+            out += " " + this.$i18n.t("ol.and") + " ";
+          }
         }
 
         if (selected.length >= 3) {
-          out += element;
+          if (element === "Anxious") {
+            out += this.$i18n.t("ol." + element);
+          } else if (element === "Hopeful") {
+            out += this.$i18n.t("ol." + element);
+          } else {
+            out += element;
+          }
 
           if (index !== selected.length - 2 && index !== selected.length - 1)
             out += ", ";
 
-          if (index == selected.length - 2) out += " and ";
+          if (index == selected.length - 2)
+            out += " " + this.$i18n.t("ol.and") + " ";
         }
       });
 
@@ -223,8 +253,15 @@ var app = new Vue({
   components: {
     VuePhoneNumberInput
   },
+  i18n: new VueI18n({
+    locale: "en", // set locale
+    fallbackLocale: "en", // set fallback locale
+    messages // set locale messages
+  }),
   data: function() {
+    this.$i18n.locale = "en";
     return {
+      locale: "en",
       someVariable: 0,
       _nonce: nonce,
       loading: false,
@@ -273,6 +310,12 @@ var app = new Vue({
     };
   },
   methods: {
+    getFeelingName: function(name) {
+      if (name === "Anxious" || name === "Hopeful") {
+        return this.$i18n.t("step1." + name);
+      }
+      return name;
+    },
     forceRerender: function() {
       this.someVariable += 1;
     },
@@ -280,7 +323,7 @@ var app = new Vue({
       const feelings = { ...this.form.feelings };
       let feel = this.$refs.custom_feeling.value.trim();
       if (feel.match(/[^a-zA-Z]/g)) {
-        feel = feel.replace(/[^a-zA-Z]/g, "");
+        // feel = feel.replace(/[0-9]/g, "");
       }
       if (feel != "") {
         feelings[feel] = true;
@@ -541,6 +584,9 @@ var app = new Vue({
     }
   },
   watch: {
+    locale(val) {
+      this.$i18n.locale = val;
+    },
     "form.issues": {
       handler: function(newval, oldval) {
         const issues = this.form.issues;

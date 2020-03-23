@@ -21,7 +21,15 @@ $age[] = '36-50';
 $age[] = '51-69';
 $age[] = '70 and above';
 
+include "translations.php";
+
+// var_dump($translations);
+
 ?>
+
+<script>
+    let messages = <?php echo json_encode($translations); ?>
+</script>
 
 <script type="text/x-template" id="openletter-template">
 
@@ -30,40 +38,41 @@ $age[] = '70 and above';
         <div class="bg"></div>
         <div class="openletter w-100 bg-white text-dark">
             <h3 class="h6 mb-3">AN OPEN LETTER TO SINGAPORE</h3>
-            <p>Dear Singapore,</p>
-            <p>It’s been a rough start to 2020. Forest fires, health emergencies and more.</p>
-            <p>I’m feeling <span style="text-transform: lowercase;">{{ getFeelings }}</span>.</p>
+            <p>{{ $t('ol.line1') }}</p>
+            <p>{{ $t('ol.line2') }}</p>
+            <p>{{ $t('ol.line3') }} <span style="text-transform: lowercase;">{{ getFeelings }}</span>.</p>
             <div v-if="step >= 2">
-                <p>I’m not used to worrying so much, and lately I’ve started to wonder if we are taking everything we have here in Singapore for granted.</p>
-                <p>Nature is changing. We have lost much of the world’s biodiversity in the past 40 years. Climate change has become a matter of survival. Our demands on the planet are now coming back to us, and this is shaping how I live.</p>
-                <p>So what will the future look like for me? Will I still be able to:</p>
+            <p>{{ $t('ol.line4') }}</p>
+            <p>{{ $t('ol.line5') }}</p>
+            <p>{{ $t('ol.line6') }}</p>
                 <div v-if="data.form.issues.health_1 || data.form.issues.health_2">
                     <p>
-                        <strong>Enjoy good health</strong><br>
-                        <span v-if="data.form.issues.health_1">With the air I breathe being free from haze?</span>
-                        <span v-if="data.form.issues.health_2">Will the food I eat be free of microplastics?</span>
+                        <strong>{{ $t('ol.health') }}</strong><br>
+                        <span v-if="data.form.issues.health_1">{{ $t('ol.health1') }}</span>
+                        <span v-if="data.form.issues.health_2">{{ $t('ol.health2') }}</span>
                     </p>
                 </div>
                 <div v-if="data.form.issues.qualityOfLiving_1 || data.form.issues.qualityOfLiving_2">
                     <p>
-                        <strong>Maintain my quality of life </strong><br>
-                        <span v-if="data.form.issues.qualityOfLiving_1">Will we still have amazing wildlife and natural green spaces?</span>
-                        <span v-if="data.form.issues.qualityOfLiving_2">Will all of the food I love be readily available and affordable?</span>
+                        <strong>{{ $t('ol.quality') }}</strong><br>
+                        <span v-if="data.form.issues.qualityOfLiving_1">{{ $t('ol.quality1') }}</span>
+                        <span v-if="data.form.issues.qualityOfLiving_2">{{ $t('ol.quality2') }}</span>
                     </p>
                 </div>
                 <div v-if="data.form.issues.future_1 || data.form.issues.future_2">
                     <p>
-                        <strong>Prosper</strong><br>
-                        <span v-if="data.form.issues.future_1">Will I feel confident about my family’s future?</span>
-                        <span v-if="data.form.issues.future_2">Will I know that my home is safe from sea level rise and climate change?</span>
+                        <strong>{{ $t('ol.future') }}</strong><br>
+                        <span v-if="data.form.issues.future_1">{{ $t('ol.future1') }}</span>
+                        <span v-if="data.form.issues.future_2">{{ $t('ol.future2') }}</span>
                     </p>
                 </div>
-                <p v-if="data.form.issues.custom_issue">{{ data.form.issues.custom_issue }}</p>
+                <p v-if="data.form.issues.custom_issue"><strong>{{ data.form.issues.custom_issue }}</strong></p>
             </div>
             <div v-if="step >= 3">
-                <p>This is the year for action. Let’s bring nature back.</p>
-                <p>With this letter, I am asking our decision makers - Singapore’s political leaders, our businesses, our schools and institutions - to fight for a better future. In our policies, our workplaces and our homes, we want systemic change that restores nature and stops its destruction. When we do so, we protect everything good that comes along with it: clean air, food, water and a future for everyone. </p>
-                <p>Sincerely, <br>{{ data.form.first_name }} {{ data.form.last_name }}</p>
+            {{ $t('ol.line7') }}
+            {{ $t('ol.line8') }}
+            
+                <p>{{ $t('ol.signature') }} <br>{{ data.form.first_name }} {{ data.form.last_name }}</p>
             </div>
         </div>
     </div>
@@ -80,14 +89,31 @@ $age[] = '70 and above';
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="mb-4 ">
-                                <h2 class="mb-">Open Letter to Singapore</h2>
-                                <p>Nature and the food security, clean air, water sources and good health it provides us are at risk.</p>
-                                <p>2020 is the year for governments to take action to make sure our future here in Singapore and on this planet is secure.</p>
-                                <p>Add your voice to an open letter that we will use to push Singapore’s decision makers to make tough decisions that protect your future.</p>
+
+                                <div class="btn-group-toggle">
+                                    <label class="btn text-white no-hover mr-2" :class="this.locale == 'en' ? 'btn-gradient': 'btn-outline-gradient'">
+                                        <input type="radio" name="lang" value="en" v-model="locale" id="lang_en" checked> EN
+                                    </label>
+                                    <label class="btn text-white no-hover mr-2" :class="this.locale == 'cn' ? 'btn-gradient': 'btn-outline-gradient'">
+                                        <input type="radio" name="lang" value="cn" v-model="locale" id="lang_cn" checked> CN
+                                    </label>
+                                    <label class="btn text-white no-hover mr-2" :class="this.locale == 'ml' ? 'btn-gradient': 'btn-outline-gradient'">
+                                        <input type="radio" name="lang" value="ml" v-model="locale" id="lang_ml" checked> ML
+                                    </label>
+                                    <label class="btn text-white no-hover mr-2" :class="this.locale == 'tn' ? 'btn-gradient': 'btn-outline-gradient'">
+                                        <input type="radio" name="lang" value="tn" v-model="locale" id="lang_tn" checked> TN
+                                    </label>
+                                </div>
+
+                                <br>
+                                <h2 class="mb-">{{ $t('step0.line1') }}</h2>
+                                <p>{{ $t('step0.line2') }}</p>
+                                <p>{{ $t('step0.line3') }}</p>
+                                <p>{{ $t('step0.line4') }}</p>
                             </div>
                             <div class="mt-4">
                                 <button id="first-button" type="button" class="btn btn-gradient text-white" @click="nextStep">
-                                    <span>Write Your Future Now</span>
+                                    <span>{{ $t('step0.next_text') }}</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                                         <polyline points="9 18 15 12 9 6"></polyline>
                                     </svg>
@@ -119,7 +145,7 @@ $age[] = '70 and above';
                         <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-0">
                             <div class="mb-3 mb-md-3">
                                 <p>
-                                    <strong>Step 1</strong>
+                                    <strong>{{ $t(`step1.step1`) }}</strong>
                                     <br>
                                     <span class="step-pills">
                                         <span class="step-pill" :class="{active: step >= 1}"></span>
@@ -128,11 +154,11 @@ $age[] = '70 and above';
                                         <span class="step-pill" :class="{active: step >= 4}"></span>
                                     </span>
                                 </p>
-                                <h3>Write your future.</h3>
-                                <p>Let’s kick this off. How are you feeling about your future?</p>
+                                <h3>{{ $t(`step1.line1`) }}</h3>
+                                <p>{{ $t(`step1.line2`) }}</p>
                                 
                                 <div ref="feelings" class="feelings">
-                                    <input type="button" class="btn btn-outline-gradient text-white mr-2 mb-2" :class="{active: selected}" v-for="(selected, name) in feelin" :value="name" :key="name" @click="updateFeeling(name)" style="text-transform: none !important;">
+                                    <input type="button" class="btn btn-outline-gradient text-white mr-2 mb-2" :class="{active: selected}" v-for="(selected, name) in feelin" :value="getFeelingName(name)" :key="name" @click="updateFeeling(name)" style="text-transform: none !important;">
                                     
                                     <div class="custom-feeling rounded input-group mb-2 text-white btn-gradient" style="max-width: 200px;">
                                         <input ref="custom_feeling" type="text" class="form-control selected text-left rounded-left border-0 bg-black" @keyup.enter="addFeeling" pattern="[A-Za-z]" maxlength="20" style="text-transform: none !important; background: #000 !important; color: #fff !important; ">
@@ -149,10 +175,10 @@ $age[] = '70 and above';
 
                             <div class="mt-5">
                                 <button  type="button" class="btn btn-lg btn-block btn-gradient text-white" @click="nextStep" >
-                                    <span>NEXT</span>
+                                    <span>{{ $t(`next`) }}</span>
                                 </button>
                                 <a :disabled="loading" class="text-center d-block mt-3 text-white" href="https://www.earthhour.sg/">
-                                    <span>Back to Homepage</span>
+                                    <span>{{ $t(`back`) }}</span>
                                 </a>
                             </div>
                         </div>
@@ -168,7 +194,7 @@ $age[] = '70 and above';
                         <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-0 mb-5 mb-lg-0">
                             <div class="mb-3 mb-md-3">
                                 <p>
-                                    <strong>Step 2</strong>
+                                    <strong>{{ $t(`step2.step2`) }}</strong>
                                     <br>
                                     <span class="step-pills">
                                         <span class="step-pill" :class="{active: step >= 1}"></span>
@@ -177,24 +203,24 @@ $age[] = '70 and above';
                                         <span class="step-pill" :class="{active: step >= 4}"></span>
                                     </span>
                                 </p>
-                                <h2>Nature is changing. <br>This shapes how we live.</h2>
-                                <p>What do you hope for in 2030?</p>
+                                <h2>{{ $t(`step2.line1`) }}</h2>
+                                <p>{{ $t(`step2.line2`) }}</p>
                                 <div>
                                     <p class="error" v-if="errors.issues">{{ errors.issues }}</p>
                                     <div class="form-check issue-wrapper active">
                                         <input @change="openissue" type="checkbox" class="form-check-input" v-model="form.issues.health" id="health" value="health">
-                                        <label class="form-check-label" for="health" >I want to maintain the good health I’ve enjoyed</label>
+                                        <label class="form-check-label" for="health">{{ $t(`step2.health`) }}</label>
                                         <div class="issue-details mt-2">
                                             <div class="form-check issue">
                                                 <input class="form-check-input" type="checkbox" v-model="form.issues.health_1" value="With the air I breathe being free from haze" id="health_1">
                                                 <label class="form-check-label" for="health_1">
-                                                    With the air I breathe being free from haze
+                                                {{ $t(`step2.health1`) }}
                                                 </label>
                                             </div>
                                             <div class="form-check issue">
                                                 <input class="form-check-input" type="checkbox" v-model="form.issues.health_2" value="With the food I eat being free of microplastics" id="health_2">
                                                 <label class="form-check-label" for="health_2">
-                                                    With the food I eat being free of microplastics
+                                                {{ $t(`step2.health2`) }}
                                                 </label>
                                             </div>
                                         </div>
@@ -202,18 +228,18 @@ $age[] = '70 and above';
 
                                     <div class="form-check issue-wrapper active">
                                         <input @change="openissue" type="checkbox" class="form-check-input" v-model="form.issues.qualityOfLiving" id="qualityOfLiving" value="qualityOfLiving">
-                                        <label class="form-check-label" for="qualityOfLiving" >I want to continue enjoying the quality of life I’m accustomed to</label>
+                                        <label class="form-check-label" for="qualityOfLiving" >{{ $t(`step2.quality`) }}</label>
                                         <div class="issue-details mt-2">
                                             <div ref="issues" class="form-check issue">
                                                 <input class="form-check-input" type="checkbox" v-model="form.issues.qualityOfLiving_1" value="" id="qualityOfLiving_1">
                                                 <label class="form-check-label" for="qualityOfLiving_1">
-                                                    With wildlife and amazing natural green spaces
+                                                    {{ $t(`step2.quality1`) }}
                                                 </label>
                                             </div>
                                             <div class="form-check issue">
                                                 <input class="form-check-input" type="checkbox" v-model="form.issues.qualityOfLiving_2" value="" id="qualityOfLiving_2">
                                                 <label class="form-check-label" for="qualityOfLiving_2">
-                                                    With the food I love remaining readily available and affordable
+                                                    {{ $t(`step2.quality2`) }}
                                                 </label>
                                             </div>
                                         </div>
@@ -221,18 +247,18 @@ $age[] = '70 and above';
 
                                     <div class="form-check issue-wrapper active">
                                         <input @change="openissue" type="checkbox" class="form-check-input" v-model="form.issues.future" id="future" value="future">
-                                        <label class="form-check-label" for="future" >I want to see a bright and prosperous future for Singapore</label>
+                                        <label class="form-check-label" for="future" >{{ $t(`step2.future`) }}</label>
                                         <div class="issue-details mt-2">
                                             <div class="form-check issue">
                                                 <input class="form-check-input" type="checkbox" v-model="form.issues.future_1" value="" id="future_1">
                                                 <label class="form-check-label" for="future_1">
-                                                    With confidence for my family’s future
+                                                {{ $t(`step2.future1`) }}
                                                 </label>
                                             </div>
                                             <div class="form-check issue">
                                                 <input class="form-check-input" type="checkbox" v-model="form.issues.future_2" value="" id="future_2">
                                                 <label class="form-check-label" for="future_2">
-                                                    With my home safe from sea level rise and climate change
+                                                {{ $t(`step2.future2`) }}
                                                 </label>
                                             </div>
                                         </div>
@@ -240,19 +266,19 @@ $age[] = '70 and above';
 
                                     <br>
                                     
-                                    <label for="custom_issue">Is there anything else you want to say?</label>
+                                    <label for="custom_issue">{{ $t(`step2.other`) }}</label>
                                     <textarea ref="custom_issue" class="mt-2 w-100 p-2" style="outline: 0" v-model="form.issues.custom_issue" maxlength="120" cols="30" rows="3" placeholder="Add your own message"></textarea>
-                                    <small>{{ 120 - form.issues.custom_issue.length }} characters left.</small>
+                                    <small>{{ 120 - form.issues.custom_issue.length }} {{ $t(`step2.char_left`) }}.</small>
                                     <p class="error" v-if="errors.issues">{{ errors.issues }}</p>
                                 </div>
                             </div>
 
                             <div class="">
                                 <button type="button" class="btn btn-lg btn-block btn-gradient text-white" @click="nextStep">
-                                    <span>NEXT</span>
+                                    <span>{{ $t(`next`) }}</span>
                                 </button>
                                 <a :disabled="loading" class="text-center d-block mt-3 text-white" @click="prevStep">
-                                    <span>Back to Previous Step</span>
+                                    <span>{{ $t(`back`) }}</span>
                                 </a>
                             </div>
                         </div>
@@ -267,7 +293,7 @@ $age[] = '70 and above';
                     <div class="row  align-items-center">
                         <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-0">
                             <p>
-                                <strong>Step 3</strong>
+                                <strong>{{ $t(`step3.step3`) }}</strong>
                                 <br>
                                 <span class="step-pills">
                                     <span class="step-pill" :class="{active: step >= 1}"></span>
@@ -276,33 +302,33 @@ $age[] = '70 and above';
                                     <span class="step-pill" :class="{active: step >= 4}"></span>
                                 </span>
                             </p>
-                            <h3>Your Sign Off</h3>
-                            <p>We just need some details from you, to take your voice forward. Don’t worry, we promise not to spam you.</p>
+                            <h3>{{ $t(`step3.line1`) }}</h3>
+                            <p>{{ $t(`step3.line2`) }}</p>
                             <div class="row my-3">
                                 <div class="col-md-7">
                                     <div class="form-group">
-                                        <label for="first_name">First Name <span>*</span></label>
-                                        <input ref="first_name" id="first_name" :disabled="loading" type="name" class="form-control" v-model="form.first_name" placeholder="Your first name">
+                                        <label for="first_name">{{ $t(`step3.first_name`) }} <span>*</span></label>
+                                        <input ref="first_name" id="first_name" :disabled="loading" type="name" class="form-control" v-model="form.first_name" :placeholder="$t(`step3.first_name`)">
                                         <p class="error my-2" v-if="errors.first_name">Please enter a valid first name.</p>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-group">
-                                        <label for="last_name">Last Name <span>*</span></label>
-                                        <input ref="last_name" id="last_name" :disabled="loading" type="name" class="form-control" v-model="form.last_name" placeholder="Your last name">
+                                        <label for="last_name">{{ $t(`step3.last_name`) }} <span>*</span></label>
+                                        <input ref="last_name" id="last_name" :disabled="loading" type="name" class="form-control" v-model="form.last_name" :placeholder="$t(`step3.last_name`)">
                                         <p class="error my-2" v-if="errors.last_name">Please enter a valid last name.</p>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="email">Your E-mail <span>*</span></label>
-                                        <input ref="email" id="email" :disabled="loading" type="email" class="form-control" v-model="form.email" placeholder="Your email">
+                                        <label for="email">{{ $t(`step3.email`) }} <span>*</span></label>
+                                        <input ref="email" id="email" :disabled="loading" type="email" class="form-control" v-model="form.email" :placeholder="$t(`step3.email`)">
                                         <p class="error my-2" v-show="errors.email">Please enter a valid email.</p>
                                     </div>
                                 </div>
                                 <div class="col-md-7">
                                     <div class="form-group">
-                                        <label for="phone">Your Mobile Number</label>
+                                        <label for="phone">{{ $t(`step3.mobile`) }}</label>
                                         <VuePhoneNumberInput ref="phone" id="phone" :no-flags=true :translations="{countrySelectorLabel: 'Country code', countrySelectorError: 'Choose a country', phoneNumberLabel: 'Phone number', example: 'Example : '}" :disabled="loading" v-model="form.phone" :default-country-code="form.phone_country" @update="onUpdatePhone" :key="form.country" color="#000000" valid-color="#000000" error-color="#000000" />
                                         <!-- <input :disabled="loading" type="number" class="form-control" v-model="form.phone" placeholder="Your mobile number"> -->
                                         <p class="error my-2" v-show="errors.phone">Please enter a valid phone.</p>
@@ -310,30 +336,30 @@ $age[] = '70 and above';
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-group">
-                                        <label for="age">Your Age <span>*</span></label>
+                                        <label for="age">{{ $t(`step3.age`) }} <span>*</span></label>
                                         <select ref="age" :disabled="loading" class="form-control bg-white" v-model="form.age"  id="age">
-                                            <option value="">- Age -</option>
+                                            <option value="">- {{ $t(`step3.age`) }} -</option>
                                             <?php foreach ($age as $a) { ?><option value="<?php echo $a ?>"><?php echo $a ?></option><?php } ?>
                                         </select>
                                         <p class="error my-2" v-show="errors.age">{{ errors.age }}</p>
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <label for="citizen">I am a...</label>
+                                    <label for="citizen">{{ $t(`step3.citizen`) }}</label>
                                     <div class="mb-2">
-                                        <button type="button" @click="updateCitizen('singaporean')"  class="btn text-white mr-2 no-hover" :class="{'btn-gradient': this.form.citizen == 'singaporean', 'btn-outline-gradient': this.form.citizen != 'singaporean'}">Singaporean/PR</button>
-                                        <button type="button" @click="updateCitizen('non-singaporean')" class="btn text-white no-hover" :class="{'btn-gradient': this.form.citizen == 'non-singaporean', 'btn-outline-gradient': this.form.citizen != 'non-singaporean'}">Non-Singaporean/PR</button>
+                                        <button type="button" @click="updateCitizen('singaporean')"  class="btn text-white mr-2 mb-2 no-hover" :class="{'btn-gradient': this.form.citizen == 'singaporean', 'btn-outline-gradient': this.form.citizen != 'singaporean'}">{{ $t(`step3.singaporean`) }}</button>
+                                        <button type="button" @click="updateCitizen('non-singaporean')" class="btn text-white no-hover" :class="{'btn-gradient': this.form.citizen == 'non-singaporean', 'btn-outline-gradient': this.form.citizen != 'non-singaporean'}">{{ $t(`step3.nonsingaporean`) }}</button>
                                     </div>
                                 </div>
                                 <div class="col-12" v-if="this.form.citizen == 'singaporean'">
                                     <div class="form-group">
-                                        <label for="postalcode">Postal Code </label>
-                                        <input ref="postalcode" id="postalcode" :disabled="loading" type="number" class="form-control" v-model="form.postalcode" placeholder="Your postal code">
+                                        <label for="postalcode">{{ $t(`step3.postalcode`) }}</label>
+                                        <input ref="postalcode" id="postalcode" :disabled="loading" type="number" class="form-control" v-model="form.postalcode" :placeholder="$t(`step3.postalcode`)">
                                         <p class="error my-2" v-show="errors.postalcode">Please enter a valid email.</p>
                                     </div>
                                 </div>
                                 <div class="col-12" v-if="this.form.citizen != 'singaporean'">
-                                    <label for="country">Residing in..</label>
+                                    <label for="country">{{ $t(`step3.country`) }}</label>
                                     <select ref="country" :disabled="loading" id="country" class="form-control bg-white" v-model="form.country">
                                         <option value="">-- Choose a country --</option>
                                         <option value="AF">Afghanistan</option> 
@@ -563,7 +589,8 @@ $age[] = '70 and above';
                                 <div>
                                     <input ref="check_pdpc" :disabled="loading" class="custom-control-input" type="checkbox" value="Yes" v-model="form.check_pdpc" id="check_pdpc">
                                     <label class="custom-control-label pt-1" for="check_pdpc">
-                                        By submitting this form, you agree to WWF’s <a href="https://www.wwf.sg/wwf_singapore/pdp_policy/" target="_blank">Privacy Policy</a> and Terms and Conditions. By accepting, you acknowledge and consent to WWF sending you such updates.
+                                        {{ $t(`step3.pdpa`) }}
+                                        <!-- By submitting this form, you agree to WWF’s <a href="https://www.wwf.sg/wwf_singapore/pdp_policy/" target="_blank">Privacy Policy</a> and Terms and Conditions. By accepting, you acknowledge and consent to WWF sending you such updates. -->
                                     </label>
                                 </div>
                                 
@@ -574,7 +601,7 @@ $age[] = '70 and above';
                             <p class="error mt-2 text-center" v-show="errors.random">{{ errors.random }}</p>
                             <div class="text-md-left mt-3">
                                 <button :disabled="loading" type="button" class="btn-block btn btn-lg btn-gradient text-white" @click="nextStep">
-                                    <span>MAKE MY VOICE COUNT</span>
+                                    <span>{{ $t(`step3.cta`) }}</span>
                                     <svg class="mb-1 feather feather-chevron-right" v-show="!loading" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
                                         <polyline points="9 18 15 12 9 6"></polyline>
                                     </svg>
@@ -621,9 +648,9 @@ $age[] = '70 and above';
 
                 <div id="step4" v-show="step == 4">
                     <div class="container">
-                        <h2>Thank you for contributing to this Open Letter</h2>
-                        <p>Wondering what will happen next? We’ve dropped you an email with more information about what you are supporting, and what we will do with your letter. </p>
-                        <p>Will you do one more thing? The louder our voice, the more our decision makers will pay attention. Help us get more people in Singapore to act! </p>
+                        <h2>{{ $t(`step4.line1`) }}</h2>
+                        <p>{{ $t(`step4.line2`) }}</p>
+                        <p>{{ $t(`step4.line3`) }}<p>
                         
                         <svg width="40" height="24" class="loading" v-show="loading" version="1.1" id="L4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">

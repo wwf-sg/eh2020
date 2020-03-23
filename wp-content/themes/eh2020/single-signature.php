@@ -1,4 +1,5 @@
 <?php get_template_part('/includes/header'); ?>
+<?php include 'partials/translations.php'; ?>
 
 <div id="primary">
     <?php
@@ -12,6 +13,7 @@
     $url = get_home_url() . "/?share_redirect";
 
     $img = 'https://www.earthhour.sg/wp-content/uploads/2020/03/openletter.png'; //get_field('image_url');
+    $locale = get_field('locale') ? get_field('locale') : 'en';
     $feelings = get_field('feelings');
     $health_1 = get_field('health_1');
     $health_2 = get_field('health_2');
@@ -78,32 +80,29 @@
 
     <!-- <img src="<?= wp_get_attachment_url(get_field('image_url')) ?>" alt="Image from <?= get_field('first_name') ?>" style="display: none;" /> -->
 
-
     <div class="container" style="max-width: 800px">
 
         <div class="openletter-wrapper">
             <div class="bg"></div>
             <div class="openletter w-100 bg-white text-dark" style="max-height: unset; min-height: auto;">
-                <p>Dear Singapore,</p>
-                <p>It’s been a rough start to 2020. Forest fires, health emergencies and more.</p>
+                <p><?= $translations[$locale]['ol']['line1'] ?></p>
+                <p><?= $translations[$locale]['ol']['line2'] ?></p>
 
+                <p><?= $translations[$locale]['ol']['line3'] ?> <span style="text-transform: lowercase;"><?= $feelings ?></span>.</p>
+                <p><?= $translations[$locale]['ol']['line4'] ?></p>
+                <p><?= $translations[$locale]['ol']['line5'] ?></p>
+                <p><?= $translations[$locale]['ol']['line6'] ?></p>
 
-                <p>I’m feeling <span style="text-transform: lowercase;"><?= $feelings ?></span>.</p>
-
-
-                <p>I’m not used to worrying so much, and lately I’ve started to wonder if we are taking everything we have here in Singapore for granted.</p>
-                <p>Nature is changing. We have lost much of the world’s biodiversity in the past 40 years. Climate change has become a matter of survival. Our demands on the planet are now coming back to us, and this is shaping how I live.</p>
-                <p>So what will the future look like for me? Will I still be able to:</p>
                 <ul>
                     <?php if ($health_1 || $health_2) : ?>
                         <li>
-                            <strong>Enjoy good health</strong>
+                            <strong><?= $translations[$locale]['ol']['health'] ?></strong>
                             <ul>
                                 <?php if ($health_1) { ?>
-                                    <li>With the air I breathe being free from haze?</li>
+                                    <li><?= $translations[$locale]['ol']['health1'] ?></li>
                                 <?php } ?>
                                 <?php if ($health_2) { ?>
-                                    <li>Will the food I eat be free of microplastics?</li>
+                                    <li><?= $translations[$locale]['ol']['health2'] ?></li>
                                 <?php } ?>
                             </ul>
                         </li>
@@ -111,13 +110,13 @@
 
                     <?php if ($qualityOfLiving_1 || $qualityOfLiving_2) : ?>
                         <li>
-                            <strong>Maintain my quality of life </strong>
+                            <strong><?= $translations[$locale]['ol']['quality'] ?></strong>
                             <ul>
                                 <?php if ($qualityOfLiving_1) { ?>
-                                    <li>Will we still have amazing wildlife and natural green spaces?</li>
+                                    <li><?= $translations[$locale]['ol']['quality1'] ?></li>
                                 <?php } ?>
                                 <?php if ($qualityOfLiving_2) { ?>
-                                    <li>Will all of the food I love be readily available and affordable?</li>
+                                    <li><?= $translations[$locale]['ol']['quality2'] ?></li>
                                 <?php } ?>
                             </ul>
                         </li>
@@ -125,13 +124,13 @@
 
                     <?php if ($future_1 || $future_2) : ?>
                         <li>
-                            <strong>Prosper</strong>
+                            <strong><?= $translations[$locale]['ol']['health'] ?></strong>
                             <ul>
                                 <?php if ($future_1) { ?>
-                                    <li>Will I feel confident about my family’s future?</li>
+                                    <li><?= $translations[$locale]['ol']['health1'] ?></li>
                                 <?php } ?>
                                 <?php if ($future_2) { ?>
-                                    <li>Will I know that my home is safe from sea level rise and climate change?</li>
+                                    <li><?= $translations[$locale]['ol']['health2'] ?></li>
                                 <?php } ?>
                             </ul>
                         </li>
