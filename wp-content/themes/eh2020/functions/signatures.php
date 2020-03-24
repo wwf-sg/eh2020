@@ -292,12 +292,12 @@ add_action('wp_ajax_nopriv_getSignatureCount', 'getSignatureCount');
 function addActiveCampaign($signature)
 {
     // By default, this sample code is designed to get the result from your ActiveCampaign installation and print out the result
-    // $url = 'https://wwfsingapore297.api-us1.com';
-    // $api_key = 'd0f002f5c5ba903b3d74478a2952ca91acf04c5d72b4c75702a8051fc30296d62c3aec29';
-    // $list_id = '96';
-    $url = 'https://wwf-worldwidefundfornaturesingaporelimited1552298160.api-us1.com';
-    $api_key = '15921cac81a99f6986315e1921a0882febb222405c7313e41a523ef16d289327ff2ab62d';
-    $list_id = '1';
+    $url = 'https://wwfsingapore297.api-us1.com';
+    $api_key = 'd0f002f5c5ba903b3d74478a2952ca91acf04c5d72b4c75702a8051fc30296d62c3aec29';
+    $list_id = '96';
+    // $url = 'https://wwf-worldwidefundfornaturesingaporelimited1552298160.api-us1.com';
+    // $api_key = '15921cac81a99f6986315e1921a0882febb222405c7313e41a523ef16d289327ff2ab62d';
+    // $list_id = '1';
     $tags = array_merge(['OL', 'OnlineLead'], [$signature['utm_campaign'], $signature['utm_source'], $signature['utm_medium'], $signature['utm_content'], $signature['utm_term'],]);
     if ($signature['health_1']) array_push($tags, 'OL_health', 'OL_haze');
     if ($signature['health_2']) array_push($tags, 'OL_health', 'OL_plastic');
