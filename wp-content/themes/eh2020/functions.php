@@ -201,3 +201,14 @@ function w2gm_ty_email_callback2($listing)
 
   return $emailSuccess;
 }
+
+
+add_action('wp_head', 'remove_one_wpseo_og', 1);
+
+function remove_one_wpseo_og()
+{
+  if (is_singular('signature')) {
+    remove_action('wpseo_head', array($GLOBALS['wpseo_og'], 'opengraph'), 30);
+  }
+  /* Use a second if statement here when needed */
+}
