@@ -12,7 +12,7 @@ $url = get_home_url() . "/?share_redirect";
 
 $img = 'https://www.earthhour.sg/wp-content/uploads/2020/03/openletter.png'; //get_field('image_url');
 $locale = get_field('locale') ? get_field('locale') : 'en';
-$feelings = "Hopeful"; // get_field('feelings');
+$feelings = get_field('feelings');
 $health_1 = get_field('health_1');
 $health_2 = get_field('health_2');
 $qualityOfLiving_1 = get_field('qualityOfLiving_1');
@@ -26,10 +26,87 @@ switch ($country) {
     default:
         $fb_title = $title;
         $fb_desc = $desc;
-        $tw_title = $title;
+        $tw_title = "#EH2020, the time to shape our future is now.";
         $tw_desc = $desc;
         break;
 }
+
+// var_dump($feelings);
+
+function getFeelings($feelings, $translations, $locale)
+{
+    if (!is_array($feelings)) {
+        $feelings = json_decode($feelings);
+    }
+
+    $count = 0;
+    $out = "";
+    $selected = [];
+
+    foreach ($feelings as $name => $select_check) {
+        if ($select_check == 'true') {
+            array_push($selected, $name);
+        }
+    }
+
+    foreach ($selected as $index => $feeling) {
+        $count += 1;
+
+        if (count($selected) == 1) {
+            if ($feeling === "Anxious") {
+                $out .= $translations[$locale]['ol'][$feeling];
+            } else if ($feeling === "Hopeful") {
+                $out .= $translations[$locale]['ol'][$feeling];
+            } else {
+                $out .= $feeling;
+            }
+        }
+
+        if (count($selected) == 2) {
+            if ($index == 1) {
+                if ($feeling === "Anxious") {
+                    $out .= $translations[$locale]['ol'][$feeling];
+                } else if ($feeling === "Hopeful") {
+                    $out .= $translations[$locale]['ol'][$feeling];
+                } else {
+                    $out .= $feeling;
+                }
+            } else {
+                if ($feeling === "Anxious") {
+                    $out .= $translations[$locale]['ol'][$feeling];
+                } else if ($feeling === "Hopeful") {
+                    $out .= $translations[$locale]['ol'][$feeling];
+                } else {
+                    $out .= $feeling;
+                }
+                $out .= " " . $translations[$locale]['ol']['and'] . " ";
+            }
+        }
+
+        if (count($selected) >= 3) {
+            if ($feeling === "Anxious") {
+                $out .= $translations[$locale]['ol'][$feeling];
+            } else if ($feeling === "Hopeful") {
+                $out .= $translations[$locale]['ol'][$feeling];
+            } else {
+                $out .= $feeling;
+            }
+
+            if ($index !== count($selected) - 2 && $index !== count($selected) - 1)
+                $out .= ", ";
+
+            if ($index == count($selected) - 2)
+                $out .= " " . $translations[$locale]['ol']['and'] . " ";
+        }
+    }
+
+    // if none of them are slected return ...
+    if ($count == 0) $out = "..";
+
+    return $out;
+}
+
+
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -76,7 +153,7 @@ switch ($country) {
 
     <meta name="twitter:domain" content="earthhour.sg">
 
-    <title>Earth Hour 2020 - Signature</title>
+    <title><?= $user ?> - Open Letter</title>
 
     <?php wp_head(); ?>
     <?php if (defined('PROD') && PROD && !isset($_GET['test'])) : ?>
@@ -141,7 +218,7 @@ switch ($country) {
                             <p><?= $translations[$locale]['ol']['line1'] ?></p>
                             <p><?= $translations[$locale]['ol']['line2'] ?></p>
 
-                            <p><?= $translations[$locale]['ol']['line3'] ?> <span style="text-transform: lowercase;"><?= $feelings ?></span>.</p>
+                            <p><?= $translations[$locale]['ol']['line3'] ?> <span style="text-transform: lowercase;"><?= getFeelings($feelings, $translations, $locale); ?></span>.</p>
                             <p><?= $translations[$locale]['ol']['line4'] ?></p>
                             <p><?= $translations[$locale]['ol']['line5'] ?></p>
                             <p><?= $translations[$locale]['ol']['line6'] ?></p>
@@ -190,7 +267,7 @@ switch ($country) {
                                 <?php endif; ?>
 
                                 <?php if ($custom_issue) { ?>
-                                    <li><?= $custom_issue ?></li>
+                                    <li><strong><?= $custom_issue ?></strong></li>
                                 <?php } ?>
                             </ul>
                             <p><?= $translations[$locale]['ol']['line7'] ?></p>
@@ -201,7 +278,7 @@ switch ($country) {
                     </div>
 
 
-                    <p class="text-center mt-5"><a class="btn btn-gradient" href="<?= $url ?>">Submit your Open Letter</a></p>
+                    <p class="text-center mt-5"><a class="btn btn-gradient text-white" href="<?= $url ?>">Write your open letter</a></p>
                 </div>
 
                 <?php // endwhile; 

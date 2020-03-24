@@ -119,7 +119,7 @@ function getSignature()
             'qualityOfLiving_2' => $_POST['data']['form']['issues']['qualityOfLiving_2'],
             'custom_issue' => $_POST['data']['form']['issues']['custom_issue'],
             'check_pdpc' => $_POST['data']['form']['check_pdpc'],
-            'locale' => $_POST['data']['form']['locale'],
+            'locale' => $_POST['data']['locale'],
             'share_url' => $_POST['data']['shareUrl'],
             'image_url' => $_POST['data']['shareImage'],
             'utm_campaign' => $_POST['data']['form']['utm_campaign'],
@@ -429,7 +429,7 @@ function sendEmail_sg($user)
 
     $custEmail = $user['email'];
     $custFname = $user['first_name'];
-    $plastic = $user['plastic_name'];
+    $url = get_permalink($user['s_id']);
     $content = '';
 
     if (empty($custEmail)) {
@@ -447,7 +447,7 @@ function sendEmail_sg($user)
     $replace = array();
     $replace['content'] = $content;
     $replace['user_name'] = trim($custFname);
-    $replace['plastic_name'] = $plastic;
+    $replace['url'] = $url;
 
     foreach ($replace as $key => $value) {
         $template = str_replace('{{ ' . $key . ' }}', $value, $template);

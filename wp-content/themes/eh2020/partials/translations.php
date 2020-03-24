@@ -100,9 +100,9 @@ $translations = [
         "above" => "以上",
         "step0" => [
             "line1" => "地球紧急公开信",
-            "line2" => "大自然和它为我们提供的粮食资源保障、清洁空气、水源和健康都处于危险之中。",
-            "line3" => "2020年是各国政府采取行动，以确保我们在新加坡和地球上的未来安全的重要年份。",
-            "line4" => "附上您的意见，写一封致新加坡的公开信。 协助您社区、工作场所和国家的决策者，做出保护您想要看到的未来的决定。",
+            "line2" => "大自然和它为我们提供的粮食资源保障、清洁空气、水源和健康，但这些都处于危险机之中。",
+            "line3" => "2020年是各国政府采取行动，以确保我们在新加坡和地球上的未来与安全慰的一个重要年份。",
+            "line4" => "附上您的意见，写一封致新加坡的公开信。 协助您的社区、工作场所和国家的决策者，做出保护您想要看到的未来的与决定。",
             "next_text" => "现在写下您的未来"
         ],
         "step1" => [
@@ -169,7 +169,7 @@ $translations = [
             "health1" => "我呼吸的空气会没有雾霾吗？",
             "health2" => "我吃的食物会不含微塑料吗？",
             "quality" => "保持我的生活质量",
-            "quality1" => "",
+            "quality1" => "有天然绿地供大家享受",
             "quality2" => "我还能随时享受和负担得起我所喜欢的食物吗？",
             "future" => "生活繁荣",
             "future1" => "我能确保我的家是安全的，不受海平面上升和气候变化的影响吗？",
@@ -207,12 +207,12 @@ $translations = [
             "health1" => "Dengan udara yang bebas dari jerebu",
             "health2" => "Dengan makanan yang bebas daripada mikroplastik",
             "quality" => "Saya mahu terus mempunyai kualiti kehidupan yang baik.",
-            "quality1" => "Dengan ruangan hijau semulajadiyang terjaga",
+            "quality1" => "Dengan ruangan hijau semulajadi yang terjaga",
             "quality2" => "Dengan pilihan makanan yang mudah didapati dalam kadar harga yang berpatutan",
             "future" => "Saya ingin melihat masa depan yang cerah dan makmur untuk Singapura",
             "future1" => "Dengan rumah yang terselamat dari kenaikan paras laut dan perubahan iklim",
             "future2" => "Dengan keyakinan bahawa masa depan keluarga saya terjamin",
-            "other" => "Terdapatapa-apa lagi yang anda ingin katakan?",
+            "other" => "Terdapat apa-apa lagi yang anda ingin katakan?",
             "char_left" => "aksara yang tinggal"
         ],
         "step3" => [
@@ -250,21 +250,20 @@ $translations = [
             "Hopeful" => "berharapan",
             "and" => "dan",
             "line4" => "Dahulu, saya tidak pernah berasa terlalu bimbang. Tetapi kini, saya mula mempersoalkan sama ada kita telah mengambil kesempatan ke atas keselesaan yang tersedia ada di Singapura.",
-            "line5" => "Alam semulajadi sedang berubah. Kita telah kehilangan banyak biodiversiti dunia dalam tempoh 40 tahun ini. Perubahan iklim telah menjadi satu cabaran dalam perjuangan untuk terus hidup. Tekanan yang kita letakkan kepada duniaini, kini kembali kepada kita, dan ia telah membentuk cara kehidupan saya.",
+            "line5" => "Alam semulajadi sedang berubah. Kita telah kehilangan banyak biodiversiti dunia dalam tempoh 40 tahun ini. Perubahan iklim telah menjadi satu cabaran dalam perjuangan untuk terus hidup. Tekanan yang kita letakkan kepada dunia ini, kini kembali kepada kita, dan ia telah membentuk cara kehidupan saya.",
             "line6" => "Jadi, bagaimanakah kelihatan masa depan saya? Adakah saya masih dapat:",
             "health" => "Menikmati kesihatan yang baik",
-            "health1" => "Adakah udara yang saya bebas daripada jerebu?",
-            "health2" => "Adakah makanan saya bebas daripada mikroplastik?
-            ",
+            "health1" => "Adakah udara saya bebas daripada jerebu?",
+            "health2" => "Adakah makanan saya bebas daripada mikroplastik?",
             "quality" => "Mengekalkan kualiti hidup saya",
-            "quality1" => "Adakah kitai masih dapat menikmati ruangan hijau semulajadi??",
+            "quality1" => "Adakah kita masih dapat menikmati ruangan hijau semulajadi?",
             "quality2" => "Adakah semua pilihan makanan saya mudah didapati dalam kadar harga yang berpatutan?
             ",
             "future" => "Kemakmuran",
             "future1" => "Adakah saya pasti bahawa rumah saya terselamat dari kenaikan paras laut & perubahan iklim?",
             "future2" => "Adakah saya yakin dengan masa depan keluarga saya?",
-            "line7" => "Inilah tahun untuk mengambil tindakan. Mari kita bawa kembali alam semulajadi yang telah kita kehilangan",
-            "line8" => "Dengan surat ini, saya meminta para pembuat keputusan - pemimpin politik Singapura, pihak peniaga, sekolah dan institusi  - untuk berjuang bagi masa depan yang lebih terjamin. Kami ingin perubahan sistemik di dalam undang-undang dasar, di tempat kerja dan juga di rumah kami kerana ini akan menyumbang kepada pemulihan alam semulajadi dan menghentikan kebinasaannya. Apabila kita berbuat sedemikian, kita mampu melindungi segala kebaikan yang diberikan oleh alam semulajadi,iaitu makanan, sumber air dan udara bersih yang dapat menjamin masa depan yang lebih cerah untuk semua.",
+            "line7" => "Inilah tahun untuk mengambil tindakan. Mari kita bawa kembali alam semulajadi yang telah kita kehilangan.",
+            "line8" => "Dengan surat ini, saya meminta para pembuat keputusan - pemimpin politik Singapura, pihak peniaga, sekolah dan institusi  - untuk berjuang bagi masa depan yang lebih terjamin. Kami ingin perubahan sistemik di dalam undang-undang dasar, di tempat kerja dan juga di rumah kami kerana ini akan menyumbang kepada pemulihan alam semulajadi dan menghentikan kebinasaannya. Apabila kita berbuat sedemikian, kita mampu melindungi segala kebaikan yang diberikan oleh alam semulajadi, iaitu makanan, sumber air dan udara bersih yang dapat menjamin masa depan yang lebih cerah untuk semua.",
             "signature" => "Yang ikhlas, ",
         ]
     ],
@@ -291,17 +290,17 @@ $translations = [
         "step2" => [
             "step2" => "செய்முறை 2",
             "line1" => "இயற்கை மாறுகிறது. இது நாம் எப்படி வாழ்கிறோம் என்பதை வடிவமைக்கிறது.",
-            "line2" => "2030 இல் நீங்கள் எதை எதிர்பார்க்கிறீர்கள்?",
+            "line2" => "2030’யில் நீங்கள் எதை எதிர்பார்க்கிறீர்கள்?",
             "health" => "நான் அனுபவித்த நல்ல ஆரோக்கியத்தை பராமரிக்க விரும்புகிறேன்.",
-            "health1" => "நான் சுவாசிக்கும் காற்று புகைப்பனியிலிருந்து விடுப்பட்டது",
-            "health2" => "நான் சாப்பிடும் உணவு மைக்ரோபிளாஸ்டிக்ஸ் இல்லாதது",
+            "health1" => "நான் சுவாசிக்கும் காற்று புகைப்பனியிலிருந்து விடுப்பட்டதாக",
+            "health2" => "நான் சாப்பிடும் உணவு மைக்ரோபிளாஸ்டிக்ஸ் இல்லாமல்.",
             "quality" => "சிங்கப்பூரில் பழக்கமாகிவிட்ட வாழ்க்கைத் தரத்தை நான் தொடர்ந்து அனுபவிக்க விரும்புகிறேன்.",
             "quality1" => "அற்புதமான வனவிலங்குகள் மற்றும் இயற்கை பசுமையான இடங்களுடன்",
             "quality2" => "நான் விரும்பும் உணவு அனைத்தும் உடனடியாகவும் மலிவாகவும் கிடைக்க",
             "future" => "சிங்கப்பூருக்கு பிரகாசமான மற்றும் வளமான எதிர்காலத்தைக் காண விரும்புகிறேன்",
             "future1" => "கடல் மட்ட உயர்வு மற்றும் பருவநிலை மாற்றத்திலிருந்து எனது வீடு பாதுகாப்பாக இருக்க.",
             "future2" => "எனது குடும்பத்தின் எதிர்காலத்திற்கான நம்பிக்கை",
-            "other" => "நீங்கள் சொல்ல விரும்பும் வேறு ஏதாவது இருக்கிறதா?",
+            "other" => "நீங்கள் வேறு ஏதாவது சொல்ல விரும்புகிறீர்களா?",
             "char_left" => "விடுபட்ட எழுத்துக்கள்"
         ],
         "step3" => [
@@ -318,20 +317,16 @@ $translations = [
             "nonsingaporean" => "சிங்கப்பூர் அல்லாத குடிமகன் / நிரந்தர வாசி",
             "postalcode" => "அஞ்சல் குறியீடு",
             "country" => "நாடு",
-            "pdpa" => "இந்த படிவத்தை சமர்ப்பிப்பதன் மூலம் நீங்கள் WWF இன் தனியுரிமைக் கொள்கை, விதிமுறைகள் மற்றும் நிபந்தனைகளை ஒப்புக்கொள்கிறீர்கள். இதை ஏற்றுக்கொள்வதன் மூலம் WWF உங்களுக்கு இதுபோன்ற புதுப்பிப்புகளை அனுப்புவதை ஒப்புக்கொள்கிறீர்கள். (<a target='_blank' href='http://wwf.sg/pdpa'>wwf.sg/pdpa</a>)",
+            "pdpa" => "இந்த படிவத்தை சமர்ப்பிப்பதன் மூலம் நீங்கள் WWF’யின் தனியுரிமைக் கொள்கை, விதிமுறைகள் மற்றும் நிபந்தனைகளை ஒப்புக்கொள்கிறீர்கள். இதை ஏற்றுக்கொள்வதன் மூலம் WWF உங்களுக்கு இதுபோன்ற புதுப்பிப்புகளை அனுப்புவதை ஒப்புக்கொள்கிறீர்கள். (<a target='_blank' href='http://wwf.sg/pdpa'>wwf.sg/pdpa</a>)",
             "cta" => "எனது குரலை எண்ணுங்கள்"
         ],
         "step4" => [
             "step4" => "செய்முறை 4",
             "line1" => "இந்த திறந்த கடிதத்திற்கு பங்களித்ததற்கு நன்றி",
-            "line2" => "
-            அடுத்து என்ன நடக்கும் என்று யோசிக்கிறீர்களா? நீங்கள் எதை ஆதரிக்கிறீர்கள், உங்கள் கடிதத்துடன் நாங்கள் என்ன செய்வோம் என்பது பற்றிய கூடுதல் தகவல்களைக் கொண்ட மின்னஞ்சலை நாங்கள் உங்களுக்கு அனுப்பியுள்ளோம்.
-            ",
-            "line3" => "
-            இன்னும் ஒர் உதவி செய்வீர்களா? எங்கள் குரல் சத்தமாக, எங்கள் முடிவெடுப்பவர்கள் அதிக கவனம் செலுத்துவார்கள். சிங்கப்பூரில் அதிகமானவர்களைச் செயல்பட எங்களுக்கு உதவுங்கள்!
-            ",
+            "line2" => "அடுத்து என்ன நடக்கும் என்று யோசிக்கிறீர்களா? நீங்கள் எதை ஆதரிக்கிறீர்கள், உங்கள் கடிதத்துடன் நாங்கள் என்ன செய்வோம் என்பது பற்றிய கூடுதல் தகவல்களைக் கொண்ட மின்னஞ்சலை நாங்கள் உங்களுக்கு அனுப்பியுள்ளோம்.",
+            "line3" => "இன்னும் ஒர் உதவி செய்வீர்களா? எங்கள் குரல் சத்தமாக கேட்டால், எங்கள் முடிவெடுப்பவர்கள் அதிக கவனம் செலுத்துவார்கள்.ஆகையால் சிங்கப்பூரில் அதிகமானவர்களை இதில் செயல்பட எங்களுக்கு உதவுங்கள்!",
             "line4" => "உங்கள் கடிதத்தை சேவ் செய்யுங்கள்",
-            "line5" => "பகிரவும்",
+            "line5" => "மற்றவர்களுடன் பகிரவும்",
             "line6" => "எங்கள் பின்தொடர்தல் மின்னஞ்சல்கள் அனைத்தும் ஆங்கிலத்தில் இருக்கும் என்பதை நினைவில் கொள்க.",
         ],
         "ol" => [

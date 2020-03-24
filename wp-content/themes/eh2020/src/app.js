@@ -323,7 +323,10 @@ var app = new Vue({
       const feelings = { ...this.form.feelings };
       let feel = this.$refs.custom_feeling.value.trim();
       if (feel.match(/[^a-zA-Z]/g)) {
-        // feel = feel.replace(/[0-9]/g, "");
+        /**
+         * @todo fix this
+         */
+        // feel = feel.replace(/[0-9]._,/g, "");
       }
       if (feel != "") {
         feelings[feel] = true;
@@ -441,7 +444,7 @@ var app = new Vue({
           if (
             !v8n()
               .string()
-              .minLength(3)
+              .minLength(1)
               .test(this.form.first_name)
           ) {
             this.errors.first_name = "Please enter a valid first name";

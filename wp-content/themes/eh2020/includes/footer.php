@@ -81,12 +81,12 @@
         <p class="card-text mt-5 mb-3" style="color:black;">Supporting Radio Station</p>
         <img class="card-img-top mx-auto" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/onefm.jpg" alt="onefm" />
       </div>
-      <div class="col-12 col-lg">
+      <!-- <div class="col-12 col-lg">
         <p class="card-text mt-5 mb-3" style="color:black;">Carbon Neutral Partners</p>
         <img class="card-img-top mx-auto mt-lg-4" src="<?php echo get_stylesheet_directory_uri() ?>/imgs/Enviromental Solutions.png" alt="Enviromental Solutions" />
-      </div>
+      </div> -->
     </div>
-    <!-- <div class="row">
+    <div class="row">
       <div class="col-12 col-lg-6 offset-lg-3">
         <p class="card-text mt-5 mb-3" style="color:black;">Carbon Neutral Partners</p>
         <div class="row">
@@ -98,7 +98,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
 </section>
 
 <footer id="colophon" class="site-footer" style="background-color: #fff !important">
