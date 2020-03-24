@@ -592,8 +592,8 @@ $ln_share_url = "https://www.linkedin.com/shareArticle?mini=true&title=" . urlen
                             <div :disabled="loading"  class="text-left custom-control custom-checkbox mx-2">
                                 <div>
                                     <input ref="check_pdpc" :disabled="loading" class="custom-control-input" type="checkbox" value="Yes" v-model="form.check_pdpc" id="check_pdpc">
-                                    <label class="custom-control-label pt-1" for="check_pdpc">
-                                        {{ $t(`step3.pdpa`) }}
+                                    <label class="custom-control-label pt-1" for="check_pdpc" v-html="$t(`step3.pdpa`)">
+                                        <!-- {{ $t(`step3.pdpa`) }} -->
                                         <!-- By submitting this form, you agree to WWF’s <a href="https://www.wwf.sg/wwf_singapore/pdp_policy/" target="_blank">Privacy Policy</a> and Terms and Conditions. By accepting, you acknowledge and consent to WWF sending you such updates. -->
                                     </label>
                                 </div>

@@ -55,7 +55,7 @@ $translations = [
             "nonsingaporean" => "Non-Singaporean / PR",
             "postalcode" => "Your Postal Code",
             "country" => "Residing in...",
-            "pdpa" => "By submitting this form you agree to WWF’s Privacy Policy and Terms and Conditions. By accepting you acknowledge and consent to WWF sending you such updates.",
+            "pdpa" => "By submitting this form you agree to WWF’s <a target='_blank' href='http://wwf.sg/pdpa'>Privacy Policy<a> and Terms and Conditions. By accepting you acknowledge and consent to WWF sending you such updates.",
             "cta" => "MAKE MY VOICE COUNT"
         ],
         "step4" => [
