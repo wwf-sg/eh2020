@@ -55,7 +55,7 @@ $translations = [
             "nonsingaporean" => "Non-Singaporean / PR",
             "postalcode" => "Your Postal Code",
             "country" => "Residing in...",
-            "pdpa" => "By submitting this form you agree to WWF’s <a target='_blank' href='http://wwf.sg/pdpa'>Privacy Policy<a> and Terms and Conditions. By accepting you acknowledge and consent to WWF sending you such updates.",
+            "pdpa" => "By submitting this form you agree to WWF’s <a target='_blank' href='http://wwf.sg/pdpa'>Privacy Policy</a> and Terms and Conditions. By accepting you acknowledge and consent to WWF sending you such updates.",
             "cta" => "MAKE MY VOICE COUNT"
         ],
         "step4" => [
@@ -142,7 +142,7 @@ $translations = [
             "nonsingaporean" => "其他",
             "postalcode" => "邮政编码",
             "country" => "国家",
-            "pdpa" => "依据个人资料保护法令，我在此同意并承诺世界自然基金会（新加坡）可以收集，保存，使用并透露我所提供的个人资料来举办行销和筹款的关于活动 (wwf.sg/pdpa)。",
+            "pdpa" => "依据个人资料保护法令，我在此同意并承诺世界自然基金会（新加坡）可以收集，保存，使用并透露我所提供的个人资料来举办行销和筹款的关于活动 (<a target='_blank' href='http://wwf.sg/pdpa'>wwf.sg/pdpa</a>)。",
             "cta" => "让我的声音很重要"
         ],
         "step4" => [
@@ -229,7 +229,7 @@ $translations = [
             "nonsingaporean" => "Bukan Warga Singapura / Penduduk Tetap",
             "postalcode" => "Poskod",
             "country" => "negara",
-            "pdpa" => "Dengan mengemukakan borang ini, anda bersetuju dengan Dasar Privasi dan Terma dan Syarat WWF.  Sekiranya anda menerima, anda secara langsung mengakui dan bersetuju untuk menerima sebarang kemas kini dari WWF.",
+            "pdpa" => "Dengan mengemukakan borang ini, anda bersetuju dengan Dasar Privasi dan Terma dan Syarat WWF.  Sekiranya anda menerima, anda secara langsung mengakui dan bersetuju untuk menerima sebarang kemas kini dari WWF. (<a target='_blank' href='http://wwf.sg/pdpa'>wwf.sg/pdpa</a>)",
             "cta" => "buatkan suara saya"
         ],
         "step4" => [
@@ -318,7 +318,7 @@ $translations = [
             "nonsingaporean" => "சிங்கப்பூர் அல்லாத குடிமகன் / நிரந்தர வாசி",
             "postalcode" => "அஞ்சல் குறியீடு",
             "country" => "நாடு",
-            "pdpa" => "இந்த படிவத்தை சமர்ப்பிப்பதன் மூலம் நீங்கள் WWF இன் தனியுரிமைக் கொள்கை, விதிமுறைகள் மற்றும் நிபந்தனைகளை ஒப்புக்கொள்கிறீர்கள். இதை ஏற்றுக்கொள்வதன் மூலம் WWF உங்களுக்கு இதுபோன்ற புதுப்பிப்புகளை அனுப்புவதை ஒப்புக்கொள்கிறீர்கள்.",
+            "pdpa" => "இந்த படிவத்தை சமர்ப்பிப்பதன் மூலம் நீங்கள் WWF இன் தனியுரிமைக் கொள்கை, விதிமுறைகள் மற்றும் நிபந்தனைகளை ஒப்புக்கொள்கிறீர்கள். இதை ஏற்றுக்கொள்வதன் மூலம் WWF உங்களுக்கு இதுபோன்ற புதுப்பிப்புகளை அனுப்புவதை ஒப்புக்கொள்கிறீர்கள். (<a target='_blank' href='http://wwf.sg/pdpa'>wwf.sg/pdpa</a>)",
             "cta" => "எனது குரலை எண்ணுங்கள்"
         ],
         "step4" => [

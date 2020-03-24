@@ -12,8 +12,8 @@
 include "translations.php";
 
 $title = "#DearSingapore, the time to shape our future is now.";
-$description = "Sign this open letter to Singapore\'s decision makers and join our fight for a better future.";
-$share_text = "#DearSingapore, the time to shape our future is now. Support this open letter to Singapore\'s decision makers and join our fight for a better future.";
+$description = "Sign this open letter to Singapore's decision makers and join our fight for a better future.";
+$share_text = "#DearSingapore, the time to shape our future is now. Support this open letter to Singapore's decision makers and join our fight for a better future.";
 
 $mb_share_text = "#DearSingapore, our city is truly incredible. The resilience it has shown in the face of a pandemic like COVID-19 has been exemplary for the entire world. If we can come together for a health emergency, we can do the same for the planetary emergency. Join our fight for a better future by writing an open letter to Singapore's decision makers.";
 // $mb_share_text = '';

@@ -159,7 +159,7 @@ window.v = v8n;
 v8n.extend({
   email: expected => {
     return function(value) {
-      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,10})+$/.test(value)) {
         return true;
       }
       return false;
