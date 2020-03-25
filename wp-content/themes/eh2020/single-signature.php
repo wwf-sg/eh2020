@@ -7,7 +7,7 @@
 // $country = strtolower(get_field('country'));
 
 $title = "#DearSingapore, the time to shape our future is now.";
-$desc = "Sign this open letter to Singapore's decision makers and join our fight for a better future.";
+$desc = "Sign this open letter to Singapore's decision makers and join our fight for a better future. #EH2020";
 $url = get_home_url() . "/?share_redirect";
 
 $img = 'https://www.earthhour.sg/wp-content/uploads/2020/03/openletter.png'; //get_field('image_url');
@@ -22,14 +22,11 @@ $future_2 = get_field('future_2');
 $custom_issue = get_field('custom_issue');
 $user = get_field('first_name') . ' ' . get_field('last_name');
 
-switch ($country) {
-    default:
-        $fb_title = $title;
-        $fb_desc = $desc;
-        $tw_title = "#EH2020, the time to shape our future is now.";
-        $tw_desc = $desc;
-        break;
-}
+$fb_title = $title;
+$fb_desc = $desc;
+$tw_title = $user . "'s Open Letter to Singapore";
+$tw_desc = $desc;
+
 
 // var_dump($feelings);
 
@@ -113,7 +110,10 @@ function getFeelings($feelings, $translations, $locale)
 
 <head>
     <?php get_template_part('/includes/meta'); ?>
+
     <!-- For Google -->
+
+    <title><?= $user ?>'s Open Letter to Singapore</title>
 
     <meta name="description" content="<?= $desc ?>">
 
@@ -153,9 +153,11 @@ function getFeelings($feelings, $translations, $locale)
 
     <meta name="twitter:domain" content="earthhour.sg">
 
-    <title><?= $user ?> - Open Letter</title>
 
     <?php wp_head(); ?>
+
+    <title><?= $user ?>'s Open Letter to Singapore</title>
+
     <?php if (defined('PROD') && PROD && !isset($_GET['test'])) : ?>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114909992-13"></script>

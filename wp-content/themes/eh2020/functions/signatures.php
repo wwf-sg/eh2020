@@ -135,7 +135,7 @@ function getSignature()
         $signature_count = _getSignatureCount($addedPost['country']);
 
         $signature = array(
-            'post_title'    => $addedPost['first_name'],
+            'post_title'    => $addedPost['first_name'] . "'s Open Letter to Singapore",
             'post_status'   => 'publish',
             'post_type' => 'signature',
             'post_name' => md5($_POST['data']['form']['first_name'] . $_POST['data']['form']['country'] . '-' . time())

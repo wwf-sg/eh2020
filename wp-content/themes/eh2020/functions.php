@@ -205,10 +205,15 @@ function w2gm_ty_email_callback2($listing)
 
 add_action('wp_head', 'remove_one_wpseo_og', 1);
 
+remove_action('wp_head', '_wp_render_title_tag', 1);
+
 function remove_one_wpseo_og()
 {
   if (is_singular('signature')) {
+
     remove_action('wpseo_head', array($GLOBALS['wpseo_og'], 'opengraph'), 30);
+    remove_action('wpseo_head', array(WPSEO_Twitter, 'get_instance'), 40);
+    add_filter('wpseo_json_ld_output', '__return_false');
   }
   /* Use a second if statement here when needed */
 }
