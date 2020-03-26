@@ -177,6 +177,7 @@
 
     <!-- Form -->
     <div class="entry-content">
+			<a id="open-letter"></a>
         <div id="voice" class="alignfull">
             <?php include(__DIR__ . '/../partials/voice.php'); ?>
 
