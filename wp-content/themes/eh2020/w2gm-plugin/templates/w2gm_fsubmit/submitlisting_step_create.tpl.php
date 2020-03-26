@@ -31,10 +31,11 @@
 					</div>
 				<?php endif; ?>
 
-				<?php if (false) : ?>
-					<?php // if ($listing->level->categories_number > 0 || $listing->level->unlimited_categories) : 
-					?>
-					<div class="w2gm-submit-section w2gm-submit-section-categories">
+				<?php // if (false) : 
+				?>
+				<?php if ($listing->level->categories_number > 0 || $listing->level->unlimited_categories) :
+				?>
+					<div class="w2gm-submit-section w2gm-submit-section-categories" style="display: none">
 						<h3 class="w2gm-submit-section-label"><?php echo $w2gm_instance->content_fields->getContentFieldBySlug('categories_list')->name; ?><?php if ($w2gm_instance->content_fields->getContentFieldBySlug('categories_list')->is_required) : ?><span class="w2gm-red-asterisk">*</span><?php endif; ?></h3>
 						<div class="w2gm-submit-section-inside">
 							<div class="w2gm-categories-tree-panel w2gm-editor-class" id="<?php echo W2GM_CATEGORIES_TAX; ?>-all">

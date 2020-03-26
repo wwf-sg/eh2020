@@ -205,7 +205,9 @@ function w2gm_ty_email_callback2($listing)
 
 add_action('wp_head', 'remove_one_wpseo_og', 1);
 
-remove_action('wp_head', '_wp_render_title_tag', 1);
+if (is_singular('signature')) {
+  remove_action('wp_head', '_wp_render_title_tag', 1);
+}
 
 function remove_one_wpseo_og()
 {
