@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /**
  * Voice Block Template.
@@ -13,9 +13,9 @@ include "translations.php";
 
 $title = "#DearSingapore, the time to shape our future is now.";
 $description = "Sign this open letter to Singapore's decision makers and join our fight for a better future.";
-$share_text = "#DearSingapore, the time to shape our future is now. Support this open letter to Singapore's decision makers and join our fight for a better future.";
+$share_text = "#DearSingapore, our future depends on the decisions we make now. Support this open letter and help us secure a better future for all of us in Singapore.";
 
-$mb_share_text = "#DearSingapore, our city is truly incredible. The resilience it has shown in the face of a pandemic like COVID-19 has been exemplary for the entire world. If we can come together for a health emergency, we can do the same for the planetary emergency. Join our fight for a better future by writing an open letter to Singapore's decision makers. Read my open letter here:";
+$mb_share_text = "#DearSingapore, our city is truly incredible. The resilience it has shown in the face of a pandemic like COVID-19 has been exemplary for the entire world. If we can come together for a health emergency, we can do the same for the planetary emergency. Support this open letter and help us secure a better future for all of us in Singapore.";
 // $mb_share_text = '';
 
 $tw_share_url = "https://twitter.com/intent/tweet?text=" . urlencode($share_text) . "&url=";
@@ -38,7 +38,7 @@ $ln_share_url = "https://www.linkedin.com/shareArticle?mini=true&title=" . urlen
         <div class="bg"></div>
         <div class="openletter w-100 bg-white text-dark">
             <h3 class="h6 mb-3">{{ $t('ol.intro') }}</h3>
-            <p></p>
+            <p>{{ $t('ol.line1') }}</p>
             <p>{{ $t('ol.line2') }}</p>
             <p>{{ $t('ol.line3') }} <span style="text-transform: lowercase;">{{ getFeelings }}</span>.</p>
             <div v-if="step >= 2">
@@ -80,7 +80,7 @@ $ln_share_url = "https://www.linkedin.com/shareArticle?mini=true&title=" . urlen
 <script type="text/x-template" id="voice-template">
     <div id="voice-component" class="voice-form m-0" :class="['step-' + step]">
         <form id="voice-form" class="d-flex align-items-center justify-content-center">
-            <div id="" action='' class="px-4 p-md-4 p-lg-5 w-100">
+            <div id="" action='' class="px-2 p-md-4 p-lg-5 w-100">
 
                 <div class="d-none">{{ this.someVariable }}</div>
 
@@ -90,17 +90,17 @@ $ln_share_url = "https://www.linkedin.com/shareArticle?mini=true&title=" . urlen
                             <div class="mb-4 ">
 
                                 <div class="btn-group-toggle">
-                                    <label class="btn text-white no-hover mr-2" :class="this.locale == 'en' ? 'btn-gradient': 'btn-outline-gradient'">
+                                    <label class="btn text-white no-hover mr-   " :class="this.locale == 'en' ? 'btn-gradient': 'btn-outline-gradient'">
                                         <input type="radio" name="lang" value="en" v-model="locale" id="lang_en" checked> EN
                                     </label>
-                                    <label class="btn text-white no-hover mr-2" :class="this.locale == 'cn' ? 'btn-gradient': 'btn-outline-gradient'">
+                                    <label class="btn text-white no-hover mr-   " :class="this.locale == 'cn' ? 'btn-gradient': 'btn-outline-gradient'">
                                         <input type="radio" name="lang" value="cn" v-model="locale" id="lang_cn" checked> CN
                                     </label>
-                                    <label class="btn text-white no-hover mr-2" :class="this.locale == 'ml' ? 'btn-gradient': 'btn-outline-gradient'">
+                                    <label class="btn text-white no-hover mr-   " :class="this.locale == 'ml' ? 'btn-gradient': 'btn-outline-gradient'">
                                         <input type="radio" name="lang" value="ml" v-model="locale" id="lang_ml" checked> ML
                                     </label>
-                                    <label class="btn text-white no-hover mr-2" :class="this.locale == 'tn' ? 'btn-gradient': 'btn-outline-gradient'">
-                                        <input type="radio" name="lang" value="tn" v-model="locale" id="lang_tn" checked> TN
+                                    <label class="btn text-white no-hover mr-   " :class="this.locale == 'tl' ? 'btn-gradient': 'btn-outline-gradient'">
+                                        <input type="radio" name="lang" value="tl" v-model="locale" id="lang_tl" checked> TL
                                     </label>
                                 </div>
 
@@ -338,12 +338,12 @@ $ln_share_url = "https://www.linkedin.com/shareArticle?mini=true&title=" . urlen
                                         <label for="age">{{ $t(`step3.age`) }} <span>*</span></label>
                                         <select ref="age" :disabled="loading" class="form-control bg-white" v-model="form.age"  id="age">
                                             <option value="">- {{ $t(`step3.age`) }} -</option>
-                                            <option value="Below 18">{{ $t(`below`) }} 18</option>
+                                            <option value="Below 18">{{ $t(`below`) }}</option>
                                             <option value="18-24">18-24</option>
                                             <option value="25-35">25-35</option>
                                             <option value="36-50">36-50</option>
                                             <option value="51-69">51-69</option>
-                                            <option value="70 and above">70 {{ $t(`and`) }} {{ $t(`above`) }}</option></select>
+                                            <option value="70 and above">{{ $t(`above`) }}</option></select>
                                         </select>
                                         <p class="error my-2" v-show="errors.age">{{ errors.age }}</p>
                                     </div>

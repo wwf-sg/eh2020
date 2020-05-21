@@ -1,58 +1,83 @@
-# WordPress #
-############
-wp-config-local.php
-wp-cli.local.yml
-wp-content/uploads
-wp-content/blogs.dir/
-wp-content/upgrade/
-wp-content/backup-db/
-wp-content/updraft/
-wp-content/backupwordpress-*/
-wp-content/managewp/backups/
-wp-content/advanced-cache.php
-wp-content/wp-cache-config.php
-sitemap.xml
-sitemap.xml.gz
-*.log
+# Compiled directories
+dist
 
-# @TODO writable paths
-wp-content/cache/
-wp-content/backups/
-
-# Avoid accidental modification of pantheon.upstream.yml in sites
-# created from this upstream
-pantheon.upstream.yml
-
-# Packages #
-############
-*.7z
-*.dmg
-*.gz
-*.bz2
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
-*.tgz
-!wp-includes/**/*.gz
-
-# Logs and databases #
-######################
-*.log
-*.sql
-
-# OS generated files #
-######################
-.DS_Store*
-ehthumbs.db
+# System files
+*~
+.DS_Store
+.svn
+.cvs
+*.bak
+*.swp
 Thumbs.db
-._*
+todo.txt
 
-# Vim generated files #
-######################
-*.un~
+# Dependency directories
+node_modules
+jspm_packages
+mix-manifest.json
 
-# SASS #
-##########
-.sass-cache
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Large / disallowed file types
+*.hqx
+*.bin
+*.exe
+*.dll
+*.deb
+*.dmg
+*.iso
+*.img
+*.msi
+*.msp
+*.msm
+*.mid
+*.midi
+*.kar
+*.mp3
+*.ogg
+*.m4a
+*.ra
+*.3gpp
+*.3gp
+*.mp4
+*.mpeg
+*.mpg
+*.mov
+*.webm
+*.flv
+*.m4v
+*.mng
+*.asx
+*.asf
+*.wmv
+*.avi
+
+
+# Logs
+logs
+*.log
+npm-debug.log*
+*log
+wp-admin/*log
+wp-content/*log
+wp-includes/*log
+
+# misc
+hot
+mix-manifest.json
+wp-config.php
+wp-config-local.php
+*.sql
+dbdump*
+.user.ini
+php.ini
+wp-content/cache/
+wp-content/db.php
+wp-content/backups-dup-pro/
+wp-content/upgrade/
+wp-content/themes/eh2020.zip
+wp-content/webtoffee_migrations/

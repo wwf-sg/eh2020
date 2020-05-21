@@ -47,6 +47,9 @@
                         <li class="nav-item">
                             <a class="text-white nav-link" href="/lights-out">Lights Out</a>
                         </li>
+                        <li class="nav-item d-none d-sm-block">
+                            <a class="text-white nav-link" href="#open-letter">Open letter</a>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -439,7 +439,7 @@ function sendEmail_sg($user)
     $headers = array(
         // "From: Janissa and Michael, WWF-Singapore <no-reply@earthhour.sg/>",
         "Content-type: text/html; charset=UTF-8",
-        "Reply-To: Janissa and Michael, WWF-Singapore <commsteam@wwf.sg>"
+        "Reply-To: Janissa and Michael, WWF-Singapore and friends <commsteam@wwf.sg>"
     );
     $subject = 'Thank you for helping to write your future';
     $template = file_get_contents(get_template_directory() . '/functions/template/email_template.html');

@@ -8,6 +8,7 @@ use ACP\API;
 use ACP\LicenseKeyRepository;
 use ACP\LicenseRepository;
 use ACP\RequestDispatcher;
+use ACP\Type\SiteUrl;
 use Plugin_Upgrader;
 use WP_Ajax_Upgrader_Skin;
 use WP_Error;
@@ -27,10 +28,16 @@ class AddonInstaller implements Registrable {
 	 */
 	private $license_key_repository;
 
-	public function __construct( RequestDispatcher $api, LicenseRepository $license_repository, LicenseKeyRepository $license_key_repository ) {
+	/**
+	 * @var SiteUrl
+	 */
+	private $site_url;
+
+	public function __construct( RequestDispatcher $api, LicenseRepository $license_repository, LicenseKeyRepository $license_key_repository, SiteUrl $site_url ) {
 		$this->api = $api;
 		$this->license_repository = $license_repository;
 		$this->license_key_repository = $license_key_repository;
+		$this->site_url = $site_url;
 	}
 
 	public function register() {
@@ -43,7 +50,7 @@ class AddonInstaller implements Registrable {
 	protected function get_ajax_handler() {
 		$handler = new Ajax\Handler();
 		$handler->set_action( 'acp-install-addon' )
-		        ->set_callback( array( $this, 'ajax_handle_request' ) );
+		        ->set_callback( [ $this, 'ajax_handle_request' ] );
 
 		return $handler;
 	}
@@ -65,7 +72,7 @@ class AddonInstaller implements Registrable {
 
 		$plugin_name = filter_input( INPUT_POST, 'plugin_name' );
 
-		$response = $this->api->dispatch( new API\Request\DownloadInformation( $plugin_name, $license->get_key() ) );
+		$response = $this->api->dispatch( new API\Request\DownloadInformation( $plugin_name, $license->get_key(), $this->site_url ) );
 
 		// Check download permission by requesting download information.
 		if ( $response->has_error() ) {
@@ -84,11 +91,11 @@ class AddonInstaller implements Registrable {
 
 		$result = activate_plugin( $plugin_basename );
 
-		wp_send_json_success( array(
+		wp_send_json_success( [
 			'installed' => true,
 			'activated' => null === $result,
 			'status'    => __( 'Active', 'codepress-admin-columns' ),
-		) );
+		] );
 	}
 
 	/**

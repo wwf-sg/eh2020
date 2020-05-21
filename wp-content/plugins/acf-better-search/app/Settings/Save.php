@@ -37,7 +37,9 @@
     {
       if (!isset($_POST['acfbs_save'])) return;
 
-      $features = apply_filters('acfbs_options_features', []);
+      $features = array_merge(apply_filters('acfbs_options_features', [], 'default'),
+        apply_filters('acfbs_options_features', [], 'advanced'));
+
       foreach ($features as $key => $label) {
         $value = (isset($_POST['acfbs_features']) && in_array($key, $_POST['acfbs_features']));
         $this->saveOption(sprintf('acfbs_%s', $key), $value);

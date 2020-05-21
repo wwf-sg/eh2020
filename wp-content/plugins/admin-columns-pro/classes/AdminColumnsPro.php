@@ -63,24 +63,24 @@ final class AdminColumnsPro extends AC\Plugin {
 		$this->api
 			->set_url( ac_get_site_url() )
 			->set_proxy( 'https://api.admincolumns.com' )
-			->set_request_meta( array(
+			->set_request_meta( [
 				'php_version' => PHP_VERSION,
 				'acp_version' => $this->get_version(),
-			) );
+			] );
 
 		$this->localize();
 
-		add_filter( 'plugin_action_links', array( $this, 'add_settings_link' ), 1, 2 );
-		add_filter( 'network_admin_plugin_action_links', array( $this, 'add_network_settings_link' ), 1, 2 );
+		add_filter( 'plugin_action_links', [ $this, 'add_settings_link' ], 1, 2 );
+		add_filter( 'network_admin_plugin_action_links', [ $this, 'add_network_settings_link' ], 1, 2 );
 
 		add_filter( 'ac/show_banner', '__return_false' );
 
-		add_action( 'ac/table_scripts', array( $this, 'table_scripts' ) );
+		add_action( 'ac/table_scripts', [ $this, 'table_scripts' ] );
 
-		add_action( 'init', array( $this, 'install' ), 1000 );
-		add_action( 'init', array( $this, 'install_network' ), 1000 );
+		add_action( 'init', [ $this, 'install' ], 1000 );
+		add_action( 'init', [ $this, 'install_network' ], 1000 );
 
-		add_filter( 'ac/view/templates', array( $this, 'templates' ) );
+		add_filter( 'ac/view/templates', [ $this, 'templates' ] );
 
 		$list_screen_repository = AC()->get_listscreen_repository();
 		$list_screen_repository->register_repository( new ListScreenRepository\ListScreenData( new Parser\DecodeFactory(), new ListScreenApiData() ) );
@@ -92,6 +92,8 @@ final class AdminColumnsPro extends AC\Plugin {
 			$this->get_url(),
 			$this->get_dir()
 		);
+
+		$site_url = new Type\SiteUrl( $this->is_network_active() ? network_site_url() : site_url(), $this->is_network_active() );
 
 		$modules = [
 			new Admin\Settings( $list_screen_repository, $location ),
@@ -117,9 +119,9 @@ final class AdminColumnsPro extends AC\Plugin {
 			new Migrate\Controller\Import( $list_screen_repository, new Parser\FileDecodeFactory() ),
 			new Controller\AjaxRequestListScreenUsers(),
 			new Controller\AjaxRequestListScreenOrder(),
-			new Controller\License( $this->api, $license_repository, $license_key_repository, $this->is_network_active() ),
-			new Updates( $this->api, $license_key_repository ),
-			new AddonInstaller( $this->api, $license_repository, $license_key_repository ),
+			new Controller\License( $this->api, $license_repository, $license_key_repository, $site_url ),
+			new Updates( $this->api, $license_key_repository, $site_url ),
+			new AddonInstaller( $this->api, $license_repository, $license_key_repository, $site_url ),
 			new Check\Activation( $this->get_basename(), $license_repository, $license_key_repository ),
 			new Check\Expired( $license_repository, $license_key_repository ),
 			new Check\Renewal( $license_repository, $license_key_repository ),
@@ -196,7 +198,6 @@ final class AdminColumnsPro extends AC\Plugin {
 	 */
 	public function localize() {
 		load_plugin_textdomain( 'codepress-admin-columns', false, dirname( $this->get_basename() ) . '/languages/' );
-		load_plugin_textdomain( 'codepress-admin-columns', false, dirname( $this->get_basename() ) . '/admin-columns/languages/' );
 	}
 
 	public function install_network() {
@@ -272,15 +273,15 @@ final class AdminColumnsPro extends AC\Plugin {
 	 * @return void
 	 */
 	public function table_scripts() {
-		wp_enqueue_style( 'acp-table', $this->get_url() . "assets/core/css/table.css", array(), $this->get_version() );
-		wp_enqueue_script( 'acp-table', $this->get_url() . "assets/core/js/table.js", array(), $this->get_version() );
+		wp_enqueue_style( 'acp-table', $this->get_url() . "assets/core/css/table.css", [], $this->get_version() );
+		wp_enqueue_script( 'acp-table', $this->get_url() . "assets/core/js/table.js", [], $this->get_version() );
 	}
 
 	/**
 	 * @return void
 	 */
 	public function register_global_scripts() {
-		wp_register_style( 'ac-jquery-ui', $this->get_url() . 'assets/core/css/ac-jquery-ui.css', array(), $this->get_version() );
+		wp_register_style( 'ac-jquery-ui', $this->get_url() . 'assets/core/css/ac-jquery-ui.css', [], $this->get_version() );
 	}
 
 	/**

@@ -47,15 +47,15 @@ class License implements Registrable {
 	private $license_key_repository;
 
 	/**
-	 * @var bool
+	 * @var Type\SiteUrl
 	 */
-	private $network_activated;
+	private $site_url;
 
-	public function __construct( RequestDispatcher $api, LicenseRepository $license_repository, LicenseKeyRepository $license_key_repository, $network_activated ) {
+	public function __construct( RequestDispatcher $api, LicenseRepository $license_repository, LicenseKeyRepository $license_key_repository, Type\SiteUrl $site_url ) {
 		$this->api = $api;
 		$this->license_repository = $license_repository;
 		$this->license_key_repository = $license_key_repository;
-		$this->network_activated = $network_activated;
+		$this->site_url = $site_url;
 	}
 
 	public function register() {
@@ -132,7 +132,7 @@ class License implements Registrable {
 
 		$this->license_key_repository->save( $license_key );
 
-		$response = $this->api->dispatch( new API\Request\Activation( $license_key, $this->network_activated ) );
+		$response = $this->api->dispatch( new API\Request\Activation( $license_key, $this->site_url ) );
 
 		if ( $response->has_error() ) {
 			$this->error_notice( $response->get_error()->get_error_message() );
@@ -159,7 +159,7 @@ class License implements Registrable {
 			return;
 		}
 
-		$response = $this->api->dispatch( new API\Request\Deactivation( $license_key ) );
+		$response = $this->api->dispatch( new API\Request\Deactivation( $license_key, $this->site_url ) );
 
 		if ( $response->has_error() ) {
 			$this->error_notice( $response->get_error()->get_error_message() );
@@ -190,7 +190,7 @@ class License implements Registrable {
 			return null;
 		}
 
-		$response = $this->api->dispatch( new API\Request\SubscriptionDetails( $license_key ) );
+		$response = $this->api->dispatch( new API\Request\SubscriptionDetails( $license_key, $this->site_url ) );
 
 		if ( $response->has_error() ) {
 

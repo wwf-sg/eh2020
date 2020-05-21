@@ -8,20 +8,20 @@
 
     public function __construct()
     {
-      add_filter('acfbs_config', [$this, 'getConfig']);
+      add_filter('acfbs_config', [$this, 'getConfig'], 10, 2);
     }
 
     /* ---
       Functions
     --- */
 
-    public function getConfig()
+    public function getConfig($value, $isForce = false)
     {
-      if ($this->config) return $this->config;
+      if ($this->config && !$isForce) return $this->config;
 
-      $value  = get_option('acfbs_fields_types', ['text', 'textarea', 'wysiwyg']);
+      $types  = get_option('acfbs_fields_types', ['text', 'textarea', 'wysiwyg']);
       $config = array_merge([
-        'fields_types' => $value ? $value : [],
+        'fields_types' => $types ? $types : [],
       ], $this->getFeaturesConfig());
 
       $this->config = $config;
@@ -30,7 +30,8 @@
 
     private function getFeaturesConfig()
     {
-      $features = apply_filters('acfbs_options_features', []);
+      $features = array_merge(apply_filters('acfbs_options_features', [], 'default'),
+        apply_filters('acfbs_options_features', [], 'advanced'));
 
       $list = [];
       foreach ($features as $key => $label) {

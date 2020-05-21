@@ -7,6 +7,7 @@ use AC\Capabilities;
 use AC\Integrations;
 use AC\Registrable;
 use ACP\API\Cached;
+use ACP\Type\SiteUrl;
 
 class Updates implements Registrable {
 
@@ -25,9 +26,15 @@ class Updates implements Registrable {
 	 */
 	private $license_key_repository;
 
-	public function __construct( API $api, LicenseKeyRepository $license_key_repository ) {
+	/**
+	 * @var SiteUrl
+	 */
+	private $site_url;
+
+	public function __construct( API $api, LicenseKeyRepository $license_key_repository, SiteUrl $site_url ) {
 		$this->api = $api;
 		$this->license_key_repository = $license_key_repository;
+		$this->site_url = $site_url;
 		$this->integrations = new Integrations();
 	}
 
@@ -39,11 +46,23 @@ class Updates implements Registrable {
 		add_action( 'init', [ $this, 'force_plugin_update_check_on_request' ] );
 	}
 
+	/**
+	 * @return bool
+	 */
+	private function is_doing_ajax_update_process() {
+		return wp_doing_ajax() && 'update-plugin' === filter_input( INPUT_POST, 'action' );
+	}
+
 	public function register_updater() {
+
+		// Skip updater during the ajax update process
+		if ( $this->is_doing_ajax_update_process() ) {
+			return;
+		}
 
 		foreach ( $this->get_installed_plugins() as $basename => $version ) {
 			// Add plugins to update process
-			$updater = new Updates\Updater( $basename, $version, new API\Cached( $this->api ), $this->license_key_repository->find() );
+			$updater = new Updates\Updater( $basename, $version, new API\Cached( $this->api ), $this->site_url, $this->license_key_repository->find() );
 			$updater->register();
 
 			// Click "view details" on plugin page
@@ -60,7 +79,7 @@ class Updates implements Registrable {
 		if ( $force_check && $pagenow === 'update-core.php' && current_user_can( Capabilities::MANAGE ) ) {
 			$api = new API\Cached( $this->api );
 			$api->dispatch(
-				new API\Request\ProductsUpdate( $this->license_key_repository->find() ), [
+				new API\Request\ProductsUpdate( $this->site_url, $this->license_key_repository->find() ), [
 					Cached::FORCE_UPDATE => true,
 				]
 			);

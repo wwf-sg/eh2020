@@ -1725,3 +1725,5 @@ function w2gm_utf8ize($mixed) {
 	}
 	return $mixed;
 }
+
+?>

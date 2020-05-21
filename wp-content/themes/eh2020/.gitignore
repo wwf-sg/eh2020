@@ -14,6 +14,7 @@ todo.txt
 logs
 *.log
 npm-debug.log*
+*log
 
 # Dependency directories
 node_modules
@@ -22,10 +23,6 @@ mix-manifest.json
 
 # Optional npm cache directory
 .npm
-
-# Misc
-hot
-mix-manifest.json
 
 # Optional REPL history
 .node_repl_history
@@ -63,3 +60,9 @@ mix-manifest.json
 *.asf
 *.wmv
 *.avi
+
+# Misc
+hot
+mix-manifest.json
+core.*
+

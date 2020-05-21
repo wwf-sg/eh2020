@@ -17,6 +17,7 @@
     {
       delete_option('acfbs_fields_types');
       delete_option('acfbs_whole_phrases');
+      delete_option('acfbs_whole_words');
       delete_option('acfbs_lite_mode');
       delete_option('acfbs_selected_mode');
       delete_option('acfbs_notice_hidden');

@@ -3,7 +3,7 @@ Contributors: mateuszgbiorczyk
 Donate link: https://ko-fi.com/gbiorczyk/
 Tags: acf, acf search, advanced custom fields, better search, search
 Requires at least: 5.0
-Tested up to: 5.3
+Tested up to: 5.4
 Requires PHP: 5.6
 Stable tag: trunk
 License: GPLv2 or later
@@ -23,6 +23,12 @@ Additionally you can search for whole phrases instead of each single word of phr
 
 We modified the code of search engine. Content search is now faster by about 75% *(depending on the level of complexity of searched phrase)*!
 
+#### Support to the development of plugin
+
+We spend hours working on the development of this plugin. Technical support also requires a lot of time, but we do it because we want to offer you the best plugin. We enjoy every new plugin installation.
+
+If you would like to appreciate it, you can [provide us a coffee](https://ko-fi.com/gbiorczyk/). **If every user bought at least one, we could work on the plugin 24 hours a day!**
+
 #### Please also read the FAQ below. Thank you for being with us!
 
 == Installation ==
@@ -39,7 +45,9 @@ Advanced Custom Fields in version 5 *(also free)*. ACF below version 5 has a dif
 
 = In what fields does the plugin search? =
 
-Our plugin supports the following fields: Text, Text Area, Number, Email, Url, File, Wysiwyg Editor, Select, Checkbox and Radio Button. All these fields may be located in both the Repeater or Flexible Content field.
+Our plugin supports the following fields: Text, Text Area, Number, Email, Url, File, Wysiwyg Editor, Select, Checkbox and Radio Button.
+
+All these fields may be located in both the Repeater or Flexible Content field.
 
 = How does this work? =
 
@@ -49,13 +57,21 @@ The plugin in admin panel works same as for the search page.
 
 It works for `WP_Query` class.
 
-= Do I need to add some arguments to my function to activate advanced search? =
+= How to activate advanced search? =
 
 Everythings works automatically. For custom `WP_Query` loop and `get_posts()` function also if you add [Search Parameter](https://codex.wordpress.org/Class_Reference/WP_Query#Search_Parameter).
 
+= What to do when not searching for posts? =
+
+Sometimes it happens that the data in your database is incorrectly arranged. This happens when you import or duplicate posts.
+
+You can use `Incorrect Mode`. This is a slower search, but it does not take into account the order of records in the `_postmeta` table. This solution should help in this situation.
+
 = How does searching for whole phrases? =
 
-The default search in WordPress is to search for each of words listed. This feature allows you to search for occurrences of the whole phrase entered in the search field without word division.
+The default search in WordPress is to search for each of words listed. An additional option in the plugin settings allows you to search for occurrences of the whole phrase entered in the search field without word division.
+
+You can enable it at any time.
 
 = How does Lite mode work? =
 
@@ -79,105 +95,123 @@ This is all very important to us and allows us to do even better things for you!
 
 == Changelog ==
 
-= 3.4.3 =
-* New filter `acfbs_search_post_object_fields` to select post fields using to search
+= 3.5.3 (2020-04-05) =
+* `[Removed]` Support for inverted values in `_postmeta` table
+* `[Added]` Support for incorrect data structure in `_postmeta` table *(fixes search for imported and duplicated posts)*
 
-= 3.4.2 =
-* Fix for `posts_join` filter
-* Update priority of `posts_search` filter (from 10 do 0)
+= 3.5.2 (2020-03-31) =
+* `[Fixed]` Displaying new values after saving settings
+* `[Fixed]` Support for empty array returned by `acfbs_search_post_object_fields` filter
+* `[Changed]` Static methods for filters `posts_join`, `pre_get_posts`, `posts_request` and `posts_search`
+* `[Added]` Support for inverted values in `_postmeta` table *(fixes search for imported posts)*
 
-= 3.4.1 =
-* New filter `acfbs_search_is_available` to block search
+= 3.5.1 (2020-03-19) =
+* `[Fixed]` Search based only on `post_title`, `post_content` or `post_excerpt`
 
-= 3.4.0 =
-* New way to start search engine
-* New filter `acfbs_is_available` to turn off search engine
+= 3.5.0 (2020-03-11) =
+* `[Changed]` Improved SQL query performance
+* `[Added]` The ability to search whole words
+* `[Added]` Support for field name prefixes other than `field_`
 
-= 3.3.2 =
-* Validation for fields types on settings page
+= 3.4.3 (2019-10-03) =
+* `[Added]` Filter `acfbs_search_post_object_fields` to select post fields using to search
 
-= 3.3.1 =
-* Security changes
+= 3.4.2 (2019-09-26) =
+* `[Fixed]` Fix for `posts_join` filter
+* `[Changed]` Update priority of `posts_search` filter *(from 10 do 0)*
 
-= 3.3.0 =
-* New settings page
-* New admin notice
+= 3.4.1 (2019-09-20) =
+* `[Added]` Filter `acfbs_search_is_available` to block search
 
-= 3.2.0 =
-* Changes in plugin structure
-* New mode to ability using only selected fields for searching
-* Filters to extend plugin capabilities
+= 3.4.0 (2019-09-16) =
+* `[Added]` New way to start search engine
+* `[Added]` Filter `acfbs_is_available` to turn off search engine
 
-= 3.1.3 =
-* Full path for loaded PHP files
+= 3.3.2 (2019-07-23) =
+* `[Added]` Validation for fields types on settings page
 
-= 3.1.2 =
-* Support for free version of ACF 5
+= 3.3.1 (2019-06-26) =
+* `[Fixed]` Security changes
 
-= 3.1.1 =
-* Default hidden admin notice
+= 3.3.0 (2019-06-17) =
+* `[Changed]` Settings page
+* `[Changed]` Admin notice
 
-= 3.1.0 =
-* Improved search engine
-* Support for AUTO_INCREMENT field in database other than 1
-* Possibility of permanent turn off admin notice
-* Modifications on settings page
+= 3.2.0 (2019-05-27) =
+* `[Changed]` Plugin structure
+* `[Added]` Mode to ability using only selected fields for searching
+* `[Added]` Filters to extend plugin capabilities
 
-= 3.0.1 =
-* Withdrawal of support for old WordPress versions
-* Minor fixes
+= 3.1.3 (2019-03-29) =
+* `[Fixed]` Full path for loaded PHP files
 
-= 3.0.0 =
-* Search in admin panel
-* Support for get_posts() function
-* Support for internationalization
-* Changes in plugin structure
+= 3.1.2 (2018-10-24) =
+* `[Added]` Support for free version of ACF 5
 
-= 2.2.0 =
-* Cleaning database after removing plugin
+= 3.1.1 (2018-10-22) =
+* `[Added]` Default hidden admin notice
 
-= 2.1.3 =
-* Compatibility fix for Polylang plugin
+= 3.1.0 (2018-10-18) =
+* `[Changed]` Improved search engine
+* `[Changed]` Settings page
+* `[Added]` Support for AUTO_INCREMENT field in database other than 1
+* `[Added]` Possibility of permanent turn off admin notice
 
-= 2.1.2 =
-* Support for File type field
+= 3.0.1 (2018-04-18) =
+* `[Removed]` Support for old WordPress versions
+* `[Fixed]` Other changes
 
-= 2.1.1 =
-* Modification of admin notice
+= 3.0.0 (2018-04-13) =
+* `[Changed]` Plugin structure
+* `[Added]` Support for `get_posts()` function
+* `[Added]` Search in Admin Panel
+* `[Added]` Support for internationalization
 
-= 2.1.0 =
-* Faster search using lite mode
-* Improved PHP code
+= 2.2.0 (2018-02-26) =
+* `[Added]` Cleaning database after removing plugin
 
-= 2.0.7 =
-* Turn off plugin core while searching uploads media items
+= 2.1.3 (2018-01-30) =
+* `[Fixed]` Compatibility for Polylang plugin
 
-= 2.0.6 =
-* Support for WordPress Multisite
+= 2.1.2 (2018-01-15) =
+* `[Added]` Support for File type field
 
-= 2.0.5 =
-* Changed closing notice in admin panel
+= 2.1.1 (2017-12-21) =
+* `[Changed]` Admin notice
 
-= 2.0.4 =
-* Support for WP AJAX
-* Changed access to settings page
+= 2.1.0 (2017-11-06) =
+* `[Changed]` Small changes
+* `[Added]` Lite mode for faster seach
 
-= 2.0.3 =
-* Improved text search with apostrophe and quotation marks
+= 2.0.7 (2017-08-24) =
+* `[Fixed]` Turn off plugin core while searching uploads media items
 
-= 2.0.2 =
-* Withdrawal of support for get_posts()
+= 2.0.6 (2017-08-20) =
+* `[Added]` Support for WordPress Multisite
 
-= 2.0.1 =
-* Fixes for PHP 7
+= 2.0.5 (2017-07-25) =
+* `[Fixed]` Closing notice in Admin panel
 
-= 2.0.0 =
-* Improved search engine
-* The ability to search whole phrases
-* Changed plugin settings page
-* Notifications in admin panel
+= 2.0.4 (2017-07-20) =
+* `[Changed]` Access to settings page
+* `[Added]` Support for WP AJAX
 
-= 1.0.0 =
+= 2.0.3 (2017-07-15) =
+* `[Fixed]` Text search with apostrophe and quotation marks
+
+= 2.0.2 (2017-06-29) =
+* `[Removed]` Support for `get_posts()`
+
+= 2.0.1 (2017-06-16) =
+* `[Fixed]` Support for PHP 7
+
+= 2.0.0 (2017-06-15) =
+* `[Changed]` Search engine
+* `[Changed]` Settings page
+* `[Added]` Notifications in admin panel
+* `[Added]` The ability to search whole phrases
+
+= 1.0.0 (2016-12-26) =
 * The first stable release
 
 == Upgrade Notice ==

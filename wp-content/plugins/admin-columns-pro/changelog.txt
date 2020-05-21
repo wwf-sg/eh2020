@@ -1,5 +1,22 @@
 == Changelog ==
 
+= 5.0.3 =
+Release Date: March 11th, 2020
+
+* [Fixed] Possible errors during update process
+* [Updated] Admin Column Core changes ( 4.0.3 )
+    * [Updated] Saving column settings for the first time could result in extra database records.
+
+= 5.0.2 =
+Release Date: February 26th, 2020
+
+* [Fixed] License key was not persistently stored on multi site environments
+* [Added] Core translations are updated
+* [Improved] Horizontal scrolling recalculates position after Bulk Edit is finished
+* [Updated] Admin Column Core changes ( 4.0.2 )
+    * [Updated] Fallback for wp_timezone when running WordPress < 5.3
+    * [Updated] Languages for core version updated
+
 = 5.0.1 =
 Release Date: February 18th, 2020
 

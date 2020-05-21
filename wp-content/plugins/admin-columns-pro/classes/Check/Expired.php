@@ -31,7 +31,7 @@ class Expired implements Registrable {
 	}
 
 	public function register() {
-		add_action( 'ac/screen', array( $this, 'display' ) );
+		add_action( 'ac/screen', [ $this, 'display' ] );
 
 		$this->get_ajax_handler()->register();
 	}
@@ -69,7 +69,7 @@ class Expired implements Registrable {
 		} else if ( $screen->is_admin_screen( 'columns' ) && $this->get_dismiss_option()->is_expired() ) {
 			// Dismissible on columns page
 			$notice = new Message\Notice\Dismissible( $this->get_message( $expiry_date ), $this->get_ajax_handler() );
-		} else if ( $screen->is_list_screen() ) {
+		} else if ( $screen->is_list_screen() && $this->get_dismiss_option()->is_expired() ) {
 			// Dismissible on list table
 			$notice = new Message\Notice\Dismissible( $this->get_message( $expiry_date ), $this->get_ajax_handler() );
 		} else {
@@ -106,7 +106,7 @@ class Expired implements Registrable {
 		$handler = new Ajax\Handler();
 		$handler
 			->set_action( 'ac_notice_dismiss_expired' )
-			->set_callback( array( $this, 'ajax_dismiss_notice' ) );
+			->set_callback( [ $this, 'ajax_dismiss_notice' ] );
 
 		return $handler;
 	}

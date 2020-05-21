@@ -6,6 +6,7 @@ use AC\Registrable;
 use ACP\API;
 use ACP\RequestDispatcher;
 use ACP\Type\License\Key;
+use ACP\Type\SiteUrl;
 
 /**
  * Hooks into the WordPress update process for plugins
@@ -27,15 +28,21 @@ class Updater implements Registrable {
 	private $api;
 
 	/**
+	 * @var SiteUrl
+	 */
+	private $site_url;
+
+	/**
 	 * @var Key|null
 	 */
 	private $license_key;
 
-	public function __construct( $basename, $version, RequestDispatcher $api, Key $license_key = null ) {
+	public function __construct( $basename, $version, RequestDispatcher $api, SiteUrl $site_url, Key $license_key = null ) {
 		$this->basename = $basename;
 		$this->slug = dirname( $basename );
 		$this->version = $version;
 		$this->api = $api;
+		$this->site_url = $site_url;
 		$this->license_key = $license_key;
 	}
 
@@ -44,7 +51,7 @@ class Updater implements Registrable {
 	}
 
 	public function check_update( $transient ) {
-		$response = $this->api->dispatch( new API\Request\ProductsUpdate( $this->license_key ) );
+		$response = $this->api->dispatch( new API\Request\ProductsUpdate( $this->site_url, $this->license_key ) );
 
 		if ( ! $response || $response->has_error() ) {
 			return $transient;

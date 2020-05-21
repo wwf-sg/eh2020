@@ -6,14 +6,14 @@
   {
     public function __construct()
     {
-      add_filter('pre_get_posts', [$this, 'queryArgs']); 
+      add_filter('pre_get_posts', ['AcfBetterSearch\Search\Query', 'queryArgs']); 
     }
 
     /* ---
       Functions
     --- */
 
-    public function queryArgs($query)
+    public static function queryArgs($query)
     {
       if (!isset($query->query_vars['s'])) return $query;
 
