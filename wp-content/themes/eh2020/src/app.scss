@@ -540,6 +540,7 @@ blockquote {
 .w2gm-content .w2gm-field-input-block-6 > div,
 .w2gm-content .w2gm-field-input-block-11 > div,
 .w2gm-content .w2gm-field-input-block-12 > div,
+.w2gm-content .w2gm-field-input-block-16 > div,
 .w2gm-content .w2gm-field-input-block-8 > div {
   width: 100%;
   padding: 0;
@@ -785,6 +786,7 @@ header:not(.with_hover_bg_color) nav.main_menu > ul > li:hover > a {
   display: none;
 }
 .w2gm-content .w2gm-field-input-block-6 > div,
+.w2gm-content .w2gm-field-input-block-16 > div,
 .w2gm-content .w2gm-field-input-block-11 > div {
   width: 100%;
   padding: 0;
@@ -908,5 +910,25 @@ header:not(.with_hover_bg_color) nav.main_menu > ul > li:hover > a {
   .w2gm-attached-item-logo,
   .w2gm-attached-item-input {
     display: none;
+  }
+}
+
+.wpcf7 {
+  margin-top: 10px;
+  padding: 10px 20px;
+  form.wpcf7-form {
+    p {
+      width:100%;
+      display:block;
+      label {
+        span.wpcf7-form-control-wrap {
+          display:block;
+          margin-top:10px;
+        }
+      }
+      &:nth-last-of-type(2) {
+        margin-bottom:2rem;
+      }
+    }
   }
 }

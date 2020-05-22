@@ -2,7 +2,7 @@
 
 /**
  * Register Signature Post Type
- * 
+ *
  * @return null
  */
 function Signature_Post_type()
@@ -70,7 +70,7 @@ add_action('init', 'Signature_Post_type', 0);
 
 /**
  * AJAX function returning image id
- * 
+ *
  * @return json
  */
 function getSignature()
@@ -270,7 +270,7 @@ function _getSignatureCount($country = 'all')
 
 
 /**
- * 
+ *
  */
 function getSignatureCount()
 {
@@ -292,22 +292,19 @@ add_action('wp_ajax_nopriv_getSignatureCount', 'getSignatureCount');
 function addActiveCampaign($signature)
 {
     // By default, this sample code is designed to get the result from your ActiveCampaign installation and print out the result
-    $url = 'https://wwfsingapore297.api-us1.com';
-    $api_key = 'd0f002f5c5ba903b3d74478a2952ca91acf04c5d72b4c75702a8051fc30296d62c3aec29';
-    $list_id = '96';
-    // $url = 'https://wwf-worldwidefundfornaturesingaporelimited1552298160.api-us1.com';
-    // $api_key = '15921cac81a99f6986315e1921a0882febb222405c7313e41a523ef16d289327ff2ab62d';
-    // $list_id = '1';
-    $tags = array_merge(['OL', 'OnlineLead'], [$signature['utm_campaign'], $signature['utm_source'], $signature['utm_medium'], $signature['utm_content'], $signature['utm_term'],]);
+    $url        = wwfsg_get_ac_api_url();
+    $api_key    = wwfsg_get_ac_api_key();
+    $list_id    = wwfsg_get_ac_signature_list_id();
+    $tags       = array_merge(['OL', 'OnlineLead'], [$signature['utm_campaign'], $signature['utm_source'], $signature['utm_medium'], $signature['utm_content'], $signature['utm_term'],]);
     if ($signature['health_1']) array_push($tags, 'OL_health', 'OL_haze');
     if ($signature['health_2']) array_push($tags, 'OL_health', 'OL_plastic');
     if ($signature['future_1']) array_push($tags, 'OL_quality', 'OL_wildlife');
     if ($signature['future_2']) array_push($tags, 'OL_quality', 'OL_food');
     if ($signature['qualityOfLiving_1']) array_push($tags, 'OL_prosperity', 'OL_climate');
     if ($signature['qualityOfLiving_2']) array_push($tags, 'OL_prosperity', 'OL_future');
-    $tags = implode(', ', array_filter($tags));
+    $tags       = implode(', ', array_filter($tags));
 
-    $params = array(
+    $params     = array(
 
         // the API Key can be found on the "Your Settings" page under the "API" tab.
         // replace this with your API Key
@@ -328,32 +325,32 @@ function addActiveCampaign($signature)
 
     // here we define the data we are posting in order to perform an update
     $post = array(
-        'email'                    => $signature['email'],
-        'first_name'               => $signature['first_name'],
-        'last_name'               => $signature['last_name'],
-        //'ip4'                    => '127.0.0.1',
-        'phone'                    => $signature['phone'],
-        // 'orgname'                  => 'Acme, Inc.',
-        'tags'                     => $tags,
+        'email'                         => $signature['email'],
+        'first_name'                    => $signature['first_name'],
+        'last_name'                     => $signature['last_name'],
+        // 'ip4'                           => '127.0.0.1',
+        'phone'                         => $signature['phone'],
+        // 'orgname'                       => 'Acme, Inc.',
+        'tags'                          => $tags,
 
         // any custom fields
-        //'field[345,0]'           => 'field value', // where 345 is the field ID
-        //'field[%PERS_1%,0]'      => 'field value', // using the personalization tag instead
+        // 'field[345,0]'                  => 'field value', // where 345 is the field ID
+        // 'field[%PERS_1%,0]'             => 'field value', // using the personalization tag instead
         // "field[%PLASTIC_DIET_PLASTIC_VALUE%, 0]" => $signature['plastic_value'],
-        // "field[%PLASTIC_DIET_PLASTIC_NAME%, 0]" => $signature['plastic_name'],
+        // "field[%PLASTIC_DIET_PLASTIC_NAME%, 0]"  => $signature['plastic_name'],
 
         // assign to lists:
-        'p[$list_id]'              => $list_id, // example list ID (REPLACE '123' WITH ACTUAL LIST ID, IE: p[5] = 5)
-        'status[$list_id]'         => 1, // 1: active, 2: unsubscribed (REPLACE '123' WITH ACTUAL LIST ID, IE: status[5] = 1)
-        //'form'          => 1001, // Subscription Form ID, to inherit those redirection settings
-        //'noresponders[123]'      => 1, // uncomment to set "do not send any future responders"
-        //'sdate[123]'             => '2009-12-07 06:00:00', // Subscribe date for particular list - leave out to use current date/time
+        "p[$list_id]"                   => $list_id, // example list ID (REPLACE '123' WITH ACTUAL LIST ID, IE: p[5] = 5)
+        "status[$list_id]"              => 1, // 1: active, 2: unsubscribed (REPLACE '123' WITH ACTUAL LIST ID, IE: status[5] = 1)
+        // 'form'                          => 1001, // Subscription Form ID, to inherit those redirection settings
+        // 'noresponders[123]'             => 1, // uncomment to set "do not send any future responders"
+        // 'sdate[123]'                    => '2009-12-07 06:00:00', // Subscribe date for particular list - leave out to use current date/time
         // use the folowing only if status=1
-        'instantresponders[$list_id]' => 1, // set to 0 to if you don't want to sent instant autoresponders
-        //'lastmessage[123]'       => 1, // uncomment to set "send the last broadcast campaign"
+        "instantresponders[$list_id]"   => 1, // set to 0 to if you don't want to sent instant autoresponders
+        // 'lastmessage[123]'              => 1, // uncomment to set "send the last broadcast campaign"
 
-        //'p[]'                    => 345, // some additional lists?
-        //'status[345]'            => 1, // some additional lists?
+        // 'p[]'                           => 345, // some additional lists?
+        // 'status[345]'                   => 1, // some additional lists?
     );
 
     // This section takes the input fields and converts them to the proper format

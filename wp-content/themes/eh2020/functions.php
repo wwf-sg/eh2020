@@ -36,6 +36,9 @@
     Custom
     - Site specific custom actions or util functions
   ========================================================================== */
+require_once('functions/custom/wwfsg_helpers.php');
+require_once('functions/custom/wwfsg_settings.php');
+require_once('functions/custom/wwfsg_sync_to_ac_from_custom_form.php');
 
 /* ==========================================================================
     Shortcodes
@@ -106,7 +109,7 @@ if (isset($_GET['test'])) {
 require_once 'functions/required.php';
 require_once 'functions/signatures.php';
 
-// submition redirect 
+// submition redirect
 add_filter('w2gm_redirect_after_submit', 'w2gm_redirect_after_submit');
 
 function w2gm_redirect_after_submit($url)

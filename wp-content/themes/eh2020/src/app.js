@@ -10,8 +10,6 @@ import VueI18n from "vue-i18n";
 Vue.use(VueI18n);
 
 $(document).ready(function () {
-
-
 	/**
 	 * Lights Out Google Maps Info Pop Out
 	 */
@@ -37,19 +35,18 @@ $(document).ready(function () {
 	$("#w2gm-categorychecklist input").attr("checked", "checked");
 	$(".w2gm-submit-section-categories").fadeOut();
 
-
 	/**
 	 * Home Page Countdown Timer
-	 */ 
+	 */
 	var countDownDate = new Date("March 27, 2021 20:30:00").getTime();
-	console.log(countDownDate)
+	// console.log(countDownDate)
 	setInterval(function time() {
 		// Get today's date and time
 		var now = new Date().getTime();
-		console.log('now', now)
+		// console.log('now', now)
 		// Find the distance between now and the count down date
 		var distance = countDownDate - now;
-		console.log("distance", distance)
+		// console.log("distance", distance)
 
 		// Time calculations for days, hours, minutes and seconds
 		var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -72,13 +69,10 @@ $(document).ready(function () {
    */
 	var myNavBar = {
 		flagAdd: true,
-
 		elements: [],
-
 		init: function (elements) {
 			this.elements = elements;
 		},
-
 		add: function () {
 			if (this.flagAdd) {
 				for (var i = 0; i < this.elements.length; i++) {
@@ -90,7 +84,6 @@ $(document).ready(function () {
 				this.flagAdd = false;
 			}
 		},
-
 		remove: function () {
 			for (var i = 0; i < this.elements.length; i++) {
 				const ele = document.getElementById(this.elements[i]);
