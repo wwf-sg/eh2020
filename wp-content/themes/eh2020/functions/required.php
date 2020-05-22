@@ -85,10 +85,10 @@ function queue_theme_assets()
         $min = '.min';
     }
 
-    wp_enqueue_style('style-bundle', get_template_directory_uri() . '/dist/app' . $min . '.css', array(), '3.0.0');
-    wp_enqueue_script('manifest-bundle', get_template_directory_uri() . '/dist/manifest' . $min . '.js', array(), '3.0.0', true);
-    wp_enqueue_script('vendor-bundle', get_template_directory_uri() . '/dist/vendor' . $min . '.js', array(), '3.0.0', true);
-    wp_enqueue_script('script-bundle', get_template_directory_uri() . '/dist/app' . $min . '.js', array(), '3.0.0', true);
+    wp_enqueue_style('style-bundle', get_template_directory_uri() . '/dist/app' . $min . '.css', array(), '3.0.1');
+    wp_enqueue_script('manifest-bundle', get_template_directory_uri() . '/dist/manifest' . $min . '.js', array(), '3.0.1', true);
+    wp_enqueue_script('vendor-bundle', get_template_directory_uri() . '/dist/vendor' . $min . '.js', array(), '3.0.1', true);
+    wp_enqueue_script('script-bundle', get_template_directory_uri() . '/dist/app' . $min . '.js', array(), '3.0.1', true);
 };
 add_action('wp_enqueue_scripts', 'queue_theme_assets');
 
@@ -242,7 +242,7 @@ function my_custom_fonts()
 }
 
 
-// define the nav_menu_item_title callback 
+// define the nav_menu_item_title callback
 function filter_nav_menu_item_title($title, $item, $args, $depth)
 {
     $icon = strtolower(get_field('country_flag', $item));
@@ -250,11 +250,11 @@ function filter_nav_menu_item_title($title, $item, $args, $depth)
     return $out;
 };
 
-// add the filter 
+// add the filter
 add_filter('nav_menu_item_title', 'filter_nav_menu_item_title', 10, 4);
 
 
-// define the nav_menu_link_attributes callback 
+// define the nav_menu_link_attributes callback
 function filter_nav_menu_link_attributes($atts, $item, $args, $depth)
 {
 
@@ -266,7 +266,7 @@ function filter_nav_menu_link_attributes($atts, $item, $args, $depth)
     return $atts;
 };
 
-// add the filter 
+// add the filter
 add_filter('nav_menu_link_attributes', 'filter_nav_menu_link_attributes', 10, 4);
 
 
@@ -372,19 +372,19 @@ add_action('admin_menu', 'register_stats_menu_page');
 function stats_callback()
 {
     /*
-	SELECT 
+	SELECT
 		m1.meta_value as meta_value, count(m2.meta_value) as count
-	FROM 
+	FROM
 		wp_posts as p
 	JOIN
 		wp_postmeta as m1 ON m1.post_id = p.ID
 	JOIN wp_postmeta as m2 ON m1.post_id = m2.post_id
-	WHERE 
+	WHERE
 		p.post_type = 'signature'
 	    AND (p.post_date BETWEEN '2019-06-17 00:00:00' AND '2019-06-25 00:00:00')
 	    AND m1.meta_key = 'country'
 	    AND m1.meta_value = 'SG'
-	    AND m2.meta_key = 'phone' 
+	    AND m2.meta_key = 'phone'
 	    AND m2.meta_value != ''
 	GROUP BY  m1.meta_value
 	LIMIT 10
@@ -680,20 +680,20 @@ function stats_callback()
         }
 
         // Taken just plastic test
-        $sql = "SELECT 
-                    m1.meta_value as meta_value, 
-                    count(m2.meta_value) as count 
-                FROM  
-                    wp_postmeta as m1  
-                    JOIN  
-                        wp_postmeta as m2  
-                            ON  
-                            m1.post_id = m2.post_id  
-                WHERE  
-                    m1.meta_key = 'country' AND 
-                    m2.meta_key = 'email' AND 
-                    m2.meta_value = '' 
-                GROUP BY  
+        $sql = "SELECT
+                    m1.meta_value as meta_value,
+                    count(m2.meta_value) as count
+                FROM
+                    wp_postmeta as m1
+                    JOIN
+                        wp_postmeta as m2
+                            ON
+                            m1.post_id = m2.post_id
+                WHERE
+                    m1.meta_key = 'country' AND
+                    m2.meta_key = 'email' AND
+                    m2.meta_value = ''
+                GROUP BY
                     m1.meta_value";
         $countries = $wpdb->get_results($sql);
         foreach ($countries as $country) {
@@ -703,20 +703,20 @@ function stats_callback()
         }
 
         // Taken plastic test
-        $sql = "SELECT 
-                    m1.meta_value as meta_value, 
-                    count(m2.meta_value) as count 
-                FROM  
-                    wp_postmeta as m1  
-                    JOIN 
-                        wp_postmeta as m2  
-                            ON  
-                            m1.post_id = m2.post_id  
-                WHERE  
-                    m1.meta_key = 'country' AND 
-                    m2.meta_key = 'plastic_value' AND 
-                    m2.meta_value != '0.01' 
-                GROUP BY  
+        $sql = "SELECT
+                    m1.meta_value as meta_value,
+                    count(m2.meta_value) as count
+                FROM
+                    wp_postmeta as m1
+                    JOIN
+                        wp_postmeta as m2
+                            ON
+                            m1.post_id = m2.post_id
+                WHERE
+                    m1.meta_key = 'country' AND
+                    m2.meta_key = 'plastic_value' AND
+                    m2.meta_value != '0.01'
+                GROUP BY
                     m1.meta_value";
         $countries = $wpdb->get_results($sql);
         foreach ($countries as $country) {
@@ -734,26 +734,26 @@ function stats_callback()
         }
 
         // Taken just CTA
-        $sql = "SELECT 
+        $sql = "SELECT
                     m1.meta_value as meta_value,
-                    count(m3.meta_value) as count 
-                FROM  
-                    wp_postmeta as m1  
-                    JOIN  
-                        wp_postmeta as m2  
-                            ON  
-                            m1.post_id = m2.post_id  
-                    JOIN  
-                        wp_postmeta as m3  
-                            ON  
-                            m2.post_id = m3.post_id  
-                WHERE  
-                    m1.meta_key = 'country' AND 
-                    m2.meta_key = 'email' AND 
+                    count(m3.meta_value) as count
+                FROM
+                    wp_postmeta as m1
+                    JOIN
+                        wp_postmeta as m2
+                            ON
+                            m1.post_id = m2.post_id
+                    JOIN
+                        wp_postmeta as m3
+                            ON
+                            m2.post_id = m3.post_id
+                WHERE
+                    m1.meta_key = 'country' AND
+                    m2.meta_key = 'email' AND
                     m2.meta_value != '' AND
                     m3.meta_key = 'plastic_value' AND
                     m3.meta_value = '0.01'
-                GROUP BY  
+                GROUP BY
                     m1.meta_value";
         $countries = $wpdb->get_results($sql);
         foreach ($countries as $country) {
