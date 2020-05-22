@@ -75,6 +75,7 @@ wp-config-local.php
 dbdump*
 .user.ini
 php.ini
+.htaccess
 wp-content/cache/
 wp-content/db.php
 wp-content/backups-dup-pro/
