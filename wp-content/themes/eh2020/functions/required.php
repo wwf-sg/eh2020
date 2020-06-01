@@ -85,10 +85,12 @@ function queue_theme_assets()
         $min = '.min';
     }
 
-    wp_enqueue_style('style-bundle', get_template_directory_uri() . '/dist/app' . $min . '.css', array(), '3.0.1');
-    wp_enqueue_script('manifest-bundle', get_template_directory_uri() . '/dist/manifest' . $min . '.js', array(), '3.0.1', true);
-    wp_enqueue_script('vendor-bundle', get_template_directory_uri() . '/dist/vendor' . $min . '.js', array(), '3.0.1', true);
-    wp_enqueue_script('script-bundle', get_template_directory_uri() . '/dist/app' . $min . '.js', array(), '3.0.1', true);
+    $currentTheme = wp_get_theme();
+
+    wp_enqueue_style('style-bundle', get_template_directory_uri() . '/dist/app' . $min . '.css', array(), $currentTheme->get('Version'));
+    wp_enqueue_script('manifest-bundle', get_template_directory_uri() . '/dist/manifest' . $min . '.js', array(), $currentTheme->get('Version'), true);
+    wp_enqueue_script('vendor-bundle', get_template_directory_uri() . '/dist/vendor' . $min . '.js', array(), $currentTheme->get('Version'), true);
+    wp_enqueue_script('script-bundle', get_template_directory_uri() . '/dist/app' . $min . '.js', array(), $currentTheme->get('Version'), true);
 };
 add_action('wp_enqueue_scripts', 'queue_theme_assets');
 
